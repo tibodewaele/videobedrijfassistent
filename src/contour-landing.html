@@ -1444,7 +1444,7 @@
       <div class="svc-slide">
         <div class="svc-num">01</div>
         <div class="svc-img-placeholder svc-has-media" id="svc-img-1">
-          <video class="svc-video" id="svc-video-1" muted loop playsinline preload="auto">
+          <video class="svc-video" id="svc-video-1" autoplay muted loop playsinline preload="auto">
             <source src="WEBVID_SCRIPTING.mp4" type="video/mp4">
           </video>
         </div>
@@ -1467,7 +1467,7 @@
       <div class="svc-slide">
         <div class="svc-num">02</div>
         <div class="svc-img-placeholder svc-has-media" id="svc-img-2">
-          <video class="svc-video" id="svc-video-2" muted loop playsinline preload="auto">
+          <video class="svc-video" id="svc-video-2" autoplay muted loop playsinline preload="auto">
             <source src="WEBVID_FILMING.mp4" type="video/mp4">
           </video>
         </div>
@@ -1853,34 +1853,23 @@
   });
 }());
 
-// Autoplay card videos when visible
-document.querySelectorAll('.svc-video').forEach(video => {
-  video.muted = true;
-  video.play().catch(() => {});
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) video.play().catch(() => {});
-      else video.pause();
-    });
-  }, { threshold: 0.1 });
-  obs.observe(video);
-});
-
-// Unlock ALL videos on first interaction
-(function() {
-  function unlockAll() {
-    document.querySelectorAll('.svc-video, #hero-video').forEach(v => {
-      v.muted = true;
-      v.play().catch(() => {});
-    });
-  }
-  ['mousemove','scroll','touchstart','click'].forEach(evt => {
-    document.addEventListener(evt, function u() {
-      unlockAll();
-      document.removeEventListener(evt, u);
-    }, { once: true, passive: true });
+// Alle carousel-videos altijd laten spelen (ook geklonede slides)
+function playAllSvcVideos() {
+  document.querySelectorAll('.svc-video').forEach(function(v) {
+    v.muted = true;
+    v.play().catch(function(){});
   });
-})();
+}
+playAllSvcVideos();
+
+// Herstart bij eerste gebruikersinteractie (iOS-unlock)
+['mousemove','scroll','touchstart','click'].forEach(function(evt) {
+  document.addEventListener(evt, function u() {
+    playAllSvcVideos();
+    document.querySelectorAll('#hero-video').forEach(function(v){ v.muted=true; v.play().catch(function(){}); });
+    document.removeEventListener(evt, u);
+  }, { once: true, passive: true });
+});
 </script>
 
 <!-- PORTFOLIO -->
