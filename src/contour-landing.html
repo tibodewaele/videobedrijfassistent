@@ -1,0 +1,2662 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contour. Storytelling Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #161616;
+    --border: rgba(255,255,255,0.08);
+    --orange: #C8541A;
+    --orange-light: #FF7433;
+    --white: #F0EDE8;
+    --muted: rgba(240,237,232,0.45);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+    --font-condensed: 'Barlow Condensed', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+  }
+  .cursor-follower {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(200,84,26,0.4);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.18s ease;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 48px;
+    mix-blend-mode: normal;
+  }
+  nav::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.9), transparent);
+    pointer-events: none;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links {
+    display: flex; gap: 40px; list-style: none;
+    position: relative;
+  }
+  .nav-links a {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    position: relative;
+    background: var(--orange);
+    color: var(--white) !important;
+    padding: 10px 24px !important;
+    letter-spacing: 2px !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--orange-light) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-video-bg {
+    position: absolute; inset: 0;
+    background: var(--black);
+    overflow: hidden;
+  }
+
+  /* Simulated cinematic film grain & atmosphere */
+  .hero-video-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(135deg, rgba(200,84,26,0.04) 0%, transparent 50%),
+      linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.85) 100%);
+    z-index: 2;
+  }
+
+  .film-grain {
+    position: absolute; inset: 0; z-index: 1;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  /* Video placeholder. replace with real embed */
+  .video-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: #080808;
+  }
+  .video-placeholder video,
+  .video-placeholder iframe {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  /* Placeholder visual when no video */
+  .video-fake-content {
+    width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(200,84,26,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 30%, rgba(255,255,255,0.02) 0%, transparent 50%),
+      #080808;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+
+  .play-ring {
+    width: 80px; height: 80px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .play-ring::before {
+    content: '';
+    position: absolute;
+    width: 100px; height: 100px;
+    border: 1px solid rgba(200,84,26,0.15);
+    border-radius: 50%;
+    animation: pulse-ring 2.5s ease-out infinite;
+  }
+  .play-ring::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    border: 1px solid rgba(200,84,26,0.07);
+    border-radius: 50%;
+    animation: pulse-ring 2.5s ease-out 0.5s infinite;
+  }
+  .play-ring svg { margin-left: 4px; }
+  .play-ring:hover { border-color: var(--orange); background: rgba(200,84,26,0.1); }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(0.9); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+
+  /* Horizontal scrolling text strip */
+  .reel-strip {
+    position: absolute; top: 50%; left: 0; right: 0;
+    transform: translateY(-50%);
+    overflow: hidden;
+    opacity: 0.04;
+    white-space: nowrap;
+    font-family: var(--font-display);
+    font-size: 140px;
+    letter-spacing: 12px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .reel-strip-inner {
+    display: inline-block;
+    animation: strip-scroll 18s linear infinite;
+  }
+  @keyframes strip-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 10;
+    padding: 0 48px 64px;
+    max-width: 1400px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-condensed);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--orange);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(64px, 9vw, 128px);
+    line-height: 0.92;
+    letter-spacing: 1px;
+    max-width: 900px;
+    margin-bottom: 32px;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--orange);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    display: flex; align-items: center; gap: 32px;
+  }
+  .btn-primary {
+    background: var(--orange);
+    color: var(--white);
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.1);
+    transform: translateX(-100%);
+    transition: transform 0.25s;
+  }
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary:hover { background: var(--orange-light); }
+
+  .btn-ghost {
+    color: var(--muted);
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: color 0.2s;
+  }
+  .btn-ghost svg { transition: transform 0.2s; }
+  .btn-ghost:hover { color: var(--white); }
+  .btn-ghost:hover svg { transform: translateX(4px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 64px; right: 48px;
+    z-index: 10;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .hero-scroll span {
+    font-family: var(--font-condensed);
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--orange), transparent);
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* WHEEL SECTION */
+  .wheel-section {
+    padding: 120px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .wheel-left h2 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 5vw, 80px);
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+  .wheel-left h2 span { color: var(--orange); }
+  .wheel-left p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 400px;
+    margin-bottom: 40px;
+  }
+
+  .wheel-right {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    height: 400px;
+  }
+
+  .wheel-ring {
+    position: relative;
+    width: 320px; height: 320px;
+  }
+
+  .wheel-center {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .wheel-center-text {
+    width: 100px; height: 100px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .wheel-center-text .big { font-family: var(--font-display); font-size: 32px; color: var(--orange); }
+  .wheel-center-text .small {
+    font-family: var(--font-condensed);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .wheel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+  }
+
+  .wheel-label {
+    position: absolute;
+    display: flex; flex-direction: column; align-items: center;
+    transform: translate(-50%, -50%);
+  }
+  .wheel-label .label-icon {
+    width: 48px; height: 48px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 8px;
+    font-size: 18px;
+    transition: all 0.3s;
+  }
+  .wheel-label:hover .label-icon {
+    border-color: var(--orange);
+    background: rgba(200,84,26,0.1);
+  }
+  .wheel-label .label-text {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* Position the 4 items */
+  .wheel-item:nth-child(1) .wheel-label { top: 0%; left: 50%; }
+  .wheel-item:nth-child(2) .wheel-label { top: 50%; left: 100%; }
+  .wheel-item:nth-child(3) .wheel-label { top: 100%; left: 50%; }
+  .wheel-item:nth-child(4) .wheel-label { top: 50%; left: 0%; }
+
+  /* Connecting lines */
+  .wheel-svg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    opacity: 0.15;
+  }
+
+  /* Orbit animation */
+  .orbit {
+    position: absolute;
+    border: 1px solid rgba(200,84,26,0.12);
+    border-radius: 50%;
+    animation: orbit-spin 20s linear infinite;
+  }
+  .orbit-1 { width: 100%; height: 100%; top: 0; left: 0; }
+  .orbit-2 { width: 70%; height: 70%; top: 15%; left: 15%; animation-duration: 15s; animation-direction: reverse; }
+
+  @keyframes orbit-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .stat-item {
+    background: var(--dark);
+    padding: 40px 48px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 56px;
+    color: var(--white);
+    display: block;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-number span { color: var(--orange); }
+  .stat-label {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* SERVICES */
+  .services-section {
+    padding: 120px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+  }
+  .section-tag {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 4vw, 64px);
+    line-height: 0.95;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .service-card {
+    background: var(--black);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { background: var(--card); }
+
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 80px;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    top: 16px; right: 24px;
+    line-height: 1;
+    transition: color 0.3s;
+  }
+  .service-card:hover .service-num { color: rgba(200,84,26,0.06); }
+
+  .service-tag {
+    font-family: var(--font-condensed);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .service-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .service-items {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 36px;
+  }
+  .service-items li {
+    font-size: 15px;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-condensed);
+    letter-spacing: 0.5px;
+  }
+  .service-items li::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  .service-price {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--white);
+  }
+  .service-price span {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-left: 4px;
+  }
+
+  /* PORTFOLIO */
+  .portfolio-section {
+    padding: 120px 48px;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+  }
+  .portfolio-inner { max-width: 1400px; margin: 0 auto; }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 240px 240px;
+    gap: 2px;
+    margin-top: 64px;
+  }
+
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--card);
+  }
+  .portfolio-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .portfolio-item:nth-child(4) { grid-column: span 2; }
+
+  .portfolio-bg {
+    position: absolute; inset: 0;
+    transition: transform 0.6s ease;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .portfolio-item:hover .portfolio-bg { transform: scale(1.05); }
+
+  /* Simulated portfolio images with gradient backgrounds */
+  .p1 .portfolio-bg { background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); }
+  .p2 .portfolio-bg { background: linear-gradient(135deg, #151515 0%, #1a0d08 100%); }
+  .p3 .portfolio-bg { background: linear-gradient(135deg, #0d1a0d 0%, #111 100%); }
+  .p4 .portfolio-bg { background: linear-gradient(135deg, #1a1210 0%, #111 100%); }
+  .p5 .portfolio-bg { background: linear-gradient(135deg, #0d0d1a 0%, #111 100%); }
+  .p6 .portfolio-bg { background: linear-gradient(135deg, #1a1008 0%, #111 100%); }
+  .p7 .portfolio-bg { background: linear-gradient(135deg, #141414 0%, #0a0a0a 100%); }
+
+  .portfolio-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 24px;
+  }
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+  .portfolio-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  .portfolio-type {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  .portfolio-label {
+    position: absolute;
+    bottom: 20px; left: 20px;
+    font-family: var(--font-display);
+    font-size: 18px;
+    transition: opacity 0.3s;
+    color: rgba(255,255,255,0.6);
+  }
+  .portfolio-item:hover .portfolio-label { opacity: 0; }
+
+  /* PROCESS */
+  .process-section {
+    padding: 120px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 64px;
+    border: 1px solid var(--border);
+  }
+
+  .process-step {
+    padding: 48px 36px;
+    border-right: 1px solid var(--border);
+    position: relative;
+    transition: background 0.3s;
+  }
+  .process-step:last-child { border-right: none; }
+  .process-step:hover { background: var(--card); }
+
+  .process-step-num {
+    font-family: var(--font-display);
+    font-size: 64px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    margin-bottom: 32px;
+    transition: color 0.3s;
+  }
+  .process-step:hover .process-step-num { color: rgba(200,84,26,0.08); }
+
+  .process-step-icon {
+    width: 40px; height: 40px;
+    background: rgba(200,84,26,0.12);
+    border: 1px solid rgba(200,84,26,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  .process-step-title {
+    font-family: var(--font-condensed);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .process-step-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .process-free {
+    margin-top: 16px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-condensed);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    background: rgba(200,84,26,0.08);
+    border: 1px solid rgba(200,84,26,0.2);
+    padding: 4px 10px;
+  }
+
+  /* RETAINER */
+  /* RETAINER INTRO */
+  .retainer-intro {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: start;
+    padding: 64px 0 72px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 64px;
+  }
+  .retainer-intro-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 3.5vw, 52px);
+    line-height: 1.05;
+    color: var(--white);
+  }
+  .retainer-intro-title em {
+    font-style: normal;
+    color: var(--orange);
+    display: block;
+  }
+  .retainer-intro-right p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(200,196,188,0.75);
+  }
+  .retainer-intro-right strong { color: var(--white); font-weight: 500; }
+  .retainer-intro-pillars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .retainer-intro-pillar {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1px solid rgba(200,84,26,0.3);
+    background: rgba(200,84,26,0.06);
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+
+  .retainer-fotos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 64px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .retainer-foto-item {
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 4/3;
+  }
+  .retainer-foto-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .retainer-foto-item:hover img {
+    transform: scale(1.03);
+  }
+
+  .retainer-section {
+    padding: 120px 48px;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+  }
+  .retainer-inner { max-width: 1400px; margin: 0 auto; }
+
+  .retainer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+    background: var(--border);
+  }
+
+  .retainer-card {
+    background: var(--black);
+    padding: 48px 40px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .retainer-card.featured {
+    background: var(--card);
+  }
+
+  .retainer-name {
+    font-family: var(--font-display);
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+  .retainer-tagline {
+    font-family: var(--font-condensed);
+    font-size: 16px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+  .retainer-price {
+    display: flex; align-items: baseline; gap: 6px;
+    margin-bottom: 8px;
+  }
+  .retainer-amount {
+    font-family: var(--font-display);
+    font-size: 56px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .retainer-period {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .retainer-discount {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    color: var(--orange);
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+  }
+  .retainer-divider {
+    width: 100%; height: 1px;
+    background: var(--border);
+    margin-bottom: 32px;
+  }
+  .retainer-features {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .retainer-features li {
+    font-size: 15px;
+    color: var(--muted);
+    display: flex; align-items: flex-start; gap: 12px;
+    line-height: 1.5;
+  }
+  .retainer-features li::before {
+    content: '→';
+    color: var(--orange);
+    flex-shrink: 0;
+    font-size: 16px;
+    margin-top: 1px;
+  }
+  .retainer-cta {
+    display: block;
+    margin-top: 40px;
+    text-align: center;
+    padding: 14px 24px;
+    font-family: var(--font-condensed);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .retainer-cta-ghost {
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .retainer-cta-ghost:hover { border-color: var(--white); color: var(--white); }
+  .retainer-cta-solid {
+    background: var(--orange);
+    color: var(--white);
+  }
+  .retainer-cta-solid:hover { background: var(--orange-light); }
+
+  /* TESTIMONIALS */
+  .testimonials-section {
+    padding: 120px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    margin-top: 64px;
+  }
+
+  .testimonial-card {
+    background: var(--black);
+    padding: 40px;
+    transition: background 0.3s;
+  }
+  .testimonial-card:hover { background: var(--card); }
+
+  .quote-icon {
+    font-family: var(--font-display);
+    font-size: 64px;
+    color: var(--orange);
+    line-height: 0.6;
+    margin-bottom: 24px;
+    opacity: 0.4;
+  }
+  .quote-text {
+    font-family: var(--font-condensed);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 28px;
+    color: var(--white);
+    letter-spacing: 0.3px;
+  }
+  .quote-author {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .quote-avatar {
+    width: 40px; height: 40px;
+    background: var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--orange);
+  }
+  .quote-info-name {
+    font-family: var(--font-condensed);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .quote-info-company {
+    font-size: 16px;
+    color: var(--muted);
+  }
+  .quote-stars {
+    color: var(--orange);
+    font-size: 16px;
+    margin-left: auto;
+    letter-spacing: 2px;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 120px 48px;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: 'CONTOUR';
+    position: absolute;
+    font-family: var(--font-display);
+    font-size: clamp(120px, 16vw, 220px);
+    color: rgba(255,255,255,0.015);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 16px;
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .cta-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 6vw, 88px);
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+  .cta-title span { color: var(--orange); }
+  .cta-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+  .cta-actions {
+    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .cta-contact {
+    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+  }
+  .contact-item {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .contact-label {
+    font-family: var(--font-condensed);
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .contact-value {
+    font-size: 16px;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-value:hover { color: var(--orange); }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: 4px;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-copy {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+  }
+  .footer-links {
+    display: flex; gap: 24px;
+  }
+  .footer-links a {
+    font-family: var(--font-condensed);
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--orange); }
+
+  /* ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* Marquee */
+  .marquee-section {
+    overflow: hidden;
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--black);
+  }
+  .marquee-track {
+    display: flex;
+    animation: marquee 22s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-family: var(--font-display);
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    padding: 0 40px;
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 40px;
+  }
+  .marquee-item .dot {
+    width: 4px; height: 4px;
+    background: var(--orange);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">CONT<span>O</span>UR</a>
+  <ul class="nav-links">
+    <li><a href="#diensten">Diensten</a></li>
+    <li><a href="#werk">Werk</a></li>
+    <li><a href="#aanpak">Aanpak</a></li>
+    <li><a href="#retainer">Retainer</a></li>
+    <li><a href="#contact" class="nav-cta">Plan een call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-video-bg">
+    <div class="film-grain"></div>
+    <div class="reel-strip">
+      <span class="reel-strip-inner">CONTOUR · STORYTELLING AGENCY · MERKPOSITIONERING · CONTOUR · STORYTELLING AGENCY · MERKPOSITIONERING · CONTOUR · STORYTELLING AGENCY · MERKPOSITIONERING · CONTOUR · STORYTELLING AGENCY · MERKPOSITIONERING · </span>
+    </div>
+    <div class="video-placeholder">
+      <video id="hero-video" muted loop playsinline autoplay preload="auto" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <source src="HEATHER_hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <script>
+      // Run immediately as HTML parses. don't wait for DOMContentLoaded
+      (function() {
+        var attempts = 0;
+        function tryHeroPlay() {
+          var v = document.getElementById('hero-video');
+          if (!v) { if (attempts++ < 20) setTimeout(tryHeroPlay, 100); return; }
+          v.muted = true;
+          v.defaultMuted = true;
+          v.setAttribute('muted', '');
+          var p = v.play();
+          if (p) p.catch(function() {});
+        }
+        tryHeroPlay();
+
+        // Also unlock on ANY user gesture
+        function unlock() {
+          var v = document.getElementById('hero-video');
+          if (v && v.paused) { v.muted = true; v.play().catch(function(){}); }
+        }
+        document.addEventListener('mousemove', unlock, { once: true, passive: true });
+        document.addEventListener('scroll',    unlock, { once: true, passive: true });
+        document.addEventListener('touchstart',unlock, { once: true, passive: true });
+        document.addEventListener('click',     unlock, { once: true, passive: true });
+        document.addEventListener('keydown',   unlock, { once: true, passive: true });
+        window.addEventListener('load', function() { unlock(); tryHeroPlay(); });
+      })();
+    </script>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Storytelling Agency · België</div>
+    <h1 class="hero-title">
+        Wij vertellen<br>
+        het verhaal<br>
+        <em>van uw merk.</em>
+      </h1>
+      <p class="hero-sub">
+        Van concept tot oplevering begeleiden wij bedrijven bij het omzetten van hun verhaal naar cinematisch, impactvol beeldmateriaal. zodat u uw merk kan positioneren op een hoogstaande, premium manier.
+      </p>
+    <div class="hero-actions">
+      <a href="contact-form.html" target="_blank" class="btn-primary">Gratis introgesprek</a>
+      <a href="#werk" class="btn-ghost">
+        Bekijk ons werk
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+          <path d="M10 1L15 6M15 6L10 11M15 6H1" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="logo-strip-section">
+  <div class="logo-strip-track" id="logoTrack">
+
+    <div class="logo-card logo-card-md logo-card-offset-down">
+      <img src="logo-venue-card.png" alt="Venue Catering">
+    </div>
+    <div class="logo-card logo-card-md logo-card-offset-down">
+      <img src="logo-convectus-card.png" alt="Convectus">
+    </div>
+    <div class="logo-card logo-card-lg">
+      <img src="logo-bdsv.png" alt="Groep BDSV">
+    </div>
+
+    <div class="logo-card logo-card-lg">
+      <img src="logo-mijnexpert-card.png" alt="Mijn Expert">
+    </div>
+    <div class="logo-card logo-card-lg">
+      <img src="logo-alirec-card.png" alt="Alirec Properties">
+    </div>
+
+    <div class="logo-card logo-card-lg">
+      <img src="logo-kasteel-card.png" alt="Kasteel de Haar">
+    </div>
+    <div class="logo-card logo-card-lg">
+      <img src="logo-bacho-card.png" alt="Bacho Silent Disco">
+    </div>
+
+    <!-- duplicates for seamless loop -->
+    <div class="logo-card logo-card-md logo-card-offset-down">
+      <img src="logo-venue-card.png" alt="Venue Catering">
+    </div>
+    <div class="logo-card logo-card-md logo-card-offset-down">
+      <img src="logo-convectus-card.png" alt="Convectus">
+    </div>
+    <div class="logo-card logo-card-lg">
+      <img src="logo-bdsv.png" alt="Groep BDSV">
+    </div>
+
+    <div class="logo-card logo-card-lg">
+      <img src="logo-mijnexpert-card.png" alt="Mijn Expert">
+    </div>
+    <div class="logo-card logo-card-lg">
+      <img src="logo-alirec-card.png" alt="Alirec Properties">
+    </div>
+
+    <div class="logo-card logo-card-lg">
+      <img src="logo-kasteel-card.png" alt="Kasteel de Haar">
+    </div>
+    <div class="logo-card logo-card-lg">
+      <img src="logo-bacho-card.png" alt="Bacho Silent Disco">
+    </div>
+
+  </div>
+</div>
+
+<style>
+.logo-strip-section {
+  overflow: hidden;
+  padding: 60px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--black);
+}
+.logo-strip-track {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: logo-scroll 32s linear infinite;
+  will-change: transform;
+}
+.logo-strip-track:hover {
+  animation-play-state: paused;
+}
+@keyframes logo-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Card sizes */
+.logo-card {
+  flex-shrink: 0;
+  background: var(--card);
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 256px;
+  height: 144px;
+  transition: opacity 0.3s;
+}
+.logo-card:hover { opacity: 0.85; }
+.logo-card-lg  { width: 256px; height: 144px; }
+.logo-card-md  { width: 256px; height: 144px; }
+.logo-card-sm  { width: 256px; height: 144px; }
+
+/* Remove stagger offsets */
+.logo-card-offset-up   { transform: none; }
+.logo-card-offset-down { transform: none; }
+.logo-card-offset-up:hover   { transform: none; }
+.logo-card-offset-down:hover { transform: none; }
+.logo-card:not(.logo-card-offset-up):not(.logo-card-offset-down):hover { transform: none; }
+
+/* Logo text styles */
+.logo-text-lg {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.45);
+  text-align: center;
+  line-height: 1.2;
+  transition: color 0.3s;
+}
+.logo-text-md {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  line-height: 1.2;
+  transition: color 0.3s;
+}
+.logo-text-sm {
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  line-height: 1.4;
+  transition: color 0.3s;
+}
+.logo-card:hover .logo-text-lg,
+.logo-card:hover .logo-text-md,
+.logo-card:hover .logo-text-sm {
+  color: rgba(255,255,255,0.75);
+}
+/* Real logos: add img inside .logo-card and it will auto-style */
+.logo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0;
+  opacity: 1;
+  transition: opacity 0.3s;
+  border-radius: 16px;
+}
+.logo-card:hover img { opacity: 0.85; }
+</style>
+
+<!-- WHEEL / ABOUT SECTION -->
+<section style="border-bottom: 1px solid var(--border);">
+  <div class="wheel-section">
+    <div class="wheel-left reveal">
+      <h2>Één aanspreekpunt.<br><span>Volledig team.</span></h2>
+      <p>Uw verhaal verdient meer dan beelden. Het verdient een concept, een aanpak en een team dat begrijpt hoe merken worden opgebouwd. van eerste briefing tot shootdag tot oplevering.</p>
+      <p style="margin-top:16px;">Wij zorgen ervoor dat uw campagne een <strong>high end uitwerking</strong> krijgt in de markt, met emotie en een wow-gevoel dat blijft hangen.</p>
+      <p style="margin-top:16px;">Of u nu gaat voor een <strong>all-in campagne</strong> met alles op en aan, een <strong>corporate video</strong>, <strong>short-form content</strong> of explainer video. bij Contour vindt u alles om uw merk op een rakende manier tot bij de klant te brengen.</p>
+      <p style="margin-top:24px;font-size:13px;color:var(--muted);font-style:italic;">Plan een <strong>gratis introgesprek</strong> en ontdek hoe wij uw merk cinematisch sterk kunnen vertalen.</p>
+      <a href="#diensten" class="btn-primary">Ontdek onze aanpak</a>
+    </div>
+    <div class="wheel-right reveal reveal-delay-2">
+      <div class="wheel-ring">
+        <div class="orbit orbit-1"></div>
+        <div class="orbit orbit-2"></div>
+        <div class="wheel-center">
+          <div class="wheel-center-text">
+            <span class="big">A–Z</span>
+            <span class="small">Productie</span>
+          </div>
+        </div>
+        <div class="wheel-item">
+          <div class="wheel-label" style="top:4%;left:50%;">
+            <div class="label-icon"></div>
+            <span class="label-text">Directing</span>
+          </div>
+        </div>
+        <div class="wheel-item">
+          <div class="wheel-label" style="top:50%;left:96%;">
+            <div class="label-icon"></div>
+            <span class="label-text">Editing</span>
+          </div>
+        </div>
+        <div class="wheel-item">
+          <div class="wheel-label" style="top:96%;left:50%;">
+            <div class="label-icon"></div>
+            <span class="label-text">Filming</span>
+          </div>
+        </div>
+        <div class="wheel-item">
+          <div class="wheel-label" style="top:50%;left:4%;">
+            <div class="label-icon"></div>
+            <span class="label-text">Scripting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- SERVICES SLIDER -->
+<section id="diensten" class="services-slider-section">
+  <div class="services-slider-header reveal">
+    <div>
+      <p class="section-tag">01. Diensten</p>
+      <h2 class="section-title">Wat wij<br>voor je doen</h2>
+    </div>
+    <div class="slider-nav-btns">
+      <button class="slider-nav-btn" id="svc-prev" aria-label="Vorige">
+        <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><path d="M14 1L23 8M23 8L14 15M23 8H1" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+      <button class="slider-nav-btn" id="svc-next" aria-label="Volgende">
+        <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><path d="M14 1L23 8M23 8L14 15M23 8H1" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="services-slider-viewport">
+    <div class="services-slider-track" id="svcTrack">
+
+      <div class="svc-slide">
+        <div class="svc-num">01</div>
+        <div class="svc-img-placeholder svc-has-media" id="svc-img-1">
+          <video class="svc-video" id="svc-video-1" muted loop playsinline preload="auto">
+            <source src="WEBVID_SCRIPTING.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="svc-tag">Strategie & Concept</div>
+        <h3 class="svc-title">Pré-Productie & Strategie</h3>
+        <p class="svc-desc">Hier begint alles. Zonder een sterk fundament wordt zelfs de mooiste beeldtaal leeg. Wij duiken diep in uw merk, bepalen de verhaallijnen en bouwen een visueel concept dat als leidraad dient voor de hele productie.</p>
+        <ul class="svc-items">
+          <li>Intakegesprek & merkanalyse</li>
+          <li>Conceptontwikkeling & verhaallijnen</li>
+          <li>Moodboard, stijl & shotlist</li>
+          <li>Logistieke planning & callsheet</li>
+        </ul>
+        <div class="svc-footer">
+          <span class="svc-tag-pill">Strategie</span>
+          <span class="svc-tag-pill">Concept</span>
+          <span class="svc-tag-pill">Planning</span>
+        </div>
+      </div>
+
+      <div class="svc-slide">
+        <div class="svc-num">02</div>
+        <div class="svc-img-placeholder svc-has-media" id="svc-img-2">
+          <video class="svc-video" id="svc-video-2" muted loop playsinline preload="auto">
+            <source src="WEBVID_FILMING.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="svc-tag">Brand & Corporate</div>
+        <h3 class="svc-title">Corporate Film</h3>
+        <p class="svc-desc">Eén krachtige film die vertelt wie u bent en waarom mensen voor u moeten kiezen. Cinematisch, emotioneel en op maat van uw merk. het visitekaartje dat mensen onthouden.</p>
+        <ul class="svc-items">
+          <li>Full brand film van A tot Z</li>
+          <li>Cinematische beeldtaal</li>
+          <li>Volle opnamedag inclusief regie</li>
+          <li>Montage, kleurcorrectie & sound</li>
+        </ul>
+        <div class="svc-footer">
+          <span class="svc-tag-pill">Merkfilm</span>
+          <span class="svc-tag-pill">Imago</span>
+          <span class="svc-tag-pill">Corporate</span>
+        </div>
+      </div>
+
+      <div class="svc-slide">
+        <div class="svc-num">03</div>
+        <div class="svc-img-placeholder" id="svc-img-3"></div>
+        <div class="svc-tag">Fotografie</div>
+        <h3 class="svc-title">Foto Campagne</h3>
+        <p class="svc-desc">Een volledig uitgewerkte fotocampagne die uw merk visueel positioneert. Consistent, premium en klaar voor alle kanalen. Van website tot billboard. Dit omvat alles. Een shoot, professionele nabewerking tot volledig uitgewerkte foto ads om uw product of bedrijf optimaal in de markt te zetten.</p>
+        <ul class="svc-items">
+          <li>Volledige fotocampagne merk</li>
+          <li>Fotoreportage op locatie of studio</li>
+          <li>Professionele nabewerking</li>
+          <li>Klaar voor web, social & print</li>
+        </ul>
+        <div class="svc-footer">
+          <span class="svc-tag-pill">Fotografie</span>
+          <span class="svc-tag-pill">Campagne</span>
+          <span class="svc-tag-pill">Merkidentiteit</span>
+        </div>
+      </div>
+
+      <div class="svc-slide">
+        <div class="svc-num">04</div>
+        <div class="svc-img-placeholder svc-has-media" id="svc-img-4">
+          <video class="svc-video" id="svc-video-4" autoplay muted loop playsinline preload="auto">
+            <source src="drone_preview.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="svc-tag">Luchtbeelden</div>
+        <h3 class="svc-title">High End Drone Footage</h3>
+        <p class="svc-desc">Spectaculaire luchtbeelden die uw locatie, event of productie van een andere dimensie tonen. Professionele droneopnames die instant impact creëren en uw beeldtaal naar een hoger niveau tillen.</p>
+        <ul class="svc-items">
+          <li>Certified drone operator</li>
+          <li>4K cinematic luchtbeelden</li>
+          <li>Event, locatie & landschapsshots</li>
+          <li>Vergunningen & planning inbegrepen</li>
+        </ul>
+        <div class="svc-footer">
+          <span class="svc-tag-pill">Drone</span>
+          <span class="svc-tag-pill">Luchtbeelden</span>
+          <span class="svc-tag-pill">4K</span>
+        </div>
+      </div>
+
+      <div class="svc-slide">
+        <div class="svc-num">05</div>
+        <div class="svc-img-placeholder svc-has-media" id="svc-img-5">
+          <video class="svc-video" id="svc-video-5" autoplay muted loop playsinline preload="auto">
+            <source src="shortform_preview.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="svc-tag">Social Media</div>
+        <h3 class="svc-title">Short Form Content</h3>
+        <p class="svc-desc">Consistente, snelle content die uw merk zichtbaar houdt op sociale media. Reels, short-form video's en talking heads. wekelijks geleverd zonder dat u er zelf aan moet denken.</p>
+        <ul class="svc-items">
+          <li>Weekly reels & social video's</li>
+          <li>Talking heads & interviews</li>
+          <li>Geoptimaliseerd per platform</li>
+          <li>Beschikbaar via retainerformule</li>
+        </ul>
+        <div class="svc-footer">
+          <span class="svc-tag-pill">Reels</span>
+          <span class="svc-tag-pill">Instagram</span>
+          <span class="svc-tag-pill">LinkedIn</span>
+        </div>
+      </div>
+
+      <div class="svc-slide">
+        <div class="svc-num">06</div>
+        <div class="svc-img-placeholder svc-has-media" id="svc-img-6">
+          <video class="svc-video" id="svc-video-6" autoplay muted loop playsinline preload="auto">
+            <source src="neeje_preview.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="svc-tag">Post-Productie</div>
+        <h3 class="svc-title">Editing & Animation</h3>
+        <p class="svc-desc">Van ruwe beelden naar een strak eindproduct. Professionele montage, motion graphics en animaties die uw boodschap versterken. Ook beschikbaar voor extern ruwe footage.</p>
+        <ul class="svc-items">
+          <li>Professionele videomontage</li>
+          <li>Motion graphics & animaties</li>
+          <li>Kleurcorrectie & geluidsmix</li>
+          <li>Ondertiteling & export per platform</li>
+        </ul>
+        <div class="svc-footer">
+          <span class="svc-tag-pill">Montage</span>
+          <span class="svc-tag-pill">Motion graphics</span>
+          <span class="svc-tag-pill">Animatie</span>
+        </div>
+      </div>
+
+      <div class="svc-slide">
+        <div class="svc-num">07</div>
+        <div class="svc-img-placeholder svc-has-media" id="svc-img-7">
+          <video class="svc-video" id="svc-video-7" autoplay muted loop playsinline preload="auto">
+            <source src="podcast_preview.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="svc-tag">Audio & Video</div>
+        <h3 class="svc-title">Podcast Recording</h3>
+        <p class="svc-desc">Een visueel sterk podcast-format dat uw expertise toont en een echte following opbouwt. Wij verzorgen de opname, montage en distributie-klare uitwerking voor YouTube, Spotify en social media.</p>
+        <ul class="svc-items">
+          <li>Multi-camera opname in studio</li>
+          <li>Professionele audio & geluidsmix</li>
+          <li>Montage + highlight reels</li>
+          <li>Klaar voor alle platforms</li>
+        </ul>
+        <div class="svc-footer">
+          <span class="svc-tag-pill">Podcast</span>
+          <span class="svc-tag-pill">YouTube</span>
+          <span class="svc-tag-pill">Thought leadership</span>
+        </div>
+      </div>
+
+      <div class="svc-slide">
+        <div class="svc-num">08</div>
+        <div class="svc-img-placeholder svc-has-media" id="svc-img-8">
+          <video class="svc-video" id="svc-video-8" autoplay muted loop playsinline preload="auto">
+            <source src="testimonial_preview.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="svc-tag">People & Cultuur</div>
+        <h3 class="svc-title">Testimonial & Rekrutering</h3>
+        <p class="svc-desc">Authentieke klantgetuigenissen en recruteringsvideo's die vertrouwen bouwen. Echte mensen, echte verhalen. de krachtigste manier om nieuwe klanten of talent aan te trekken.</p>
+        <ul class="svc-items">
+          <li>Testimonial video per klant</li>
+          <li>Employer branding film</li>
+          <li>Interview & talking head opnames</li>
+          <li>Documentaire aanpak voor comfort</li>
+        </ul>
+        <div class="svc-footer">
+          <span class="svc-tag-pill">Testimonials</span>
+          <span class="svc-tag-pill">Rekrutering</span>
+          <span class="svc-tag-pill">Employer branding</span>
+        </div>
+      </div>
+
+      <div class="svc-slide">
+        <div class="svc-num">09</div>
+        <div class="svc-img-placeholder svc-has-media" id="svc-img-9">
+          <video class="svc-video" id="svc-video-9" autoplay muted loop playsinline preload="auto">
+            <source src="videoclip_preview.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="svc-tag">Muziek & Creatie</div>
+        <h3 class="svc-title">Creative Videoclips</h3>
+        <p class="svc-desc">Cinematische videoclips die een artiest of merk neerzetten zoals het hoort. met visie, emotie en een beeldtaal die bijblijft. Van concept tot eindmontage, volledig creatief uitgewerkt.</p>
+        <ul class="svc-items">
+          <li>Creatief concept & regie</li>
+          <li>Cinematische beeldtaal</li>
+          <li>Locatiescout & casting</li>
+          <li>Montage, kleur & sound design</li>
+        </ul>
+        <div class="svc-footer">
+          <span class="svc-tag-pill">Muziek</span>
+          <span class="svc-tag-pill">Creatief</span>
+          <span class="svc-tag-pill">Regie</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="svc-progress-bar">
+    <div class="svc-progress-fill" id="svcProgress"></div>
+  </div>
+</section>
+
+<style>
+.services-slider-section {
+  padding: 120px 0 80px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.services-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 48px 48px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.slider-nav-btns {
+  display: flex;
+  gap: 12px;
+}
+.slider-nav-btn {
+  width: 64px; height: 64px;
+  border: 1px solid rgba(200,84,26,0.4);
+  background: rgba(200,84,26,0.08);
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  border-radius: 4px;
+}
+.slider-nav-btn:hover {
+  border-color: var(--orange);
+  background: rgba(200,84,26,0.2);
+  color: var(--orange);
+  transform: scale(1.05);
+}
+#svc-prev svg { transform: scaleX(-1); }
+
+.services-slider-viewport {
+  overflow: hidden;
+  padding: 48px 0;
+  cursor: grab;
+  user-select: none;
+}
+.services-slider-viewport:active { cursor: grabbing; }
+
+.services-slider-track {
+  display: flex;
+  gap: 2px;
+  padding: 0 48px;
+  will-change: transform;
+}
+
+.svc-slide {
+  flex: 0 0 420px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 48px 40px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, background 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.svc-slide:hover {
+  border-color: rgba(200,84,26,0.25);
+  background: var(--card-hover);
+}
+.svc-slide::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--orange), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.svc-slide:hover::after { opacity: 1; }
+
+.svc-num { display: none; }
+.svc-slide:hover .svc-num { color: rgba(200,84,26,0.05); }
+
+.svc-tag {
+  font-family: var(--font-condensed);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+.svc-title {
+  font-family: var(--font-display);
+  font-size: 38px;
+  line-height: 1;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+.svc-desc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 28px;
+  flex-grow: 1;
+}
+.svc-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.svc-items li {
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  color: var(--muted-strong, rgba(200,196,188,0.7));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.svc-items li::before {
+  content: '';
+  width: 18px; height: 1px;
+  background: var(--orange);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+.svc-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.svc-tag-pill {
+  font-family: var(--font-condensed);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  transition: all 0.2s;
+}
+.svc-slide:hover .svc-tag-pill {
+  border-color: rgba(200,84,26,0.2);
+  color: rgba(200,84,26,0.7);
+}
+
+.svc-progress-bar {
+  height: 1px;
+  background: var(--border);
+  margin: 0 48px;
+  position: relative;
+}
+.svc-progress-fill {
+  height: 100%;
+  background: var(--orange);
+  transition: width 0.5s ease;
+  width: 11.11%;
+}
+
+.svc-img-placeholder {
+  width: 100%;
+  height: 180px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  margin-bottom: 28px;
+  overflow: hidden;
+  display: none;
+}
+.svc-img-placeholder.svc-has-media {
+  display: block;
+}
+.svc-img-placeholder img,
+.svc-video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+</style>
+
+<script>
+(function() {
+  const track = document.getElementById('svcTrack');
+  const progress = document.getElementById('svcProgress');
+  const viewport = track.parentElement;
+
+  // Duplicate slides for seamless loop
+  const origSlides = Array.from(track.querySelectorAll('.svc-slide'));
+  origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
+
+  let offset = 0;
+  let speed = 1.2;
+  let paused = false;
+  let dragStartX = null;
+  let dragStartOffset = null;
+
+  function totalW() {
+    const s = track.querySelector('.svc-slide');
+    return origSlides.length * (s.offsetWidth + 2);
+  }
+
+  function tick() {
+    if (!paused && dragStartX === null) {
+      offset += speed;
+      if (offset >= totalW()) offset -= totalW();
+    }
+    track.style.transform = 'translateX(-' + offset + 'px)';
+    progress.style.width = Math.max(1, (offset % totalW()) / totalW() * 100) + '%';
+    requestAnimationFrame(tick);
+  }
+
+  // Arrow: jump one slide
+  document.getElementById('svc-next').addEventListener('click', () => {
+    const w = track.querySelector('.svc-slide').offsetWidth + 2;
+    offset += w;
+    if (offset >= totalW()) offset -= totalW();
+  });
+  document.getElementById('svc-prev').addEventListener('click', () => {
+    const w = track.querySelector('.svc-slide').offsetWidth + 2;
+    offset -= w;
+    if (offset < 0) offset += totalW();
+  });
+
+  // Drag
+  viewport.addEventListener('mousedown', e => { dragStartX = e.clientX; dragStartOffset = offset; paused = true; });
+  window.addEventListener('mouseup', () => { dragStartX = null; paused = false; });
+  window.addEventListener('mousemove', e => {
+    if (dragStartX === null) return;
+    offset = dragStartOffset - (e.clientX - dragStartX);
+    if (offset < 0) offset += totalW();
+    if (offset >= totalW()) offset -= totalW();
+  });
+  viewport.addEventListener('touchstart', e => { dragStartX = e.touches[0].clientX; dragStartOffset = offset; paused = true; }, {passive:true});
+  window.addEventListener('touchend', () => { dragStartX = null; paused = false; });
+  window.addEventListener('touchmove', e => {
+    if (dragStartX === null) return;
+    offset = dragStartOffset - (e.touches[0].clientX - dragStartX);
+    if (offset < 0) offset += totalW();
+    if (offset >= totalW()) offset -= totalW();
+  }, {passive:true});
+
+  requestAnimationFrame(tick);
+})();
+
+// Autoplay card videos when visible
+document.querySelectorAll('.svc-video').forEach(video => {
+  video.muted = true;
+  video.play().catch(() => {});
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    });
+  }, { threshold: 0.1 });
+  obs.observe(video);
+});
+
+// Unlock ALL videos on first interaction
+(function() {
+  function unlockAll() {
+    document.querySelectorAll('.svc-video, #hero-video').forEach(v => {
+      v.muted = true;
+      v.play().catch(() => {});
+    });
+  }
+  ['mousemove','scroll','touchstart','click'].forEach(evt => {
+    document.addEventListener(evt, function u() {
+      unlockAll();
+      document.removeEventListener(evt, u);
+    }, { once: true, passive: true });
+  });
+})();
+</script>
+
+<!-- PORTFOLIO -->
+<section id="werk" class="portfolio-section">
+  <div class="portfolio-inner">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-tag">02. Portfolio</p>
+        <h2 class="section-title">Ons werk<br>spreekt voor zich</h2>
+      </div>
+    </div>
+
+    <div class="werk-list">
+
+      <!-- KASTEEL DE HAAR -->
+      <div class="werk-card reveal" data-full="yt:70lcgeD5yjs">
+        <div class="werk-card-top">
+          <span class="werk-label">KASTEEL DE HAAR</span>
+          <div class="werk-dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="werk-video-wrap">
+          <video class="werk-preview" autoplay muted loop playsinline preload="auto">
+            <source src="kasteel_preview.mp4" type="video/mp4">
+          </video>
+          <div class="werk-play-btn">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M1 1L19 11L1 21V1Z" fill="white"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- VENUE CATERING -->
+      <div class="werk-card reveal" data-full="yt:plrSge3Utlw">
+        <div class="werk-card-top">
+          <span class="werk-label">VENUE CATERING</span>
+          <div class="werk-dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="werk-video-wrap">
+          <video class="werk-preview" autoplay muted loop playsinline preload="auto">
+            <source src="venue_preview.mp4" type="video/mp4">
+          </video>
+          <div class="werk-play-btn">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M1 1L19 11L1 21V1Z" fill="white"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- MIJN EXPERT -->
+      <div class="werk-card reveal" data-full="yt:yMWtCqoRI8s">
+        <div class="werk-card-top">
+          <span class="werk-label">MIJN EXPERT</span>
+          <div class="werk-dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="werk-video-wrap">
+          <video class="werk-preview" autoplay muted loop playsinline preload="auto">
+            <source src="mijnexpert_preview.mp4" type="video/mp4">
+          </video>
+          <div class="werk-play-btn">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M1 1L19 11L1 21V1Z" fill="white"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- BDSV -->
+      <div class="werk-card reveal" data-full="yt:kemZue1wqxk">
+        <div class="werk-card-top">
+          <span class="werk-label">GROEP BDSV</span>
+          <div class="werk-dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="werk-video-wrap">
+          <video class="werk-preview" autoplay muted loop playsinline preload="auto">
+            <source src="bdsv_preview.mp4" type="video/mp4">
+          </video>
+          <div class="werk-play-btn">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M1 1L19 11L1 21V1Z" fill="white"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEKIJK MEER -->
+      <div class="werk-meer-wrap">
+        <a href="#contact" class="werk-meer-btn">
+          Bekijk meer
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M12 1L17 6M17 6L12 11M17 6H1" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="werk-lightbox" id="werkLightbox">
+  <div class="werk-lightbox-bg" id="werkLightboxBg"></div>
+  <button class="werk-lightbox-close" id="werkLightboxClose">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M1 1L19 19M19 1L1 19" stroke="white" stroke-width="2"/></svg>
+  </button>
+  <iframe class="werk-lightbox-video" id="werkLightboxVideo" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+</div>
+
+<style>
+.portfolio-section {
+  padding: 120px 0;
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+}
+.portfolio-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+.werk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 64px;
+}
+
+.werk-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s, transform 0.3s;
+  padding: 10px;
+}
+.werk-card:hover {
+  border-color: rgba(200,84,26,0.35);
+  transform: translateY(-2px);
+}
+
+.werk-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px 10px;
+}
+.werk-label {
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.werk-dots {
+  display: flex;
+  gap: 6px;
+}
+.werk-dots span {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.werk-dots span:nth-child(1) { background: #e74c3c; }
+.werk-dots span:nth-child(2) { background: #f39c12; }
+.werk-dots span:nth-child(3) { background: #2ecc71; }
+
+.werk-video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #000;
+  border-radius: 10px;
+}
+.werk-preview {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform 0.4s;
+  transform: scale(1.05);
+}
+.werk-card:hover .werk-preview {
+  transform: scale(1.07);
+}
+
+.werk-play-btn {
+  position: absolute;
+  bottom: 20px; right: 20px;
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s;
+}
+.werk-card:hover .werk-play-btn {
+  background: var(--orange);
+  border-color: var(--orange);
+  transform: scale(1.1);
+}
+
+.werk-meer-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0 8px;
+}
+.werk-meer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  border: 1px solid var(--border-strong, rgba(255,255,255,0.13));
+  padding: 16px 40px;
+  border-radius: 4px;
+  transition: all 0.25s;
+  background: transparent;
+}
+.werk-meer-btn:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+  gap: 18px;
+}
+.werk-lightbox {
+  position: fixed; inset: 0;
+  z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.werk-lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.werk-lightbox-bg {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.92);
+  cursor: pointer;
+}
+.werk-lightbox-close {
+  position: absolute;
+  top: 24px; right: 24px;
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s;
+}
+.werk-lightbox-close:hover { background: var(--orange); border-color: var(--orange); }
+.werk-lightbox-video {
+  position: relative; z-index: 2;
+  width: 90vw;
+  max-width: 1100px;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  background: #000;
+  border: none;
+}
+</style>
+
+<script>
+(function() {
+  // Autoplay preview videos. robust approach
+  function tryPlay(video) {
+    video.muted = true;
+    const attempt = () => video.play().catch(() => setTimeout(attempt, 300));
+    if (video.readyState >= 2) {
+      attempt();
+    } else {
+      video.addEventListener('canplay', attempt, { once: true });
+      video.addEventListener('loadeddata', attempt, { once: true });
+      attempt(); // try immediately too
+    }
+  }
+
+  // Try on page load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.werk-preview').forEach(tryPlay);
+  });
+
+  // Also try immediately
+  document.querySelectorAll('.werk-preview').forEach(tryPlay);
+
+  // Pause/resume with IntersectionObserver (low threshold so it fires easily)
+  document.querySelectorAll('.werk-preview').forEach(video => {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) tryPlay(video);
+        else video.pause();
+      });
+    }, { threshold: 0.05 });
+    obs.observe(video);
+  });
+
+  // Lightbox. supports YouTube (yt:VIDEO_ID) and local mp4
+  const lightbox = document.getElementById('werkLightbox');
+  const lbVideo = document.getElementById('werkLightboxVideo');
+  const lbClose = document.getElementById('werkLightboxClose');
+  const lbBg = document.getElementById('werkLightboxBg');
+
+  function openLightbox(key) {
+    lightbox.classList.add('active');
+    if (key.startsWith('yt:')) {
+      const id = key.replace('yt:', '');
+      lbVideo.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&vq=hd1080&hd=1`;
+    } else {
+      lbVideo.src = key;
+    }
+  }
+
+  document.querySelectorAll('.werk-card').forEach(card => {
+    card.addEventListener('click', () => openLightbox(card.dataset.full));
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lbVideo.src = '';
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbBg.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+
+<!-- PROCESS -->
+<section id="aanpak" class="process-section">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-tag">03. Werkwijze</p>
+      <h2 class="section-title">Van briefing<br>tot scherm</h2>
+    </div>
+    <p style="font-size:13px;color:var(--muted);max-width:280px;text-align:right;line-height:1.7;">Een gestructureerd proces zonder verrassingen. Jij weet altijd waar je staat.</p>
+  </div>
+
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="process-step-num">01</div>
+      <div class="process-step-icon"></div>
+      <h4 class="process-step-title">Eerste call</h4>
+      <p class="process-step-desc">30–60 min. We leren het bedrijf kennen: doelen, doelgroep, kanalen, budget en timing. Geen verplichtingen.</p>
+      <span class="process-free"> Gratis</span>
+    </div>
+    <div class="process-step reveal reveal-delay-1">
+      <div class="process-step-num">02</div>
+      <div class="process-step-icon"></div>
+      <h4 class="process-step-title">Offerte op maat</h4>
+      <p class="process-step-desc">Op basis van de call maken wij een transparante offerte op.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <div class="process-step-num">03</div>
+      <div class="process-step-icon"></div>
+      <h4 class="process-step-title">Productie</h4>
+      <p class="process-step-desc">Wij regelen alles: concept, planning, crew, shoot en post-productie. De klant hoeft nergens anders aan te denken.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="process-step-num">04</div>
+      <div class="process-step-icon"></div>
+      <h4 class="process-step-title">Oplevering</h4>
+      <p class="process-step-desc">Eindproduct + advies over distributie. Max. 3 feedbackrondes inbegrepen. Klaar voor elk platform.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="process-step-num">05</div>
+      <div class="process-step-icon"></div>
+      <h4 class="process-step-title">Verspreiding</h4>
+      <p class="process-step-desc">Heeft uw bedrijf geen marketingafdeling? Dit nemen we graag uit handen zodat uw investering ook écht gezien wordt.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RETAINER -->
+<section id="retainer" class="retainer-section">
+  <div class="retainer-inner">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-tag">04. Retainermodel</p>
+        <h2 class="section-title">Maandelijks<br>consistent aanwezig</h2>
+        <a href="#contact" class="btn-primary" style="display:inline-flex;align-items:center;gap:12px;margin-top:28px;font-size:12px;">
+          Plan hier een gratis call om de contentroom te ontdekken
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M10 1L15 6M15 6L10 11M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+      <p style="font-size:13px;color:var(--muted);max-width:280px;text-align:right;line-height:1.7;"></p>
+    </div>
+
+    <!-- INTRO BLOK -->
+    <div class="retainer-intro reveal">
+      <div class="retainer-intro-left">
+        <h3 class="retainer-intro-title">Niet enkel campagnes.<br><em>Een complete visuele consistentie.</em></h3>
+      </div>
+      <div class="retainer-intro-right">
+        <p>Wij doen meer dan eenmalige producties. We zorgen voor een <strong>realistische en strategische aanvulling van video binnen uw bedrijf</strong>. zodat u altijd op een doordachte manier visueel aanwezig bent bij uw klant. Via testimonials, podcast content, explainer video's en social reels.</p>
+        <p style="margin-top:16px;">Elke maand leveren wij nieuwe content af die u direct kunt inzetten in uw marketing. <strong>U hoeft er niet over na te denken</strong>. wij zorgen ervoor dat u maand na maand zichtbaar bent bij uw doelgroep met kwalitatief beeldmateriaal dat werkt.</p>
+        <p style="margin-top:16px;"><strong>U wordt volledig ontzorgd.</strong> Wij nemen de videocontent uit handen zodat u consistent aanwezig bent bij uw klant. zonder dat u er zelf tijd of energie in moet steken.</p>
+        <div class="retainer-intro-pillars">
+          <div class="retainer-intro-pillar"><span>Podcast & interviews</span></div>
+          <div class="retainer-intro-pillar"><span>Social reels</span></div>
+          <div class="retainer-intro-pillar"><span>Testimonials</span></div>
+          <div class="retainer-intro-pillar"><span>Explainer content</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOTO'S RETAINER -->
+    <div class="retainer-fotos reveal">
+      <div class="retainer-foto-item">
+        <img src="retainer-foto1.jpeg" alt="Podcast opname studio Contour">
+      </div>
+      <div class="retainer-foto-item">
+        <img src="retainer-foto2.jpeg" alt="Studio setup Contour">
+      </div>
+    </div>
+    <!-- info bar moved below grid -->
+
+<style>
+.retainer-info-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(200,84,26,0.06);
+  border: 1px solid rgba(200,84,26,0.2);
+  border-radius: 12px;
+  padding: 24px 40px;
+  margin: 40px 0 0;
+}
+.retainer-info-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+.retainer-info-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.retainer-info-label {
+  display: block;
+  font-family: var(--font-condensed);
+  font-size: 16px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.retainer-info-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--white);
+  line-height: 1;
+}
+.retainer-info-highlight {
+  color: var(--orange);
+}
+.retainer-info-divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(200,84,26,0.2);
+  margin: 0 40px;
+  flex-shrink: 0;
+}
+</style>
+
+    <div class="retainer-grid">
+
+      <div class="retainer-card featured reveal">
+        <h3 class="retainer-name">Starter</h3>
+        <p class="retainer-tagline">Consistente social aanwezigheid</p>
+        <div class="retainer-divider"></div>
+        <ul class="retainer-features">
+          <li>8 reels/mnd (2 per week)</li>
+          <li>Halve opnamedag/mnd. studio of locatie</li>
+          <li>Maandelijkse online meeting (analyse + bijsturing)</li>
+        </ul>
+        <a href="contact-form.html" target="_blank" class="retainer-cta retainer-cta-solid">Plan een call</a>
+      </div>
+
+      <div class="retainer-card reveal reveal-delay-1">
+        <h3 class="retainer-name">Groei</h3>
+        <p class="retainer-tagline">Reels + diepgaande content</p>
+        <div class="retainer-divider"></div>
+        <ul class="retainer-features">
+          <li>8 reels/mnd (2 per week)</li>
+          <li>2 podcast talks/mnd + 5 reels per podcast</li>
+          <li>Volledige opnamedag/mnd. studio of locatie</li>
+          <li>Maandelijkse online meeting (analyse + bijsturing)</li>
+        </ul>
+        <a href="contact-form.html" target="_blank" class="retainer-cta retainer-cta-solid">Plan een call</a>
+      </div>
+
+      <div class="retainer-card reveal reveal-delay-2">
+        <h3 class="retainer-name">Dominant</h3>
+        <p class="retainer-tagline">Uw volledige contentpartner</p>
+        <div class="retainer-divider"></div>
+        <ul class="retainer-features">
+          <li>8 reels/mnd (2 per week)</li>
+          <li>2 podcast talks/mnd + 5 reels per podcast</li>
+          <li>Volledige opnamedag/mnd. studio</li>
+          <li>Locatiebezoek happening/eventfilm + 5 reels</li>
+          <li>Maandelijkse online meeting (analyse + bijsturing)</li>
+        </ul>
+        <a href="contact-form.html" target="_blank" class="retainer-cta retainer-cta-solid">Plan een call</a>
+      </div>
+
+    </div>
+
+    <div class="retainer-info-bar reveal">
+      <div class="retainer-info-item">
+        <span class="retainer-info-icon"></span>
+        <div>
+          <span class="retainer-info-label">Minimum looptijd</span>
+          <span class="retainer-info-value">1 kwartaal (3 maanden)</span>
+        </div>
+      </div>
+      <div class="retainer-info-divider"></div>
+      <div class="retainer-info-item">
+        <span class="retainer-info-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>
+        </span>
+        <div>
+          <span class="retainer-info-label">Half jaar</span>
+          <span class="retainer-info-value retainer-info-highlight">−10% korting</span>
+        </div>
+      </div>
+      <div class="retainer-info-divider"></div>
+      <div class="retainer-info-item">
+        <span class="retainer-info-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>
+        </span>
+        <div>
+          <span class="retainer-info-label">Volledig jaar</span>
+          <span class="retainer-info-value retainer-info-highlight">−20% korting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-tag">05. Reviews</p>
+      <h2 class="section-title">Wat klanten<br>zeggen</h2>
+    </div>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="quote-icon">"</div>
+      <p class="quote-text">Professioneel van begin tot einde. Ze begrijpen wat een merk nodig heeft en vertalen dat feilloos naar beeld.</p>
+      <div class="quote-author">
+        <div class="quote-avatar">V</div>
+        <div>
+          <p class="quote-info-name">Venue Catering</p>
+          <p class="quote-info-company">Brand film</p>
+        </div>
+        <span class="quote-stars"></span>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="quote-icon">"</div>
+      <p class="quote-text">Ze nemen alles uit handen. Van eerste call tot eindproduct. één aanspreekpunt, geen verrassingen, perfect resultaat.</p>
+      <div class="quote-author">
+        <div class="quote-avatar">A</div>
+        <div>
+          <p class="quote-info-name">Alirec</p>
+          <p class="quote-info-company">Corporate video</p>
+        </div>
+        <span class="quote-stars"></span>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="quote-icon">"</div>
+      <p class="quote-text">De video staat op onze website en werkt voor ons terwijl wij andere dingen doen. Dat is wat een goede brand film doet.</p>
+      <div class="quote-author">
+        <div class="quote-avatar">M</div>
+        <div>
+          <p class="quote-info-name">Mijn Expert</p>
+          <p class="quote-info-company">Explainer · Social</p>
+        </div>
+        <span class="quote-stars"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section id="contact" class="cta-section">
+  <div class="cta-inner">
+    <p class="section-tag" style="text-align:center;margin-bottom:20px;">06. Contact</p>
+    <h2 class="cta-title reveal">Klaar om uw<br>verhaal te <span>vertellen?</span></h2>
+    <p class="cta-sub reveal">Een eerste gesprek is altijd gratis en vrijblijvend. Wij leren uw merk kennen, begrijpen waar u naartoe wil. en bouwen van daaruit een verhaal dat blijft hangen.</p>
+    <div class="cta-actions reveal">
+      <a href="contact-form.html" target="_blank" class="btn-primary">Plan een gesprek</a>
+    </div>
+    <div class="cta-contact reveal">
+      <div class="contact-item">
+        <span class="contact-label">Telefoon</span>
+        <a href="tel:+32492528448" class="contact-value">+32 492 52 84 48</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <a href="mailto:contact@contour.be" class="contact-value">contact@contour.be</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Locatie</span>
+        <span class="contact-value">België</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">CONT<span>O</span>UR</span>
+  <span class="footer-copy">© 2025 Contour · Storytelling Agency · Vertrouwelijk</span>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Vimeo</a>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const follower = document.getElementById('cursor-follower');
+  let mx = 0, my = 0, fx = 0, fy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    fx += (mx - fx) * 0.12;
+    fy += (my - fy) * 0.12;
+    follower.style.left = fx + 'px';
+    follower.style.top = fy + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  // Scale cursor on hover
+  document.querySelectorAll('a, button, .service-card, .portfolio-item, .retainer-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+      follower.style.transform = 'translate(-50%,-50%) scale(1.5)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      follower.style.transform = 'translate(-50%,-50%) scale(1)';
+    });
+  });
+
+  // Force hero video autoplay. bulletproof
+  const vid = document.getElementById('hero-video');
+  if (vid) {
+    vid.muted = true;
+    vid.volume = 0;
+    vid.defaultMuted = true;
+
+    // Inline play attempt
+    const play = () => {
+      const p = vid.play();
+      if (p !== undefined) p.catch(() => {});
+    };
+
+    // Try on every possible event
+    play();
+    vid.addEventListener('loadedmetadata', play);
+    vid.addEventListener('canplay', play);
+    vid.addEventListener('canplaythrough', play);
+    document.addEventListener('DOMContentLoaded', play);
+    window.addEventListener('load', play);
+
+    // Watchdog: keep trying until playing
+    const wd = setInterval(() => {
+      if (vid.paused) play();
+      else clearInterval(wd);
+    }, 300);
+
+    // Unlock on first interaction
+    const unlock = () => { play(); };
+    document.addEventListener('click', unlock, { once: true, passive: true });
+    document.addEventListener('touchstart', unlock, { once: true, passive: true });
+    document.addEventListener('scroll', unlock, { once: true, passive: true });
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+<!-- WhatsApp floating button -->
+<div id="wa-widget" style="position:fixed; bottom:32px; right:32px; z-index:9999; display:flex; flex-direction:column; align-items:flex-end; gap:12px;">
+  <div id="wa-bubble" style="display:none; background:#1a1a1a; border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px 20px 16px; width:280px; box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <div style="width:36px; height:36px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.854L0 24l6.347-1.501A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.502-5.178-1.381l-.371-.22-3.768.891.946-3.668-.242-.384A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      </div>
+      <div>
+        <p style="margin:0; font-size:14px; font-weight:600; color:#EDE9E3; font-family:'Barlow',sans-serif;">Contour</p>
+        <p style="margin:0; font-size:12px; color:#25D366; font-family:'Barlow',sans-serif;">● Online</p>
+      </div>
+      <button onclick="document.getElementById('wa-bubble').style.display='none'" style="margin-left:auto; background:none; border:none; cursor:pointer; color:rgba(200,196,188,0.5); font-size:18px; line-height:1; padding:0;">×</button>
+    </div>
+    <div style="background:#0f0f0f; border-radius:10px; padding:12px 14px; margin-bottom:14px;">
+      <p style="margin:0; font-size:14px; color:#EDE9E3; font-family:'Barlow',sans-serif; line-height:1.6;">Hallo! 👋<br>Stel uw vraag of plan direct een gesprek in.</p>
+    </div>
+    <a href="https://wa.me/32492528448?text=Hallo%2C%20ik%20wil%20graag%20meer%20weten%20over%20Contour." target="_blank" style="display:flex; align-items:center; justify-content:center; gap:8px; background:#25D366; color:white; font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:13px; border-radius:8px; text-decoration:none; width:100%;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.854L0 24l6.347-1.501A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.502-5.178-1.381l-.371-.22-3.768.891.946-3.668-.242-.384A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Open WhatsApp
+    </a>
+  </div>
+
+  <button id="wa-btn" onclick="var b=document.getElementById('wa-bubble'); b.style.display=b.style.display==='none'?'block':'none';" style="width:56px; height:56px; background:#25D366; border:none; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.854L0 24l6.347-1.501A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.502-5.178-1.381l-.371-.22-3.768.891.946-3.668-.242-.384A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  </button>
+</div>
+
+</body>
+</html>

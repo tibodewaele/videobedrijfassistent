@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Editors / tooling
+.vscode/
+.idea/
+*.swp
+.claude/
+
+# Node (voor als er ooit build-tools bijkomen)
+node_modules/
+.env
+.env.local
+
+# Archieven
+*.zip
+
+# 4K master-video's — te groot voor GitHub (>100MB), bewaard in Drive
+project-assets/videos-4k/
