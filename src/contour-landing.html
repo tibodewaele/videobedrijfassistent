@@ -1699,8 +1699,15 @@
 .services-slider-track {
   display: flex;
   gap: 2px;
-  padding: 0 48px;
   will-change: transform;
+  animation: svc-scroll 50s linear infinite;
+}
+.services-slider-track:hover {
+  animation-play-state: paused;
+}
+@keyframes svc-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 .svc-slide {
@@ -1840,68 +1847,10 @@
 (function () {
   var track = document.getElementById('svcTrack');
   if (!track) return;
-  var viewport = track.parentElement;
-
-  // Kloon alle slides voor naadloze oneindige loop
-  var origSlides = Array.from(track.querySelectorAll('.svc-slide'));
-  origSlides.forEach(function (s) { track.appendChild(s.cloneNode(true)); });
-
-  var offset = 0;
-  var SPEED = 1.5;
-  var paused = false;
-  var dragStartX = null;
-  var dragStartOffset = null;
-
-  function slideW() {
-    var s = track.querySelector('.svc-slide');
-    return s ? s.offsetWidth + 2 : 422;
-  }
-  function totalW() { return origSlides.length * slideW(); }
-
-  function tick() {
-    if (!paused && dragStartX === null) {
-      offset += SPEED;
-      if (offset >= totalW()) offset -= totalW();
-    }
-    track.style.transform = 'translateX(' + (-offset) + 'px)';
-    requestAnimationFrame(tick);
-  }
-
-  // Pauze bij hover
-  viewport.addEventListener('mouseenter', function () { paused = true; });
-  viewport.addEventListener('mouseleave', function () { paused = false; });
-
-  // Pijlknoppen
-  var btnNext = document.getElementById('svc-next');
-  var btnPrev = document.getElementById('svc-prev');
-  if (btnNext) btnNext.addEventListener('click', function () {
-    offset += slideW();
-    if (offset >= totalW()) offset -= totalW();
+  // Kloon slides voor naadloze loop — zelfde techniek als de logo-strip
+  Array.from(track.querySelectorAll('.svc-slide')).forEach(function (s) {
+    track.appendChild(s.cloneNode(true));
   });
-  if (btnPrev) btnPrev.addEventListener('click', function () {
-    offset -= slideW();
-    if (offset < 0) offset += totalW();
-  });
-
-  // Drag (muis)
-  viewport.addEventListener('mousedown', function (e) { dragStartX = e.clientX; dragStartOffset = offset; paused = true; });
-  window.addEventListener('mouseup', function () { dragStartX = null; paused = false; });
-  window.addEventListener('mousemove', function (e) {
-    if (dragStartX === null) return;
-    var t = totalW();
-    offset = ((dragStartOffset - (e.clientX - dragStartX)) % t + t) % t;
-  });
-
-  // Drag (touch)
-  viewport.addEventListener('touchstart', function (e) { dragStartX = e.touches[0].clientX; dragStartOffset = offset; paused = true; }, { passive: true });
-  window.addEventListener('touchend', function () { dragStartX = null; paused = false; });
-  window.addEventListener('touchmove', function (e) {
-    if (dragStartX === null) return;
-    var t = totalW();
-    offset = ((dragStartOffset - (e.touches[0].clientX - dragStartX)) % t + t) % t;
-  }, { passive: true });
-
-  requestAnimationFrame(tick);
 }());
 
 // Autoplay card videos when visible
