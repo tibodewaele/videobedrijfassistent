@@ -1842,41 +1842,56 @@
   const progress = document.getElementById('svcProgress');
   const viewport = track.parentElement;
 
-  // Duplicate slides for seamless loop
+  // Duplicate slides for seamless left-to-right loop
   const origSlides = Array.from(track.querySelectorAll('.svc-slide'));
   origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
 
-  let offset = 0;
+  const GAP = 2;
   let speed = 1.2;
   let paused = false;
   let dragStartX = null;
   let dragStartOffset = null;
 
-  function totalW() {
+  function slideW() {
     const s = track.querySelector('.svc-slide');
-    return origSlides.length * (s.offsetWidth + 2);
+    return s ? s.offsetWidth + GAP : 422;
+  }
+  function totalW() { return origSlides.length * slideW(); }
+
+  // Start at totalW so the "originals" are visible and clones sit to the right
+  // Auto-scroll decreases offset: track moves right → cards slide left-to-right
+  let offset = totalW();
+
+  function wrap(o) {
+    const t = totalW();
+    return ((o % t) + t) % t;
   }
 
   function tick() {
     if (!paused && dragStartX === null) {
-      offset += speed;
-      if (offset >= totalW()) offset -= totalW();
+      offset -= speed;
+      if (offset <= 0) offset += totalW();
     }
     track.style.transform = 'translateX(-' + offset + 'px)';
-    progress.style.width = Math.max(1, (offset % totalW()) / totalW() * 100) + '%';
+    if (progress) {
+      const pct = 100 - ((offset % totalW()) / totalW() * 100);
+      progress.style.width = Math.max(1, pct) + '%';
+    }
     requestAnimationFrame(tick);
   }
 
-  // Arrow: jump one slide
+  // Pause auto-scroll on hover
+  viewport.addEventListener('mouseenter', () => { paused = true; });
+  viewport.addEventListener('mouseleave', () => { paused = false; });
+
+  // Arrows: next = jump forward (decrease offset), prev = jump back
   document.getElementById('svc-next').addEventListener('click', () => {
-    const w = track.querySelector('.svc-slide').offsetWidth + 2;
-    offset += w;
-    if (offset >= totalW()) offset -= totalW();
+    offset -= slideW();
+    if (offset <= 0) offset += totalW();
   });
   document.getElementById('svc-prev').addEventListener('click', () => {
-    const w = track.querySelector('.svc-slide').offsetWidth + 2;
-    offset -= w;
-    if (offset < 0) offset += totalW();
+    offset += slideW();
+    if (offset >= totalW() * 2) offset -= totalW();
   });
 
   // Drag
@@ -1885,16 +1900,14 @@
   window.addEventListener('mousemove', e => {
     if (dragStartX === null) return;
     offset = dragStartOffset - (e.clientX - dragStartX);
-    if (offset < 0) offset += totalW();
-    if (offset >= totalW()) offset -= totalW();
+    offset = wrap(offset);
   });
   viewport.addEventListener('touchstart', e => { dragStartX = e.touches[0].clientX; dragStartOffset = offset; paused = true; }, {passive:true});
   window.addEventListener('touchend', () => { dragStartX = null; paused = false; });
   window.addEventListener('touchmove', e => {
     if (dragStartX === null) return;
     offset = dragStartOffset - (e.touches[0].clientX - dragStartX);
-    if (offset < 0) offset += totalW();
-    if (offset >= totalW()) offset -= totalW();
+    offset = wrap(offset);
   }, {passive:true});
 
   requestAnimationFrame(tick);
