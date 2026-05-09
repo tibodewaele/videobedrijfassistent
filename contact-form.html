@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Contour. Storytelling Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #161616;
+    --border: rgba(255,255,255,0.08);
+    --orange: #C8541A;
+    --orange-light: #FF7433;
+    --white: #F0EDE8;
+    --muted: rgba(240,237,232,0.45);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-condensed: 'Barlow Condensed', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+    min-height: 100vh;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+  }
+  .cursor-follower {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(200,84,26,0.4);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.18s ease;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 48px;
+  }
+  nav::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    pointer-events: none;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+  }
+  .nav-logo span { color: var(--orange); }
+
+  /* PAGE LAYOUT */
+  .page-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .form-left {
+    width: 42%;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 64px;
+  }
+
+  .form-left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 60%, rgba(200,84,26,0.12) 0%, transparent 65%),
+      radial-gradient(ellipse at 80% 20%, rgba(200,84,26,0.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .form-left-line {
+    position: absolute;
+    top: 0; left: 64px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--orange) 30%, var(--orange) 70%, transparent);
+    opacity: 0.25;
+  }
+
+  .form-eyebrow {
+    font-family: var(--font-condensed);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .form-title {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 6vw, 88px);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    color: var(--white);
+    position: relative;
+    margin-bottom: 32px;
+  }
+
+  .form-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.75em;
+    color: var(--muted);
+    display: block;
+    margin-top: 8px;
+  }
+
+  .form-sub {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 340px;
+    position: relative;
+  }
+
+  .form-contact-detail {
+    margin-top: 48px;
+    position: relative;
+  }
+
+  .form-contact-detail a {
+    font-family: var(--font-condensed);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .form-contact-detail a:hover { color: var(--white); }
+
+  .form-contact-detail a::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  /* FORM SIDE */
+  .form-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 64px 80px;
+  }
+
+  .form-inner {
+    width: 100%;
+    max-width: 540px;
+  }
+
+  .form-group {
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: var(--font-condensed);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.25s;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+  }
+
+  .form-group select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(240,237,232,0.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    padding-right: 28px;
+  }
+
+  .form-group select option {
+    background: #1a1a1a;
+    color: var(--white);
+  }
+
+  .form-group textarea {
+    resize: none;
+    height: 100px;
+    line-height: 1.6;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-bottom-color: var(--orange);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(240,237,232,0.2);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .form-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--orange);
+    opacity: 0.4;
+    margin-bottom: 40px;
+  }
+
+  .form-submit {
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .btn-submit {
+    background: var(--orange);
+    color: var(--white);
+    font-family: var(--font-condensed);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    border: none;
+    cursor: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s;
+  }
+  .btn-submit::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.1);
+    transform: translateX(-100%);
+    transition: transform 0.25s;
+  }
+  .btn-submit:hover::after { transform: translateX(0); }
+  .btn-submit:hover { background: var(--orange-light); }
+
+  .form-privacy {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 200px;
+  }
+
+  /* SUCCESS STATE */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 64px 0;
+  }
+  .form-success .success-icon {
+    width: 64px; height: 64px;
+    border: 1px solid var(--orange);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 32px;
+  }
+  .form-success h2 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+  .form-success p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .form-success a {
+    display: inline-block;
+    margin-top: 40px;
+    font-family: var(--font-condensed);
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .form-success a:hover { color: var(--orange-light); }
+
+  /* FILM GRAIN OVERLAY */
+  .grain-overlay {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 1;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  @media (max-width: 900px) {
+    .page-wrap { flex-direction: column; }
+    .form-left {
+      width: 100%;
+      padding: 120px 32px 64px;
+      min-height: 50vh;
+    }
+    .form-right { padding: 64px 32px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    nav { padding: 24px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+<div class="grain-overlay"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">CONTOUR<span>.</span></a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- LEFT PANEL -->
+  <div class="form-left">
+    <div class="form-left-line"></div>
+    <div class="form-eyebrow">Storytelling Agency · België</div>
+    <h1 class="form-title">
+      Laten we<br>
+      praten.
+      <em>uw verhaal begint hier.</em>
+    </h1>
+    <p class="form-sub">
+      Vertel ons over uw project. We nemen binnen 24 uur contact op voor een vrijblijvend introgesprek.
+    </p>
+    <div class="form-contact-detail">
+      <a href="mailto:contact@contouragency.be">contact@contouragency.be</a>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="form-right">
+    <div class="form-inner">
+
+      <div class="form-divider"></div>
+
+      <!-- FORM — verzendt naar contact@contouragency.be via Formspree -->
+      <form id="contactForm" action="https://formspree.io/f/VERVANG_MET_JOUW_FORM_ID" method="POST">
+        <input type="hidden" name="_replyto" value="">
+        <input type="hidden" name="_subject" value="Nieuwe aanvraag via contouragency.be">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="voornaam">Voornaam</label>
+            <input type="text" id="voornaam" name="voornaam" placeholder="Jan" required>
+          </div>
+          <div class="form-group">
+            <label for="naam">Naam</label>
+            <input type="text" id="naam" name="naam" placeholder="De Smet" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mailadres</label>
+          <input type="email" id="email" name="email" placeholder="jan@bedrijf.be" required>
+        </div>
+
+        <div class="form-group">
+          <label for="bedrijf">Bedrijf</label>
+          <input type="text" id="bedrijf" name="bedrijf" placeholder="Bedrijfsnaam">
+        </div>
+
+        <div class="form-group">
+          <label for="dienst">Waarvoor wenst u ons in te schakelen?</label>
+          <select id="dienst" name="dienst" required>
+            <option value="" disabled selected>Selecteer een optie</option>
+            <option value="Bedrijfsfilm">Bedrijfsfilm</option>
+            <option value="Contentstrategie">Contentstrategie &amp; productie</option>
+            <option value="Campagnefilm">Campagnefilm</option>
+            <option value="Evenement">Evenementregistratie</option>
+            <option value="Retainer">Maandelijks retainerpakket</option>
+            <option value="Andere">Andere</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="bericht">Vertel ons meer over uw project</label>
+          <textarea id="bericht" name="bericht" placeholder="Beschrijf kort uw idee, doelstelling of vraag…"></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-submit">Verstuur aanvraag</button>
+          <p class="form-privacy">Uw gegevens worden enkel gebruikt om uw aanvraag te behandelen.</p>
+        </div>
+      </form>
+
+      <!-- SUCCESS MESSAGE (getoond na verzending) -->
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8541A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h2>Bericht ontvangen.</h2>
+        <p>We nemen binnen 24 uur contact met u op.<br>Tot binnenkort.</p>
+        <a href="index.html">← Terug naar de site</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const follower = document.getElementById('cursorFollower');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+      follower.style.left = e.clientX + 'px';
+      follower.style.top = e.clientY + 'px';
+    }, 80);
+  });
+
+  // Formspree AJAX submission
+  const form = document.getElementById('contactForm');
+  const successMsg = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Bezig…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        btn.textContent = 'Probeer opnieuw';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Probeer opnieuw';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
