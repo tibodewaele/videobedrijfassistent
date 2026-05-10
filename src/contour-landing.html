@@ -1700,9 +1700,11 @@
   display: flex;
   gap: 2px;
   will-change: transform;
+}
+.svc-running {
   animation: svc-scroll 50s linear infinite;
 }
-.services-slider-track:hover {
+.svc-running:hover {
   animation-play-state: paused;
 }
 @keyframes svc-scroll {
@@ -1847,29 +1849,42 @@
 (function () {
   var track = document.getElementById('svcTrack');
   if (!track) return;
-  // Kloon slides voor naadloze loop — zelfde techniek als de logo-strip
-  Array.from(track.querySelectorAll('.svc-slide')).forEach(function (s) {
-    track.appendChild(s.cloneNode(true));
+
+  var origSlides = Array.from(track.querySelectorAll('.svc-slide'));
+
+  // Speel originele videos
+  origSlides.forEach(function (s) {
+    s.querySelectorAll('video').forEach(function (v) {
+      v.muted = true;
+      v.play().catch(function () {});
+    });
+  });
+
+  // Kloon slides en speel videos in de klonen ook
+  origSlides.forEach(function (s) {
+    var clone = s.cloneNode(true);
+    track.appendChild(clone);
+    clone.querySelectorAll('video').forEach(function (v) {
+      v.muted = true;
+      v.load();
+      v.play().catch(function () {});
+    });
+  });
+
+  // Start animatie PAS nu de track verdubbeld is (anders werkt -50% niet)
+  track.classList.add('svc-running');
+
+  // iOS-unlock: herstart alle videos bij eerste interactie
+  ['touchstart', 'click', 'scroll'].forEach(function (evt) {
+    document.addEventListener(evt, function u() {
+      document.querySelectorAll('.svc-video, #hero-video').forEach(function (v) {
+        v.muted = true;
+        v.play().catch(function () {});
+      });
+      document.removeEventListener(evt, u);
+    }, { once: true, passive: true });
   });
 }());
-
-// Alle carousel-videos altijd laten spelen (ook geklonede slides)
-function playAllSvcVideos() {
-  document.querySelectorAll('.svc-video').forEach(function(v) {
-    v.muted = true;
-    v.play().catch(function(){});
-  });
-}
-playAllSvcVideos();
-
-// Herstart bij eerste gebruikersinteractie (iOS-unlock)
-['mousemove','scroll','touchstart','click'].forEach(function(evt) {
-  document.addEventListener(evt, function u() {
-    playAllSvcVideos();
-    document.querySelectorAll('#hero-video').forEach(function(v){ v.muted=true; v.play().catch(function(){}); });
-    document.removeEventListener(evt, u);
-  }, { once: true, passive: true });
-});
 </script>
 
 <!-- PORTFOLIO -->
