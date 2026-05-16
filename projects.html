@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projecten — Contour. Storytelling Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #161616;
+    --card-hover: #1c1c1c;
+    --border: rgba(255,255,255,0.08);
+    --orange: #C8541A;
+    --orange-light: #FF7433;
+    --white: #F0EDE8;
+    --muted: rgba(240,237,232,1);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+    --font-condensed: 'Barlow Condensed', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+    min-height: 100vh;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+  }
+  .cursor-follower {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(200,84,26,0.4);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.18s ease;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 48px;
+  }
+  nav::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    pointer-events: none;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-back {
+    font-family: var(--font-condensed);
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-back:hover { color: var(--orange); }
+  .nav-back svg { transform: scaleX(-1); }
+
+  /* GRAIN */
+  .grain-overlay {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 1;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  /* PAGE */
+  .page-header {
+    padding: 160px 64px 64px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-tag {
+    font-family: var(--font-condensed);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 8vw, 112px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+
+  /* PROJECTS GRID */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    padding: 2px;
+    background: var(--border);
+  }
+
+  .project-card {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--card);
+    cursor: none;
+  }
+
+  .project-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .project-card:hover .project-thumb {
+    transform: scale(1.05);
+  }
+
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+    transition: background 0.3s;
+  }
+  .project-card:hover .project-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.1) 100%);
+  }
+
+  .project-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 28px 32px;
+  }
+
+  .project-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .project-play {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-condensed);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .project-card:hover .project-play {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .project-card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox-bg {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.92);
+    cursor: pointer;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 32px; right: 32px;
+    width: 48px; height: 48px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    cursor: none;
+    z-index: 10;
+    transition: border-color 0.2s;
+    border-radius: 4px;
+  }
+  .lightbox-close:hover { border-color: var(--orange); color: var(--orange); }
+  .lightbox-frame {
+    position: relative;
+    width: 90vw;
+    max-width: 1200px;
+    aspect-ratio: 16/9;
+    z-index: 5;
+  }
+  .lightbox-frame iframe {
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .page-header { padding: 120px 32px 48px; }
+    nav { padding: 24px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+<div class="grain-overlay"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">CONT<span>O</span>UR</a>
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M6 1L1 6M1 6L6 11M1 6H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Terug
+  </a>
+</nav>
+
+<div class="page-header">
+  <span class="page-tag">Portfolio</span>
+  <h1 class="page-title">Contour<br>Projecten</h1>
+</div>
+
+<div class="projects-grid">
+
+  <div class="project-card" data-yt="70lcgeD5yjs">
+    <img class="project-thumb" src="https://img.youtube.com/vi/70lcgeD5yjs/maxresdefault.jpg" alt="Kasteel de Haar" loading="lazy">
+    <div class="project-overlay"></div>
+    <div class="project-info">
+      <div class="project-name">Kasteel de Haar</div>
+      <div class="project-play">
+        <svg width="12" height="14" viewBox="0 0 12 14" fill="currentColor"><path d="M1 1L11 7L1 13V1Z"/></svg>
+        Bekijk video
+      </div>
+    </div>
+    <button class="project-card-link" aria-label="Bekijk Kasteel de Haar"></button>
+  </div>
+
+  <div class="project-card" data-yt="plrSge3Utlw">
+    <img class="project-thumb" src="https://img.youtube.com/vi/plrSge3Utlw/maxresdefault.jpg" alt="Venue Catering" loading="lazy">
+    <div class="project-overlay"></div>
+    <div class="project-info">
+      <div class="project-name">Venue Catering</div>
+      <div class="project-play">
+        <svg width="12" height="14" viewBox="0 0 12 14" fill="currentColor"><path d="M1 1L11 7L1 13V1Z"/></svg>
+        Bekijk video
+      </div>
+    </div>
+    <button class="project-card-link" aria-label="Bekijk Venue Catering"></button>
+  </div>
+
+  <div class="project-card" data-yt="yMWtCqoRI8s">
+    <img class="project-thumb" src="https://img.youtube.com/vi/yMWtCqoRI8s/maxresdefault.jpg" alt="Mijn Expert" loading="lazy">
+    <div class="project-overlay"></div>
+    <div class="project-info">
+      <div class="project-name">Mijn Expert</div>
+      <div class="project-play">
+        <svg width="12" height="14" viewBox="0 0 12 14" fill="currentColor"><path d="M1 1L11 7L1 13V1Z"/></svg>
+        Bekijk video
+      </div>
+    </div>
+    <button class="project-card-link" aria-label="Bekijk Mijn Expert"></button>
+  </div>
+
+  <div class="project-card" data-yt="kemZue1wqxk">
+    <img class="project-thumb" src="https://img.youtube.com/vi/kemZue1wqxk/maxresdefault.jpg" alt="Groep BDSV" loading="lazy">
+    <div class="project-overlay"></div>
+    <div class="project-info">
+      <div class="project-name">Groep BDSV</div>
+      <div class="project-play">
+        <svg width="12" height="14" viewBox="0 0 12 14" fill="currentColor"><path d="M1 1L11 7L1 13V1Z"/></svg>
+        Bekijk video
+      </div>
+    </div>
+    <button class="project-card-link" aria-label="Bekijk Groep BDSV"></button>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-bg" id="lightboxBg"></div>
+  <button class="lightbox-close" id="lightboxClose">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+  <div class="lightbox-frame">
+    <iframe id="lightboxIframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const follower = document.getElementById('cursorFollower');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    follower.style.left = e.clientX + 'px';
+    follower.style.top = e.clientY + 'px';
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const iframe = document.getElementById('lightboxIframe');
+
+  function openVideo(ytId) {
+    iframe.src = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideo() {
+    iframe.src = '';
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.project-card-link').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ytId = btn.closest('.project-card').dataset.yt;
+      openVideo(ytId);
+    });
+  });
+
+  document.getElementById('lightboxBg').addEventListener('click', closeVideo);
+  document.getElementById('lightboxClose').addEventListener('click', closeVideo);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideo(); });
+</script>
+
+</body>
+</html>
