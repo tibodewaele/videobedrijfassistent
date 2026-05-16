@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Contour. Storytelling Agency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --black: #0a0a0a;
@@ -15,10 +15,9 @@
     --orange: #C8541A;
     --orange-light: #FF7433;
     --white: #F0EDE8;
-    --muted: rgba(240,237,232,0.45);
+    --muted: rgba(240,237,232,1);
     --font-display: 'Bebas Neue', sans-serif;
     --font-body: 'Barlow', sans-serif;
-    --font-serif: 'Cormorant Garamond', serif;
     --font-condensed: 'Barlow Condensed', sans-serif;
   }
 
@@ -134,12 +133,15 @@
   }
 
   .form-title em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 0.75em;
+    font-family: var(--font-condensed);
+    font-style: normal;
+    font-size: 0.38em;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
     color: var(--muted);
     display: block;
-    margin-top: 8px;
+    margin-top: 16px;
   }
 
   .form-sub {
