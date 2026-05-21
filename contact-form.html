@@ -183,22 +183,31 @@
     flex-shrink: 0;
   }
 
-  /* FORM SIDE */
+  /* RIGHT PANEL */
   .form-right {
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 120px 64px 80px;
+    padding: 100px 64px 80px;
   }
 
   .form-inner {
     width: 100%;
-    max-width: 540px;
+    max-width: 680px;
   }
 
+  .form-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--orange);
+    opacity: 0.4;
+    margin-bottom: 40px;
+  }
+
+  /* SERVICE SELECTOR */
   .form-group {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     position: relative;
   }
 
@@ -212,14 +221,12 @@
     margin-bottom: 10px;
   }
 
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
+  .form-group select {
     width: 100%;
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--border);
-    padding: 14px 0;
+    padding: 14px 28px 14px 0;
     color: var(--white);
     font-family: var(--font-body);
     font-size: 16px;
@@ -229,14 +236,10 @@
     -webkit-appearance: none;
     appearance: none;
     border-radius: 0;
-  }
-
-  .form-group select {
     cursor: pointer;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(240,237,232,0.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 4px center;
-    padding-right: 28px;
   }
 
   .form-group select option {
@@ -244,112 +247,20 @@
     color: var(--white);
   }
 
-  .form-group textarea {
-    resize: none;
-    height: 100px;
-    line-height: 1.6;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
+  .form-group select:focus {
     border-bottom-color: var(--orange);
   }
 
-  .form-group input::placeholder,
-  .form-group textarea::placeholder {
-    color: rgba(240,237,232,0.2);
+  /* CALENDLY EMBED */
+  .calendly-wrap {
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
   }
 
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+  .calendly-inline-widget {
+    min-width: 320px;
+    height: 660px;
   }
-
-  .form-divider {
-    width: 40px;
-    height: 1px;
-    background: var(--orange);
-    opacity: 0.4;
-    margin-bottom: 40px;
-  }
-
-  .form-submit {
-    margin-top: 48px;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-  }
-
-  .btn-submit {
-    background: var(--orange);
-    color: var(--white);
-    font-family: var(--font-condensed);
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 18px 48px;
-    border: none;
-    cursor: none;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.25s;
-  }
-  .btn-submit::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: rgba(255,255,255,0.1);
-    transform: translateX(-100%);
-    transition: transform 0.25s;
-  }
-  .btn-submit:hover::after { transform: translateX(0); }
-  .btn-submit:hover { background: var(--orange-light); }
-
-  .form-privacy {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.5;
-    max-width: 200px;
-  }
-
-  /* SUCCESS STATE */
-  .form-success {
-    display: none;
-    text-align: center;
-    padding: 64px 0;
-  }
-  .form-success .success-icon {
-    width: 64px; height: 64px;
-    border: 1px solid var(--orange);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 32px;
-  }
-  .form-success h2 {
-    font-family: var(--font-display);
-    font-size: 48px;
-    letter-spacing: 3px;
-    margin-bottom: 16px;
-  }
-  .form-success p {
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.7;
-  }
-  .form-success a {
-    display: inline-block;
-    margin-top: 40px;
-    font-family: var(--font-condensed);
-    font-size: 13px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--orange);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .form-success a:hover { color: var(--orange-light); }
 
   /* FILM GRAIN OVERLAY */
   .grain-overlay {
@@ -367,8 +278,7 @@
       padding: 120px 32px 64px;
       min-height: 50vh;
     }
-    .form-right { padding: 64px 32px; }
-    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .form-right { padding: 64px 32px 80px; }
     nav { padding: 24px 32px; }
   }
 </style>
@@ -408,69 +318,28 @@
 
       <div class="form-divider"></div>
 
-      <!-- FORM — verzendt naar contact@contouragency.be via Formspree -->
-      <form id="contactForm" action="https://formspree.io/f/xlgzpqda" method="POST">
-        <input type="hidden" name="_replyto" value="">
-        <input type="hidden" name="_subject" value="Nieuwe aanvraag via contouragency.be">
+      <div class="form-group">
+        <label for="dienst">Waarvoor wenst u ons in te schakelen?</label>
+        <select id="dienst" name="dienst">
+          <option value="" disabled selected>Selecteer een optie</option>
+          <option value="Reeltime Online">Reeltime Online</option>
+          <option value="Bedrijfsfilm">Bedrijfsfilm</option>
+          <option value="Volledige Campagne">Volledige Campagne</option>
+        </select>
+      </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="voornaam">Voornaam</label>
-            <input type="text" id="voornaam" name="voornaam" placeholder="Jan" required>
-          </div>
-          <div class="form-group">
-            <label for="naam">Naam</label>
-            <input type="text" id="naam" name="naam" placeholder="De Smet" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="email">E-mailadres</label>
-          <input type="email" id="email" name="email" placeholder="jan@bedrijf.be" required>
-        </div>
-
-        <div class="form-group">
-          <label for="bedrijf">Bedrijf</label>
-          <input type="text" id="bedrijf" name="bedrijf" placeholder="Bedrijfsnaam">
-        </div>
-
-        <div class="form-group">
-          <label for="dienst">Waarvoor wenst u ons in te schakelen?</label>
-          <select id="dienst" name="dienst" required>
-            <option value="" disabled selected>Selecteer een optie</option>
-            <option value="Reeltime Online">Reeltime Online</option>
-            <option value="Bedrijfsfilm">Bedrijfsfilm</option>
-            <option value="Volledige Campagne">Volledige Campagne</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="bericht">Vertel ons meer over uw project</label>
-          <textarea id="bericht" name="bericht" placeholder="Beschrijf kort uw idee, doelstelling of vraag…"></textarea>
-        </div>
-
-        <div class="form-submit">
-          <button type="submit" class="btn-submit">Verstuur aanvraag</button>
-          <p class="form-privacy">Uw gegevens worden enkel gebruikt om uw aanvraag te behandelen.</p>
-        </div>
-      </form>
-
-      <!-- SUCCESS MESSAGE (getoond na verzending) -->
-      <div class="form-success" id="formSuccess">
-        <div class="success-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8541A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </div>
-        <h2>Bericht ontvangen.</h2>
-        <p>We nemen binnen 24 uur contact met u op.<br>Tot binnenkort.</p>
-        <a href="index.html">← Terug naar de site</a>
+      <div class="calendly-wrap">
+        <div class="calendly-inline-widget"
+             data-url="https://calendly.com/contact-contouragency?background_color=0a0a0a&text_color=F0EDE8&primary_color=C8541A"
+             style="min-width:320px;height:660px;"></div>
       </div>
 
     </div>
   </div>
 
 </div>
+
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 <script>
   // Custom cursor
@@ -483,36 +352,6 @@
       follower.style.left = e.clientX + 'px';
       follower.style.top = e.clientY + 'px';
     }, 80);
-  });
-
-  // Formspree AJAX submission
-  const form = document.getElementById('contactForm');
-  const successMsg = document.getElementById('formSuccess');
-
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const data = new FormData(form);
-    const btn = form.querySelector('.btn-submit');
-    btn.textContent = 'Bezig…';
-    btn.disabled = true;
-
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        form.style.display = 'none';
-        successMsg.style.display = 'block';
-      } else {
-        btn.textContent = 'Probeer opnieuw';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'Probeer opnieuw';
-      btn.disabled = false;
-    }
   });
 </script>
 
