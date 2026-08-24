@@ -69,14 +69,16 @@
     pointer-events: none;
   }
   .nav-logo {
-    font-family: var(--font-display);
-    font-size: 28px;
-    letter-spacing: 4px;
-    color: var(--white);
     text-decoration: none;
     position: relative;
+    display: flex;
+    align-items: center;
   }
-  .nav-logo span { color: var(--orange); }
+  .nav-logo-img {
+    height: 64px;
+    width: auto;
+    display: block;
+  }
   .nav-back {
     font-family: var(--font-condensed);
     font-size: 13px;
@@ -246,6 +248,7 @@
     .projects-grid { grid-template-columns: 1fr; }
     .page-header { padding: 120px 32px 48px; }
     nav { padding: 24px 32px; }
+    .nav-logo-img { height: 48px; }
   }
 </style>
 </head>
@@ -256,7 +259,7 @@
 <div class="grain-overlay"></div>
 
 <nav>
-  <a href="index.html" class="nav-logo">CONT<span>O</span>UR</a>
+  <a href="index.html" class="nav-logo"><img src="project-assets/images/Contour_Logo_Wit.png" alt="Contour. Videomarketing Agency" class="nav-logo-img"></a>
   <a href="index.html" class="nav-back">
     <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M6 1L1 6M1 6L6 11M1 6H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     Terug

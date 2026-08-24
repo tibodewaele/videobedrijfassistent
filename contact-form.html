@@ -68,14 +68,16 @@
     pointer-events: none;
   }
   .nav-logo {
-    font-family: var(--font-display);
-    font-size: 28px;
-    letter-spacing: 4px;
-    color: var(--white);
     text-decoration: none;
     position: relative;
+    display: flex;
+    align-items: center;
   }
-  .nav-logo span { color: var(--orange); }
+  .nav-logo-img {
+    height: 64px;
+    width: auto;
+    display: block;
+  }
 
   /* PAGE LAYOUT */
   .page-wrap {
@@ -346,6 +348,7 @@
     .form-right { padding: 64px 32px 80px; }
     .form-row { grid-template-columns: 1fr; gap: 0; }
     nav { padding: 24px 32px; }
+    .nav-logo-img { height: 48px; }
   }
 </style>
 </head>
@@ -356,7 +359,7 @@
 <div class="grain-overlay"></div>
 
 <nav>
-  <a href="index.html" class="nav-logo">CONTOUR<span>.</span></a>
+  <a href="index.html" class="nav-logo"><img src="project-assets/images/Contour_Logo_Wit.png" alt="Contour. Videomarketing Agency" class="nav-logo-img"></a>
 </nav>
 
 <div class="page-wrap">
