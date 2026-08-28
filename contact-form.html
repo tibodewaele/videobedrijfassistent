@@ -219,98 +219,8 @@
     margin-bottom: 40px;
   }
 
-  /* SERVICE SELECTOR */
-  .form-group {
-    margin-bottom: 40px;
-    position: relative;
-  }
-
-  .form-group label {
-    display: block;
-    font-family: var(--font-condensed);
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-
-  .form-group select {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    padding: 14px 28px 14px 0;
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 300;
-    outline: none;
-    transition: border-color 0.25s;
-    -webkit-appearance: none;
-    appearance: none;
-    border-radius: 0;
-    cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(240,237,232,0.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 4px center;
-  }
-
-  .form-group select option {
-    background: #1a1a1a;
-    color: var(--white);
-  }
-
-  .form-group select:focus {
-    border-bottom-color: var(--orange);
-  }
-
   /* FORMULIER */
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    padding: 14px 0;
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 300;
-    outline: none;
-    transition: border-color 0.25s;
-    border-radius: 0;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-  .form-group textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: rgba(240,237,232,0.28); }
-  .form-group input:focus,
-  .form-group textarea:focus { border-bottom-color: var(--orange); }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-
-  /* de pagina verbergt de muisaanwijzer; in het formulier moet die zichtbaar zijn */
-  .form-right input, .form-right textarea { cursor: text; }
-  .form-right select, .form-right button, .form-right label { cursor: pointer; }
-
-  .form-submit {
-    width: 100%;
-    background: var(--orange);
-    color: var(--white);
-    border: none;
-    padding: 17px 32px;
-    font-family: var(--font-condensed);
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    border-radius: 50px;
-    transition: background 0.25s, opacity 0.25s;
-  }
-  .form-submit:hover { background: var(--orange-light); }
-  .form-submit:disabled { opacity: 0.55; }
+  .form-right iframe { display: block; }
 
   .form-note {
     font-size: 13px;
@@ -319,27 +229,7 @@
     opacity: 0.6;
     margin-top: 18px;
   }
-
-  .form-status {
-    display: none;
-    margin-top: 24px;
-    padding: 16px 20px;
-    border-radius: 10px;
-    font-size: 14.5px;
-    line-height: 1.6;
-  }
-  .form-status.is-visible { display: block; }
-  .form-status.is-ok {
-    background: rgba(208,62,0,0.10);
-    border: 1px solid rgba(208,62,0,0.45);
-    color: var(--white);
-  }
-  .form-status.is-error {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    color: var(--muted);
-  }
-  .form-status a { color: var(--orange); }
+  .form-note a { color: var(--orange); }
 
   /* FILM GRAIN OVERLAY */
   .grain-overlay {
@@ -358,7 +248,6 @@
       min-height: 50vh;
     }
     .form-right { padding: 64px 32px 80px; }
-    .form-row { grid-template-columns: 1fr; gap: 0; }
     nav { padding: 24px 32px; }
     .nav-logo-img { height: 48px; }
   }
@@ -399,120 +288,49 @@
 
       <div class="form-divider"></div>
 
-      <form id="contactForm" novalidate>
-        <!-- Web3Forms-sleutel: aanmaken op web3forms.com met contact@contouragency.be -->
-        <input type="hidden" name="access_key" value="1ffbca73-5038-4f87-85e0-5e5ba0c5379f">
-        <input type="hidden" name="subject" value="Nieuwe aanvraag via contouragency.be">
-        <input type="hidden" name="from_name" value="Contour website">
-        <!-- spamval: mensen zien dit veld niet -->
-        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/ScQxUWAJyiEvNbYEN5Di"
+        style="width:100%;height:674px;border:none;border-radius:8px"
+        id="inline-ScQxUWAJyiEvNbYEN5Di"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Form 0"
+        data-height="674"
+        data-layout-iframe-id="inline-ScQxUWAJyiEvNbYEN5Di"
+        data-form-id="ScQxUWAJyiEvNbYEN5Di"
+        data-cookie-consent="true"
+        data-cookie-consent-provider="auto"
+        title="Form 0"></iframe>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cf-naam">Naam</label>
-            <input type="text" id="cf-naam" name="Naam" required autocomplete="name" placeholder="Jouw naam">
-          </div>
-          <div class="form-group">
-            <label for="cf-bedrijf">Bedrijf</label>
-            <input type="text" id="cf-bedrijf" name="Bedrijf" autocomplete="organization" placeholder="Optioneel">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cf-email">E-mail</label>
-            <input type="email" id="cf-email" name="E-mail" required autocomplete="email" placeholder="jij@bedrijf.be">
-          </div>
-          <div class="form-group">
-            <label for="cf-tel">Telefoon</label>
-            <input type="tel" id="cf-tel" name="Telefoon" autocomplete="tel" placeholder="Optioneel">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="cf-interesse">Waarover gaat het?</label>
-          <select id="cf-interesse" name="Interesse">
-            <option>Video-advertenties</option>
-            <option>Videomarketing als meetbaar systeem</option>
-            <option>Ik weet het nog niet</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="cf-bericht">Jouw bericht</label>
-          <textarea id="cf-bericht" name="Bericht" required placeholder="Vertel kort waar je mee bezig bent en wat je wil bereiken."></textarea>
-        </div>
-
-        <button type="submit" class="form-submit" id="cfSubmit">Verstuur aanvraag</button>
-        <p class="form-note">We nemen binnen 24 uur contact op. Liever meteen mailen? <a href="mailto:contact@contouragency.be" style="color:var(--orange)">contact@contouragency.be</a></p>
-
-        <div class="form-status" id="cfStatus"></div>
-      </form>
+      <p class="form-note">Liever meteen mailen? <a href="mailto:contact@contouragency.be">contact@contouragency.be</a></p>
 
     </div>
   </div>
 
 </div>
 
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 <script>
+// Vangnet: het embed-script houdt de iframe verborgen tot het formulier zich meldt.
+// Blijft dat signaal uit, dan tonen we hem alsnog zodat de pagina nooit leeg blijft.
 (function () {
-  const form   = document.getElementById('contactForm');
-  const btn    = document.getElementById('cfSubmit');
-  const status = document.getElementById('cfStatus');
-  const MAILTO = '<a href="mailto:contact@contouragency.be">contact@contouragency.be</a>';
-
-  function show(kind, html) {
-    status.className = 'form-status is-visible ' + kind;
-    status.innerHTML = html;
-  }
-
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    // eigen controle, want novalidate staat aan
-    const missing = [...form.querySelectorAll('[required]')].filter(f => !f.value.trim());
-    const email = form.querySelector('#cf-email');
-    if (missing.length) {
-      show('is-error', 'Vul je naam, e-mailadres en bericht in.');
-      missing[0].focus();
-      return;
+  var el = document.getElementById('inline-ScQxUWAJyiEvNbYEN5Di');
+  if (!el) return;
+  setTimeout(function () {
+    var s = window.getComputedStyle(el);
+    if (s.visibility === 'hidden' || s.opacity === '0' || el.style.left === '-9999px') {
+      el.style.opacity = '1';
+      el.style.visibility = 'visible';
+      el.style.pointerEvents = 'auto';
+      el.style.position = 'relative';
+      el.style.left = '';
     }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim())) {
-      show('is-error', 'Dat e-mailadres lijkt niet te kloppen.');
-      email.focus();
-      return;
-    }
-
-    const key = form.access_key.value;
-    if (!key || key.indexOf('VUL-HIER') === 0) {
-      show('is-error', 'Het formulier is nog niet gekoppeld. Mail ons zolang rechtstreeks op ' + MAILTO + '.');
-      return;
-    }
-
-    btn.disabled = true;
-    const original = btn.textContent;
-    btn.textContent = 'Versturen…';
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(Object.fromEntries(new FormData(form)))
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        form.querySelectorAll('input:not([type=hidden]), textarea').forEach(f => f.value = '');
-        show('is-ok', '<strong>Bedankt, je bericht is verstuurd.</strong><br>We nemen binnen 24 uur contact met je op.');
-      } else {
-        throw new Error(data.message || 'mislukt');
-      }
-    } catch (err) {
-      show('is-error', 'Verzenden lukte niet. Probeer opnieuw of mail ons rechtstreeks op ' + MAILTO + '.');
-    } finally {
-      btn.disabled = false;
-      btn.textContent = original;
-    }
-  });
+  }, 3000);
 })();
 </script>
 
