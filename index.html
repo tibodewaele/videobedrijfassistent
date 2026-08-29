@@ -1345,6 +1345,33 @@
 
 
 
+  /* zwevende deeltjes over de secties: zelfde sfeer als het sparkleveld in de
+     hero, maar zonder 3D-ring, dus met een trage eigen drift */
+  .dust-field {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .dust-field i {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation-name: dust-drift;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  .dust-field i.is-bright { box-shadow: 0 0 4px 1px rgba(255,238,220,0.45); }
+  @keyframes dust-drift {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(var(--dx), var(--dy), 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dust-field i { animation: none; }
+  }
+
   /* warme sfeer uit de hero doorgetrokken over de secties eronder */
   .services-slider-section,
   .pricing-section,
@@ -3077,6 +3104,43 @@
 
 
 
+
+<script>
+// Deeltjesveld over de secties onder de hero. Ze zitten boven de sectie-achtergrond
+// maar onder de inhoud, en zweven traag met elk een eigen richting en tempo.
+(function () {
+  const targets = ['.services-slider-section', '.pricing-section', '.portfolio-section'];
+  let seed = 20260831;
+  const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+
+  targets.forEach(sel => {
+    const host = document.querySelector(sel);
+    if (!host) return;
+    const field = document.createElement('div');
+    field.className = 'dust-field';
+    field.setAttribute('aria-hidden', 'true');
+
+    const count = 46;
+    for (let k = 0; k < count; k++) {
+      const s = document.createElement('i');
+      const size = (1 + rnd() * 1.6).toFixed(2);
+      const op = (0.16 + rnd() * 0.52).toFixed(2);
+      if (op > 0.58) s.classList.add('is-bright');
+      s.style.cssText =
+        'width:' + size + 'px;height:' + size + 'px;' +
+        'left:' + (rnd() * 100).toFixed(2) + '%;' +
+        'top:' + (rnd() * 100).toFixed(2) + '%;' +
+        'opacity:' + op + ';' +
+        '--dx:' + (rnd() * 24 - 12).toFixed(1) + 'px;' +
+        '--dy:' + (-14 - rnd() * 30).toFixed(1) + 'px;' +
+        'animation-duration:' + (16 + rnd() * 26).toFixed(1) + 's;' +
+        'animation-delay:-' + (rnd() * 20).toFixed(1) + 's;';
+      field.appendChild(s);
+    }
+    host.insertBefore(field, host.firstChild);
+  });
+})();
+</script>
 
 <!-- FOOTER -->
 <footer>
