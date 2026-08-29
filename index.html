@@ -8,10 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;500;600;700&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0a0a0a;
-    --dark: #111111;
-    --card: #161616;
-    --border: rgba(255,255,255,0.08);
+    --black: #080402;
+    --dark: #100A06;
+    --card: #171009;
+    --border: rgba(255,214,184,0.10);
     --orange: #D03E00;
     --orange-light: #FF6321;
     --white: #F0EDE8;
@@ -1344,6 +1344,34 @@
 
 
 
+
+  /* warme sfeer uit de hero doorgetrokken over de secties eronder */
+  .services-slider-section,
+  .pricing-section,
+  .portfolio-section { position: relative; }
+  .services-slider-section::before,
+  .pricing-section::before,
+  .portfolio-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .services-slider-section::before {
+    background: radial-gradient(ellipse 52% 46% at 11% 16%, rgba(226,116,46,0.070) 0%, transparent 62%);
+  }
+  .pricing-section::before {
+    background: radial-gradient(ellipse 48% 44% at 89% 24%, rgba(226,116,46,0.060) 0%, transparent 62%);
+  }
+  .portfolio-section::before {
+    background: radial-gradient(ellipse 58% 42% at 26% 86%, rgba(226,116,46,0.050) 0%, transparent 64%);
+  }
+  /* inhoud boven de gloed houden */
+  .services-slider-header,
+  .svc-layout,
+  .pricing-inner,
+  .portfolio-inner { position: relative; z-index: 1; }
 
   /* FOOTER */
   footer {
