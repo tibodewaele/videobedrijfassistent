@@ -146,13 +146,92 @@
      het kleinst, naar de zijkanten komen ze naar je toe en worden ze snel groter
      tot ze de schermrand uit bloeden. Alle schaal en scheefstand komt uit het
      perspectief zelf; er wordt niets apart geschaald. */
+  /* --- laag 1: warm gestookt zwart --- */
+  .hero-bg {
+    position: absolute; inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 86% 62% at 50% 46%,
+        #0B0603 0%, #080402 46%, #050100 74%, #000000 100%);
+  }
+
+  /* zon linksboven: gestapelde ringen met oplopende blur, dus zichtbare banding.
+     Staat in .hero-bg en dus achter de kaarten. */
+  .hero-sun {
+    position: absolute;
+    left: 4%; top: 2%;
+    width: 42vw; height: 42vw;
+    transform: translate(-26%, -30%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  .hero-sun i {
+    position: absolute;
+    left: 50%; top: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+  }
+  .hero-sun i:nth-child(1) { width: 16%;  height: 16%;  background: rgba(226,102,30,0.85); filter: blur(10px); }
+  .hero-sun i:nth-child(2) { width: 32%;  height: 32%;  background: rgba(226,102,30,0.42); filter: blur(24px); }
+  .hero-sun i:nth-child(3) { width: 54%;  height: 54%;  background: rgba(210,86,24,0.26);  filter: blur(46px); }
+  .hero-sun i:nth-child(4) { width: 78%;  height: 78%;  background: rgba(180,68,18,0.16);  filter: blur(74px); }
+  .hero-sun i:nth-child(5) { width: 100%; height: 100%; background: rgba(150,54,14,0.10);  filter: blur(110px); }
+
+  /* zwakke warme verticale strepen bovenaan, onregelmatige breedtes */
+  .hero-streaks {
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 54%;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    opacity: 0.55;
+    background:
+      linear-gradient(to right, transparent 27.0%, rgba(226,150,92,0.055) 27.4%, rgba(226,150,92,0.055) 28.3%, transparent 28.7%),
+      linear-gradient(to right, transparent 34.5%, rgba(226,150,92,0.040) 34.8%, rgba(226,150,92,0.040) 36.4%, transparent 36.8%),
+      linear-gradient(to right, transparent 41.2%, rgba(226,150,92,0.065) 41.6%, rgba(226,150,92,0.065) 42.2%, transparent 42.6%),
+      linear-gradient(to right, transparent 47.8%, rgba(226,150,92,0.045) 48.1%, rgba(226,150,92,0.045) 49.9%, transparent 50.3%),
+      linear-gradient(to right, transparent 55.1%, rgba(226,150,92,0.060) 55.4%, rgba(226,150,92,0.060) 56.2%, transparent 56.6%),
+      linear-gradient(to right, transparent 62.4%, rgba(226,150,92,0.035) 62.8%, rgba(226,150,92,0.035) 64.5%, transparent 64.9%),
+      linear-gradient(to right, transparent 70.0%, rgba(226,150,92,0.050) 70.3%, rgba(226,150,92,0.050) 71.1%, transparent 71.5%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.45) 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.45) 55%, transparent 100%);
+  }
+
+  /* amber core-glow achter de kopij + warmere haze op de hoogte van de kleine kaarten */
+  .hero-core {
+    position: absolute; inset: 0;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 21% 26% at 50% 48%,
+        rgba(194,96,30,0.30) 0%, rgba(194,96,30,0.13) 46%, rgba(194,96,30,0) 100%),
+      radial-gradient(ellipse 30% 12% at 50% 57%,
+        rgba(110,79,61,0.30) 0%, rgba(110,79,61,0.10) 55%, rgba(110,79,61,0) 100%);
+  }
+
   .hero-stage {
     position: absolute; inset: 0;
+    z-index: 1;
     perspective: 40vw;
     perspective-origin: 50% 54%;
     overflow: hidden;
-    background: #0a0706;
   }
+
+  /* sparkles: zitten in dezelfde ring als de kaarten, op drie schillen,
+     zodat één rotatie ook hun parallax stuurt */
+  .hero-spark {
+    position: absolute;
+    left: 0; top: 0;
+    border-radius: 50%;
+    background: #fff;
+    pointer-events: none;
+    /* deeltjes op de nabije helft van de cilinder keren hun rug naar de camera en
+       verdwijnen dus vanzelf, nog voor ze tot vlekken uitgroeien */
+    backface-visibility: hidden;
+  }
+  .hero-spark.is-bright { box-shadow: 0 0 4px 1px rgba(255,238,220,0.55); }
   .hero-ring {
     position: absolute;
     left: 50%; top: 54%;
@@ -187,11 +266,13 @@
     z-index: 2;
     pointer-events: none;
     background:
-      radial-gradient(ellipse 46% 52% at 50% 54%,
-        rgba(20,12,8,0.93) 0%, rgba(20,12,8,0.78) 38%, rgba(10,7,6,0) 72%),
-      radial-gradient(ellipse 55% 45% at 16% 20%,
-        rgba(208,62,0,0.20) 0%, transparent 62%),
-      linear-gradient(to top, rgba(10,7,6,0.92) 0%, rgba(10,7,6,0) 42%);
+      radial-gradient(ellipse 44% 50% at 50% 54%,
+        rgba(18,10,6,0.90) 0%, rgba(18,10,6,0.72) 38%, rgba(8,4,2,0) 72%),
+      linear-gradient(to right,
+        rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.30) 12%, rgba(0,0,0,0) 26%,
+        rgba(0,0,0,0) 74%, rgba(0,0,0,0.30) 88%, rgba(0,0,0,0.85) 100%),
+      linear-gradient(to top,
+        #000 0%, rgba(0,0,0,0.96) 17%, rgba(0,0,0,0.55) 34%, rgba(0,0,0,0) 58%);
   }
   .video-placeholder video,
   .video-placeholder iframe {
@@ -1495,6 +1576,11 @@
     <div class="reel-strip">
       <span class="reel-strip-inner"><img src="project-assets/images/Contour_Element_Wit.png" alt=""><img src="project-assets/images/Contour_Pauze_Wit.png" alt=""><img src="project-assets/images/Contour_Element_Wit.png" alt=""><img src="project-assets/images/Contour_Pauze_Wit.png" alt=""><img src="project-assets/images/Contour_Element_Wit.png" alt=""><img src="project-assets/images/Contour_Pauze_Wit.png" alt=""><img src="project-assets/images/Contour_Element_Wit.png" alt=""><img src="project-assets/images/Contour_Pauze_Wit.png" alt=""><img src="project-assets/images/Contour_Element_Wit.png" alt=""><img src="project-assets/images/Contour_Pauze_Wit.png" alt=""><img src="project-assets/images/Contour_Element_Wit.png" alt=""><img src="project-assets/images/Contour_Pauze_Wit.png" alt=""><img src="project-assets/images/Contour_Element_Wit.png" alt=""><img src="project-assets/images/Contour_Pauze_Wit.png" alt=""><img src="project-assets/images/Contour_Element_Wit.png" alt=""><img src="project-assets/images/Contour_Pauze_Wit.png" alt=""></span>
     </div>
+    <div class="hero-bg">
+      <div class="hero-sun"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="hero-streaks"></div>
+      <div class="hero-core"></div>
+    </div>
     <div class="hero-stage">
       <div class="hero-ring" id="heroRing">
         <div class="hero-cyl-card" style="--i:0">
@@ -1564,12 +1650,40 @@
 (function () {
   const ring = document.getElementById('heroRing');
   if (!ring) return;
-  const cards  = Array.from(ring.children);
+  const cards  = Array.from(ring.querySelectorAll('.hero-cyl-card'));
   const videos = cards.map(c => c.querySelector('video'));
   const STEP = 30;
 
   // hoek t.o.v. de kijkrichting, 0 = recht tegenover de camera (verst weg)
   const norm = d => { const x = ((d + 180) % 360 + 360) % 360 - 180; return Math.abs(x); };
+
+  // sparkleveld in dezelfde 3D-ruimte: drie schillen, zodat de deeltjes bij het
+  // vluchtpunt opeengepakt staan en aan de flanken uitwaaieren
+  const dust = [];
+  (function makeDust() {
+    const SHELLS = [[14, 70], [10, 58], [6, 42]];   // [straal in vw, aantal]
+    const frag = document.createDocumentFragment();
+    let seed = 20260830;
+    const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+    SHELLS.forEach(([rvw, count]) => {
+      for (let k = 0; k < count; k++) {
+        const s = document.createElement('i');
+        s.className = 'hero-spark';
+        const ang = rnd() * 360;
+        const y = (rnd() * 26 - 19).toFixed(2);      // meer boven dan onder de middenlijn
+        const size = (0.9 + rnd() * 1.1).toFixed(2);
+        const op = (0.20 + rnd() * 0.70).toFixed(2);
+        if (op > 0.78) s.classList.add('is-bright');
+        s.style.width = s.style.height = size + 'px';
+        s.style.opacity = op;
+        s.style.transform =
+          'rotateY(' + ang.toFixed(2) + 'deg) translateZ(-' + rvw + 'vw) translateY(' + y + 'vw)';
+        dust.push({ el: s, ang: ang, shown: true });
+        frag.appendChild(s);
+      }
+    });
+    ring.appendChild(frag);
+  })();
 
   let rot = 0, inView = true, rafId = null;
   const SPEED = 360 / (80 * 60);       // 80 seconden per omwenteling
@@ -1584,6 +1698,16 @@
       card.style.opacity = o;
       card.style.visibility = o > 0.01 ? 'visible' : 'hidden';
     });
+    // deeltjes op de nabije helft van de cilinder passeren vlak langs de camera en
+    // zouden tot vlekken uitgroeien: die verbergen we
+    for (let k = 0; k < dust.length; k++) {
+      const d = dust[k];
+      const show = norm(d.ang + rot) < 86;
+      if (show !== d.shown) {
+        d.shown = show;
+        d.el.style.visibility = show ? 'visible' : 'hidden';
+      }
+    }
   }
 
   function sync() {
