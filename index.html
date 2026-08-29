@@ -2612,9 +2612,9 @@
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  align-items: stretch;   /* beide kaarten even hoog */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;   /* alle kaarten even hoog */
 }
 
 .price-card {
@@ -2622,7 +2622,7 @@
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 40px 40px;
+  padding: 38px 32px;
   display: flex;
   flex-direction: column;
   transition: border-color 0.3s, background 0.3s;
@@ -2641,6 +2641,7 @@
   line-height: 1.05;
   letter-spacing: 1px;
   color: var(--white);
+  min-height: 2.1em;      /* houdt de knoppen op dezelfde lijn bij een titel van twee regels */
 }
 
 .price-cta {
@@ -2691,6 +2692,16 @@
   flex-shrink: 0;
 }
 
+.price-note {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--muted);
+  opacity: 0.62;
+  margin-top: 18px;
+}
+
 .price-divider {
   height: 1px;
   background: var(--border);
@@ -2706,8 +2717,11 @@
   margin-bottom: 16px;
 }
 
-@media (max-width: 900px) {
-  .pricing-grid { grid-template-columns: 1fr; gap: 40px; }
+@media (max-width: 1180px) {
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+}
+@media (max-width: 760px) {
+  .pricing-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 768px) {
   .pricing-section { padding: 80px 0; }
@@ -2723,7 +2737,7 @@
     <div class="pricing-head reveal">
       <p class="section-tag">02. Formules</p>
       <h2 class="section-title">Kies het systeem<br>dat bij jou past</h2>
-      <p class="pricing-sub">Twee manieren om met video te groeien: zichtbaar worden bij het juiste publiek, of het volledige systeem eromheen.</p>
+      <p class="pricing-sub">Drie manieren om met video te groeien: van losse advertenties tot het volledige systeem eromheen.</p>
     </div>
 
     <div class="pricing-grid">
@@ -2735,10 +2749,11 @@
         <ul class="price-list">
           <li>3 doelgroepgerichte video-advertenties per maand</li>
           <li>AI-integratie in jouw advertenties</li>
-          <li>Meta + Google advertising</li>
+          <li>Maandelijkse analyse van de aangeleverde data</li>
           <li>Tracking + bronregistratie</li>
           <li>Maandelijkse follow-up meeting</li>
         </ul>
+        <p class="price-note">Meta- en Google Ads-beheer zit niet in dit pakket: de performance houd je zelf in handen.</p>
         <div class="price-divider"></div>
         <p class="price-ideal-label">Ideaal om</p>
         <ul class="price-list">
@@ -2748,7 +2763,26 @@
       </div>
 
       <!-- Optie 2 -->
-      <div class="price-card price-card-featured reveal reveal-delay-1">
+      <div class="price-card reveal reveal-delay-1">
+        <h3 class="price-name">Video-advertenties + performance</h3>
+        <a href="contact-form.html" target="_blank" class="price-cta">Kies dit pakket</a>
+        <ul class="price-list">
+          <li>3 doelgroepgerichte video-advertenties per maand</li>
+          <li>AI-integratie in jouw advertenties</li>
+          <li>Maandelijks Meta- en Google Ads-beheer inbegrepen</li>
+          <li>Tracking + bronregistratie</li>
+          <li>Maandelijkse follow-up meeting</li>
+        </ul>
+        <div class="price-divider"></div>
+        <p class="price-ideal-label">Ideaal om</p>
+        <ul class="price-list">
+          <li>Zowel de videocreatie als de performance marketing uit handen te geven</li>
+          <li>Zichtbaar te zijn bij het juiste doelpubliek zonder er zelf naar om te kijken</li>
+        </ul>
+      </div>
+
+      <!-- Optie 2 -->
+      <div class="price-card price-card-featured reveal reveal-delay-2">
         <h3 class="price-name">Videomarketing als meetbaar systeem</h3>
         <a href="contact-form.html" target="_blank" class="price-cta price-cta-solid">Start mijn traject</a>
         <ul class="price-list">
