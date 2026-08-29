@@ -55,6 +55,33 @@
     transition: all 0.18s ease;
   }
 
+  /* INTRO: logo-animatie die over de site ligt tot ze is afgespeeld */
+  .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.8s ease;
+  }
+  .intro video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .intro.is-done {
+    opacity: 0;
+    pointer-events: none;
+  }
+  html.intro-lock, html.intro-lock body { overflow: hidden; }
+  /* wie beweging beperkt heeft, krijgt de site meteen */
+  @media (prefers-reduced-motion: reduce) {
+    .intro { display: none; }
+  }
+
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
@@ -1624,6 +1651,65 @@
 </style>
 </head>
 <body>
+
+<!-- INTRO -->
+<div class="intro" id="intro" aria-hidden="true">
+  <video id="introVideo" muted playsinline preload="auto" disablepictureinpicture>
+    <source src="project-assets/videos-web/contour-intro.mp4" type="video/mp4">
+  </video>
+</div>
+<noscript><style>.intro { display: none !important; }</style></noscript>
+<script>
+(function () {
+  var intro = document.getElementById('intro');
+  if (!intro) return;
+  var v = document.getElementById('introVideo');
+  var root = document.documentElement;
+  var done = false;
+
+  function reveal() {
+    if (done) return;
+    done = true;
+    try { sessionStorage.setItem('contourIntro', '1'); } catch (e) {}
+    intro.classList.add('is-done');
+    root.classList.remove('intro-lock');
+    setTimeout(function () { if (intro.parentNode) intro.parentNode.removeChild(intro); }, 900);
+  }
+
+  var seen = false;
+  try { seen = sessionStorage.getItem('contourIntro') === '1'; } catch (e) {}
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // al gezien in deze sessie, of beweging beperkt: meteen de site tonen
+  if (seen || reduce) { intro.parentNode.removeChild(intro); return; }
+
+  root.classList.add('intro-lock');
+
+  v.addEventListener('ended', reveal);
+  v.addEventListener('error', reveal);
+  intro.addEventListener('click', reveal);
+  document.addEventListener('keydown', reveal);
+
+  // Niet alleen op 'ended' vertrouwen: dat event blijft in sommige browsers uit
+  // wanneer de video precies op het einde blijft staan. We kijken daarom ook zelf
+  // of de speelkop het einde heeft bereikt.
+  v.addEventListener('timeupdate', function () {
+    if (v.duration && v.currentTime >= v.duration - 0.12) reveal();
+  });
+  var poll = setInterval(function () {
+    if (v.duration && v.currentTime >= v.duration - 0.12) { clearInterval(poll); reveal(); }
+  }, 120);
+
+  // komt de video niet op gang, dan niet blijven hangen op een zwart scherm
+  var guard = setTimeout(function () { if (v.currentTime < 0.1) reveal(); }, 2200);
+  v.addEventListener('playing', function () { clearTimeout(guard); });
+  setTimeout(reveal, 9000);   // harde bovengrens
+
+  var p = v.play();
+  if (p && p.catch) p.catch(reveal);
+})();
+</script>
+
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-follower" id="cursor-follower"></div>
