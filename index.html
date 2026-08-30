@@ -2935,59 +2935,239 @@
   .process-sub { font-size: 16px; }
   .process-visual { height: 240px; }
 }
+
+/* ===== TIJDLIJN ===== */
+.fn-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+/* de rail zit in elke stap zelf en begint pas na het label,
+   zodat hij nooit door de tekst loopt */
+.fn-rail {
+  flex: 1;
+  height: 2px;
+  margin-left: 14px;
+  margin-right: -24px;   /* overbrugt de tussenruimte naar de volgende bol */
+  border-radius: 2px;
+}
+.fn-step:nth-child(1) .fn-rail {
+  background: linear-gradient(to right, rgba(232,90,42,0.22), rgba(232,90,42,0.55));
+}
+.fn-step:nth-child(2) .fn-rail {
+  background: linear-gradient(to right, rgba(232,90,42,0.55), rgba(232,90,42,1));
+}
+.fn-step:last-child .fn-rail { display: none; }
+.fn-step { position: relative; z-index: 1; }
+.fn-mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.fn-dot {
+  width: 42px; height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #0A0A0A;
+  border: 2px solid rgba(232,90,42,0.55);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-condensed);
+  font-size: 15px; font-weight: 700; letter-spacing: 1px;
+  color: #E85A2A;
+}
+.fn-step:last-child .fn-dot {
+  background: #E85A2A;
+  border-color: #E85A2A;
+  color: #0A0A0A;
+  box-shadow: 0 0 24px -4px rgba(232,90,42,0.8);
+}
+.fn-tag {
+  font-family: var(--font-condensed);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #C8C8C8;
+}
+.fn-kind {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #7C7C7C;
+}
+.fn-kind b {
+  display: block;
+  font-family: var(--font-condensed);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #E85A2A;
+  margin-bottom: 6px;
+}
+.fn-close {
+  max-width: 760px;
+  margin: 60px auto 0;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #9A9A9A;
+}
+.fn-close strong { color: #fff; font-weight: 500; }
+
+/* --- visual: betrokkenheid (midden) --- */
+.pv-social { padding: 20px; display: flex; align-items: center; justify-content: center; gap: 14px; }
+.pv-social .shot {
+  width: 118px; height: 210px;
+  border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  flex-shrink: 0;
+}
+.pv-social .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pv-stats { display: flex; flex-direction: column; gap: 9px; }
+.pv-stat {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: #D6D6D6;
+}
+.pv-stat.warm {
+  background: rgba(232,90,42,0.14);
+  border-color: rgba(232,90,42,0.45);
+  color: #F0A183;
+}
+
+/* --- visual: leads (onder) --- */
+.pv-leads { padding: 20px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.pv-lead {
+  display: flex; align-items: center; gap: 11px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 11px;
+  padding: 10px 12px;
+}
+.pv-lead .av {
+  width: 30px; height: 30px; flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(232,90,42,0.18);
+  border: 1px solid rgba(232,90,42,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-condensed);
+  font-size: 12px; font-weight: 700; color: #F0A183;
+}
+.pv-lead .who { flex: 1; min-width: 0; }
+.pv-lead .who b {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12.5px; font-weight: 500; color: #E6E6E6;
+}
+.pv-lead .who span {
+  font-family: var(--font-body);
+  font-size: 11px; color: #7C7C7C;
+}
+.pv-lead .new {
+  font-family: var(--font-condensed);
+  font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+  color: #2FBF6B;
+  background: rgba(47,191,107,0.12);
+  border: 1px solid rgba(47,191,107,0.35);
+  border-radius: 999px;
+  padding: 3px 8px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1000px) {
+  .fn-grid { grid-template-columns: 1fr; gap: 20px; max-width: 520px; margin: 0 auto; }
+  .fn-rail { display: none; }
+  /* verticale lijn links langs de bollen */
+  .fn-grid::before {
+    content: '';
+    position: absolute;
+    top: 21px; bottom: 21px;
+    left: 20px;
+    width: 2px;
+    background: linear-gradient(to bottom,
+      rgba(232,90,42,0.20) 0%, rgba(232,90,42,0.55) 50%, rgba(232,90,42,1) 100%);
+    z-index: 0;
+  }
+  .fn-close { margin-top: 44px; font-size: 15.5px; }
+}
 </style>
 
-<!-- PROCES -->
+<!-- FUNNEL -->
 <section class="process-sec">
   <div class="process-inner">
 
     <div class="process-head reveal">
-      <div class="process-badge"><i></i><span>Zo werken we</span><i></i></div>
-      <h2 class="process-title">Van draaidag tot<br>meetbaar resultaat</h2>
-      <p class="process-sub">Elke maand dezelfde drie stappen. Jij levert je verhaal, wij zorgen voor de beelden, de advertenties en de opvolging.</p>
+      <div class="process-badge"><i></i><span>Onze structuur</span><i></i></div>
+      <h2 class="process-title">Van eerste indruk<br>tot binnenkomende leads</h2>
+      <p class="process-sub">We bouwen je videomarketing op in drie lagen. Elke laag heeft een eigen doel, een eigen soort content en een eigen publiek.</p>
     </div>
 
-    <div class="process-grid">
+    <div class="fn-grid">
 
-      <div class="process-card reveal">
-        <div class="process-visual pv-drop">
-          <div class="pv-dash">
-            <div class="pv-dash-in"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="2" y="6" width="13" height="12" rx="2.5"/><path d="M15 10.5l6-3.2v9.4l-6-3.2z"/></svg><span>Beeld</span></div>
+      <div class="fn-step reveal">
+        <div class="fn-mark"><span class="fn-dot">01</span><span class="fn-tag">Top of funnel</span><i class="fn-rail"></i></div>
+        <div class="process-card">
+          <div class="process-visual pv-wall">
+            <div class="pv-clip"><img src="project-assets/videos-web/posters/bdsv.jpg" alt=""><span class="pv-plat">Meta</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>1.2M</span></div>
+            <div class="pv-clip"><img src="project-assets/videos-web/posters/seacoast.jpg" alt=""><span class="pv-plat">Google</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>486K</span></div>
+            <div class="pv-clip"><img src="project-assets/videos-web/posters/mijnexpert.jpg" alt=""><span class="pv-plat">Meta</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>92K</span></div>
+            <div class="pv-clip"><img src="project-assets/videos-web/posters/abacho.jpg" alt=""><span class="pv-plat">Google</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>311K</span></div>
           </div>
-          <div class="pv-thumb">
-            <img src="project-assets/videos-web/posters/fred.jpg" alt="">
-            <span class="pv-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.5 5.5L20 7"/></svg></span>
-          </div>
+          <h3>Zoveel mogelijk mensen bereiken</h3>
+          <p>Top of funnel ads laten zoveel mogelijk mensen kennismaken met je dienst, product of bedrijf. De kracht zit erin dat mensen effectief stoppen met scrollen en luisteren naar wat je te zeggen hebt.</p>
+          <div class="fn-kind"><b>Soort content</b>Content die het scrollen stopt, makkelijk kijkt en vooral de aandacht trekt.</div>
         </div>
-        <h3>Wij draaien de beelden</h3>
-        <p>Elke maand komen we een halve dag langs en verfilmen we converterende scripts tot doelgerichte video-ads.</p>
       </div>
 
-      <div class="process-card reveal reveal-delay-1">
-        <div class="process-visual pv-edit">
-          <div class="pv-track">
-            <span class="b grey" style="height:34%"></span><span class="b grey" style="height:52%"></span><span class="b grey" style="height:28%"></span><span class="b grey" style="height:60%"></span><span class="b grey" style="height:40%"></span><span class="b grey" style="height:30%"></span><span class="b grey" style="height:56%"></span><span class="b grey" style="height:36%"></span><span class="b grey" style="height:48%"></span><span class="b grey" style="height:26%"></span><span class="b grey" style="height:44%"></span><span class="b grey" style="height:32%"></span><span class="b warm" style="height:58%"></span><span class="b warm" style="height:84%"></span><span class="b warm" style="height:42%"></span><span class="b warm" style="height:96%"></span><span class="b warm" style="height:66%"></span><span class="b warm" style="height:88%"></span><span class="b warm" style="height:50%"></span><span class="b warm" style="height:74%"></span><span class="b warm" style="height:92%"></span><span class="b warm" style="height:60%"></span><span class="b warm" style="height:80%"></span><span class="b warm" style="height:46%"></span>
-            <span class="pv-handle"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8L4 12l4 4M16 8l4 4-4 4M4 12h16"/></svg></span>
+      <div class="fn-step reveal reveal-delay-1">
+        <div class="fn-mark"><span class="fn-dot">02</span><span class="fn-tag">Middle of funnel</span><i class="fn-rail"></i></div>
+        <div class="process-card">
+          <div class="process-visual pv-social">
+            <div class="shot"><img src="project-assets/videos-web/posters/fred.jpg" alt=""></div>
+            <div class="pv-stats">
+              <span class="pv-stat"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-4.9-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.6C20 16.1 12 21 12 21z"/></svg> 4.286</span>
+              <span class="pv-stat"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg> 68% kijktijd</span>
+              <span class="pv-stat warm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> 312 volgers</span>
+            </div>
           </div>
-          <span class="pv-hook">Hook toegevoegd</span>
-          <div class="pv-tags"><span>Meta</span><span>Google</span><span>9:16</span></div>
+          <h3>Bewijzen dat het werkt</h3>
+          <p>Middle of funnel ads bewijzen dat je product of dienst ook effectief werkt, en zetten kijkers om in volgers.</p>
+          <div class="fn-kind"><b>Soort content</b>Behind the scenes, persoonlijke content en video&apos;s die dieper ingaan op het bedrijf, product of dienst.</div>
         </div>
-        <h3>Wij monteren en zetten live</h3>
-        <p>We monteren de ads, testen de hooks en zetten ze uit op Meta en Google, afgestemd op je doelgroep.</p>
       </div>
 
-      <div class="process-card reveal reveal-delay-2">
-        <div class="process-visual pv-wall">
-          <div class="pv-clip"><img src="project-assets/videos-web/posters/bdsv.jpg" alt=""><span class="pv-plat">Meta</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>1.2M</span></div>
-          <div class="pv-clip"><img src="project-assets/videos-web/posters/seacoast.jpg" alt=""><span class="pv-plat">Google</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>486K</span></div>
-          <div class="pv-clip"><img src="project-assets/videos-web/posters/mijnexpert.jpg" alt=""><span class="pv-plat">Meta</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>92K</span></div>
-          <div class="pv-clip"><img src="project-assets/videos-web/posters/abacho.jpg" alt=""><span class="pv-plat">Google</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>311K</span></div>
+      <div class="fn-step reveal reveal-delay-2">
+        <div class="fn-mark"><span class="fn-dot">03</span><span class="fn-tag">Bottom of funnel</span><i class="fn-rail"></i></div>
+        <div class="process-card">
+          <div class="process-visual pv-leads">
+            <div class="pv-lead"><span class="av">JD</span><span class="who"><b>Jan D.</b><span>Via video-ad &middot; Meta</span></span><span class="new">Nieuw</span></div>
+            <div class="pv-lead"><span class="av">SV</span><span class="who"><b>Sofie V.</b><span>Via video-ad &middot; Google</span></span><span class="new">Nieuw</span></div>
+            <div class="pv-lead"><span class="av">MP</span><span class="who"><b>Mark P.</b><span>Via video-ad &middot; Meta</span></span><span class="new">Nieuw</span></div>
+            <div class="pv-lead"><span class="av">LB</span><span class="who"><b>Lien B.</b><span>Via video-ad &middot; Google</span></span><span class="new">Nieuw</span></div>
+          </div>
+          <h3>Leads en klanten verzamelen</h3>
+          <p>Bottom of funnel ads spreken mensen aan die je product, dienst of bedrijf al kennen. Deze content gaat dieper en is een pak technischer. Hier verzamelen we leads en klanten.</p>
+          <div class="fn-kind"><b>Soort content</b>Uitlegvideo&apos;s: wat je exact doet, hoe je het doet en wat iemand moet doen om bij je te kopen. Volledig gericht op je ideale klant.</div>
         </div>
-        <h3>Jij ziet wat het opbrengt</h3>
-        <p>In je dashboard volg je welke ads scoren, waar de leads vandaan komen en wat je eraan overhoudt.</p>
       </div>
 
     </div>
+
+    <p class="fn-close">Voor de meeste bedrijven ligt het meest converterende recept <strong>ergens in de mix van deze drie</strong>, en in weten wanneer je welke ad inzet. Dat is dan ook de structuur waar we bij Contour volop op inzetten.</p>
+
   </div>
 </section>
 
