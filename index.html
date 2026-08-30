@@ -2692,6 +2692,305 @@
 })();
 </script>
 
+
+<style>
+/* ===== PROCES ===== */
+.process-sec {
+  position: relative;
+  background: #0A0A0A;
+  padding: 130px 0;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.process-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.process-head { text-align: center; margin-bottom: 68px; }
+
+/* badge met twee oranje streepjes ernaast */
+.process-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+.process-badge i {
+  width: 26px; height: 1.5px;
+  background: #E85A2A;
+  display: block;
+  flex-shrink: 0;
+}
+.process-badge span {
+  display: inline-block;
+  background: #141414;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: #C8C8C8;
+}
+
+.process-title {
+  font-family: var(--font-space);
+  font-weight: 500;
+  font-size: clamp(38px, 5vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 24px;
+}
+.process-sub {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #9A9A9A;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.process-card {
+  position: relative;
+  border-radius: 22px;
+  background: #0D0D0D;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-bottom-color: rgba(232,90,42,0.30);
+  padding: 22px;
+  overflow: hidden;
+}
+/* de gloed die vanaf de onderrand omhoog vervaagt draagt het hele effect */
+.process-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(130% 90% at 50% 118%,
+    rgba(232,90,42,0.30) 0%, rgba(232,90,42,0.06) 45%, transparent 70%);
+}
+.process-card > * { position: relative; z-index: 1; }
+
+.process-visual {
+  height: 280px;
+  border-radius: 14px;
+  background: #0A0A0A;
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.process-card h3 {
+  font-family: var(--font-space);
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.process-card p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #8E8E8E;
+}
+
+/* --- 1: beeldmateriaal --- */
+.pv-drop { display: flex; align-items: center; justify-content: center; }
+.pv-dash {
+  width: 78%; height: 66%;
+  border: 1.5px dashed rgba(255,255,255,0.15);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.pv-dash-in {
+  width: 96px; height: 96px;
+  border: 1.5px dashed rgba(255,255,255,0.18);
+  border-radius: 12px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.5);
+}
+.pv-dash-in span {
+  font-family: var(--font-condensed);
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.pv-thumb {
+  position: absolute;
+  right: 16px; bottom: 16px;
+  width: 96px; height: 128px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 14px 30px -12px rgba(0,0,0,0.9);
+}
+.pv-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pv-check {
+  position: absolute;
+  right: 8px; top: 8px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #2FBF6B;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 3px rgba(10,10,10,0.9);
+}
+
+/* --- 2: montage --- */
+.pv-edit { padding: 26px 20px; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+.pv-track {
+  position: relative;
+  display: flex; align-items: center; gap: 3px;
+  height: 74px;
+  padding: 0 4px;
+}
+.pv-track .b { flex: 1; border-radius: 2px; }
+.pv-track .b.grey  { background: rgba(255,255,255,0.14); }
+.pv-track .b.warm  { background: #E85A2A; }
+.pv-handle {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: #E85A2A;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 5px rgba(10,10,10,0.92), 0 8px 22px -6px rgba(232,90,42,0.8);
+  z-index: 2;
+}
+.pv-hook {
+  align-self: flex-end;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(232,90,42,0.14);
+  border: 1px solid rgba(232,90,42,0.45);
+  color: #F0A183;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-family: var(--font-condensed);
+  font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.pv-tags { display: flex; gap: 8px; }
+.pv-tags span {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-family: var(--font-condensed);
+  font-size: 11.5px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: #9A9A9A;
+}
+
+/* --- 3: online --- */
+.pv-wall { padding: 18px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; align-content: center; }
+.pv-clip {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+.pv-clip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pv-clip:nth-child(1) { height: 104px; }
+.pv-clip:nth-child(2) { height: 126px; }
+.pv-clip:nth-child(3) { height: 126px; }
+.pv-clip:nth-child(4) { height: 104px; }
+.pv-plat {
+  position: absolute; left: 7px; top: 7px;
+  background: rgba(10,10,10,0.78);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 6px;
+  padding: 3px 7px;
+  font-family: var(--font-condensed);
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  color: #E6E6E6;
+}
+.pv-views {
+  position: absolute; left: 7px; bottom: 7px;
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(10,10,10,0.78);
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  color: #E6E6E6;
+}
+
+@media (max-width: 1000px) {
+  .process-grid { grid-template-columns: 1fr; gap: 20px; max-width: 520px; margin: 0 auto; }
+}
+@media (max-width: 768px) {
+  .process-sec { padding: 84px 0; }
+  .process-inner { padding: 0 24px; }
+  .process-head { margin-bottom: 44px; }
+  .process-sub { font-size: 16px; }
+  .process-visual { height: 240px; }
+}
+</style>
+
+<!-- PROCES -->
+<section class="process-sec">
+  <div class="process-inner">
+
+    <div class="process-head reveal">
+      <div class="process-badge"><i></i><span>Zo werken we</span><i></i></div>
+      <h2 class="process-title">Van draaidag tot<br>meetbaar resultaat</h2>
+      <p class="process-sub">Elke maand dezelfde drie stappen. Jij levert je verhaal, wij zorgen voor de beelden, de advertenties en de opvolging.</p>
+    </div>
+
+    <div class="process-grid">
+
+      <div class="process-card reveal">
+        <div class="process-visual pv-drop">
+          <div class="pv-dash">
+            <div class="pv-dash-in"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="2" y="6" width="13" height="12" rx="2.5"/><path d="M15 10.5l6-3.2v9.4l-6-3.2z"/></svg><span>Beeld</span></div>
+          </div>
+          <div class="pv-thumb">
+            <img src="project-assets/videos-web/posters/fred.jpg" alt="">
+            <span class="pv-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.5 5.5L20 7"/></svg></span>
+          </div>
+        </div>
+        <h3>Wij draaien de beelden</h3>
+        <p>Elke maand komen we een halve dag langs en verfilmen we converterende scripts tot doelgerichte video-ads.</p>
+      </div>
+
+      <div class="process-card reveal reveal-delay-1">
+        <div class="process-visual pv-edit">
+          <div class="pv-track">
+            <span class="b grey" style="height:34%"></span><span class="b grey" style="height:52%"></span><span class="b grey" style="height:28%"></span><span class="b grey" style="height:60%"></span><span class="b grey" style="height:40%"></span><span class="b grey" style="height:30%"></span><span class="b grey" style="height:56%"></span><span class="b grey" style="height:36%"></span><span class="b grey" style="height:48%"></span><span class="b grey" style="height:26%"></span><span class="b grey" style="height:44%"></span><span class="b grey" style="height:32%"></span><span class="b warm" style="height:58%"></span><span class="b warm" style="height:84%"></span><span class="b warm" style="height:42%"></span><span class="b warm" style="height:96%"></span><span class="b warm" style="height:66%"></span><span class="b warm" style="height:88%"></span><span class="b warm" style="height:50%"></span><span class="b warm" style="height:74%"></span><span class="b warm" style="height:92%"></span><span class="b warm" style="height:60%"></span><span class="b warm" style="height:80%"></span><span class="b warm" style="height:46%"></span>
+            <span class="pv-handle"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8L4 12l4 4M16 8l4 4-4 4M4 12h16"/></svg></span>
+          </div>
+          <span class="pv-hook">Hook toegevoegd</span>
+          <div class="pv-tags"><span>Meta</span><span>Google</span><span>9:16</span></div>
+        </div>
+        <h3>Wij monteren en zetten live</h3>
+        <p>We monteren de ads, testen de hooks en zetten ze uit op Meta en Google, afgestemd op je doelgroep.</p>
+      </div>
+
+      <div class="process-card reveal reveal-delay-2">
+        <div class="process-visual pv-wall">
+          <div class="pv-clip"><img src="project-assets/videos-web/posters/bdsv.jpg" alt=""><span class="pv-plat">Meta</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>1.2M</span></div>
+          <div class="pv-clip"><img src="project-assets/videos-web/posters/seacoast.jpg" alt=""><span class="pv-plat">Google</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>486K</span></div>
+          <div class="pv-clip"><img src="project-assets/videos-web/posters/mijnexpert.jpg" alt=""><span class="pv-plat">Meta</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>92K</span></div>
+          <div class="pv-clip"><img src="project-assets/videos-web/posters/abacho.jpg" alt=""><span class="pv-plat">Google</span><span class="pv-views"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>311K</span></div>
+        </div>
+        <h3>Jij ziet wat het opbrengt</h3>
+        <p>In je dashboard volg je welke ads scoren, waar de leads vandaan komen en wat je eraan overhoudt.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- FORMULES -->
 <style>
 .pricing-section {
@@ -3245,7 +3544,7 @@
 // Deeltjesveld over de secties onder de hero. Ze zitten boven de sectie-achtergrond
 // maar onder de inhoud, en zweven traag met elk een eigen richting en tempo.
 (function () {
-  const targets = ['.services-slider-section', '.pricing-section', '.portfolio-section'];
+  const targets = ['.services-slider-section', '.process-sec', '.pricing-section', '.portfolio-section'];
   let seed = 20260831;
   const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
 
