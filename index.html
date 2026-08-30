@@ -2959,7 +2959,19 @@
   background: linear-gradient(to right, rgba(232,90,42,0.55), rgba(232,90,42,1));
 }
 .fn-step:last-child .fn-rail { display: none; }
-.fn-step { position: relative; z-index: 1; }
+.fn-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+/* kaarten even hoog, met het contentblok onderaan uitgelijnd */
+.fn-step .process-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.fn-step .fn-kind { margin-top: auto; }
 .fn-mark {
   display: flex;
   align-items: center;
