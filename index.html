@@ -1722,7 +1722,7 @@
   <ul class="nav-links">
     <li><a href="#diensten">Diensten</a></li>
     <li><a href="#werk">Werk</a></li>
-    <li><a href="contact-form.html" target="_blank" class="nav-cta">Plan een call</a></li>
+    <li><a href="#contact" class="nav-cta">Plan een call</a></li>
   </ul>
 </nav>
 
@@ -1912,7 +1912,7 @@
         Wij nemen videocreatie, videomarketing en opvolging volledig uit handen en bouwen er een meetbaar commercieel groeisysteem omheen, zodat jij meer en betere opportuniteiten binnenkrijgt.
       </p>
     <div class="hero-actions">
-      <a href="contact-form.html" target="_blank" class="btn-primary">Plan een introgesprek<svg width="17" height="12" viewBox="0 0 17 12" fill="none" style="flex-shrink:0"><path d="M10.5 1L15.5 6M15.5 6L10.5 11M15.5 6H1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#contact" class="btn-primary">Plan een introgesprek<svg width="17" height="12" viewBox="0 0 17 12" fill="none" style="flex-shrink:0"><path d="M10.5 1L15.5 6M15.5 6L10.5 11M15.5 6H1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
 
     <div class="hero-tags">
@@ -2124,7 +2124,7 @@
       <p>Zo zorg je voor een grote instroom van extra leads, meer verkoopsgesprekken en échte herkenbaarheid van jouw product.</p>
       <p>Of je nu een klein bedrijf runt of een grote firma. Je hoeft dus niet langer dagelijks met een camera rond te lopen, monteren, posten en dan hopen dat het ook nog eens aanslaat.</p>
       <p class="svc-intro-lead">Nee, wij nemen dit volledig uit handen zodat jij met je bedrijf kan bezig zijn.</p>
-      <a href="contact-form.html" target="_blank" class="btn-primary">Plan een introgesprek</a>
+      <a href="#contact" class="btn-primary">Plan een introgesprek</a>
     </div>
 
     <div class="services-slider-viewport">
@@ -3331,7 +3331,7 @@
       <!-- Optie 1 -->
       <div class="price-card reveal">
         <h3 class="price-name">Video-advertenties</h3>
-        <a href="contact-form.html" target="_blank" class="price-cta">Kies dit pakket</a>
+        <a href="#contact" class="price-cta">Kies dit pakket</a>
         <ul class="price-list">
           <li>3 doelgroepgerichte video-advertenties per maand</li>
           <li>AI-integratie in jouw advertenties</li>
@@ -3351,7 +3351,7 @@
       <!-- Optie 2 -->
       <div class="price-card reveal reveal-delay-1">
         <h3 class="price-name">Video-advertenties + performance</h3>
-        <a href="contact-form.html" target="_blank" class="price-cta">Kies dit pakket</a>
+        <a href="#contact" class="price-cta">Kies dit pakket</a>
         <ul class="price-list">
           <li>3 doelgroepgerichte video-advertenties per maand</li>
           <li>AI-integratie in jouw advertenties</li>
@@ -3370,7 +3370,7 @@
       <!-- Optie 2 -->
       <div class="price-card price-card-featured reveal reveal-delay-2">
         <h3 class="price-name">Videomarketing als meetbaar systeem</h3>
-        <a href="contact-form.html" target="_blank" class="price-cta price-cta-solid">Start mijn traject</a>
+        <a href="#contact" class="price-cta price-cta-solid">Start mijn traject</a>
         <ul class="price-list">
           <li>3 doelgroepgerichte video-advertenties per maand</li>
           <li>Meta- en/of Google Ads-beheer</li>
@@ -3475,7 +3475,7 @@
 
       <!-- BEKIJK MEER -->
       <div class="werk-meer-wrap">
-        <a href="contact-form.html" target="_blank" class="werk-meer-btn">
+        <a href="#contact" class="werk-meer-btn">
           Bekijk meer
           <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M12 1L17 6M17 6L12 11M17 6H1" stroke="currentColor" stroke-width="1.5"/></svg>
         </a>
@@ -3759,6 +3759,181 @@
     }
     host.insertBefore(field, host.firstChild);
   });
+})();
+</script>
+
+<!-- CONTACT -->
+<style>
+.ct-section {
+  padding: 120px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.ct-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 72px;
+  align-items: start;
+}
+
+/* linkerkolom */
+.ct-left { position: relative; padding-top: 8px; }
+.ct-watermark {
+  position: absolute;
+  top: -40px; left: -60px;
+  width: 420px;
+  aspect-ratio: 1395 / 2408;
+  background: url("project-assets/images/Contour_Element_Wit.png") center / contain no-repeat;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+.ct-left > *:not(.ct-watermark) { position: relative; z-index: 1; }
+.ct-title { margin-top: 4px; }
+.ct-sub {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 42ch;
+  margin-top: 24px;
+}
+.ct-points {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ct-points li {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--muted);
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.ct-points li::before {
+  content: '';
+  flex: none;
+  width: 18px;
+  height: 1px;
+  background: var(--orange);
+  transform: translateY(-4px);
+}
+.ct-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  font-family: var(--font-condensed);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.ct-mail::before {
+  content: '';
+  width: 26px; height: 1px;
+  background: var(--orange);
+}
+.ct-mail:hover { color: var(--white); }
+
+/* formulierkaart */
+.ct-form-card {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 14px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.ct-form-card iframe {
+  display: block;
+  width: 100%;
+  height: 674px;
+  border: none;
+  border-radius: 10px;
+}
+
+@media (max-width: 1000px) {
+  .ct-inner { grid-template-columns: 1fr; gap: 48px; }
+  .ct-watermark { display: none; }
+}
+@media (max-width: 768px) {
+  .ct-section { padding: 80px 0; }
+  .ct-inner { padding: 0 24px; }
+  .ct-sub { font-size: 16px; }
+  .ct-form-card { padding: 10px; }
+  .ct-form-card iframe { height: 820px; }
+}
+</style>
+
+<section class="ct-section" id="contact">
+  <div class="ct-inner">
+
+    <div class="ct-left reveal">
+      <div class="ct-watermark"></div>
+      <p class="section-tag">05. Contact</p>
+      <h2 class="section-title ct-title">Klaar voor<br>meer leads?</h2>
+      <p class="ct-sub">Laat je gegevens achter en we plannen een vrijblijvend introgesprek. Daarin bekijken we samen wat video concreet voor jouw bedrijf kan opleveren.</p>
+      <ul class="ct-points">
+        <li>We nemen binnen 24 uur contact op</li>
+        <li>Een gesprek van een halfuur, zonder verplichting</li>
+        <li>Je krijgt meteen zicht op aanpak en budget</li>
+      </ul>
+      <a href="mailto:contact@contouragency.be" class="ct-mail">contact@contouragency.be</a>
+    </div>
+
+    <div class="ct-form-card reveal reveal-delay-1">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/ScQxUWAJyiEvNbYEN5Di"
+        id="inline-ScQxUWAJyiEvNbYEN5Di"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Form 0"
+        data-height="674"
+        data-layout-iframe-id="inline-ScQxUWAJyiEvNbYEN5Di"
+        data-form-id="ScQxUWAJyiEvNbYEN5Di"
+        data-cookie-consent="true"
+        data-cookie-consent-provider="auto"
+        title="Plan een introgesprek"></iframe>
+    </div>
+
+  </div>
+</section>
+
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+<script>
+// Vangnet: form_embed.js houdt de iframe verborgen tot het formulier zich meldt.
+// Blijft dat signaal uit (adblocker, trage verbinding), dan tonen we hem alsnog.
+(function () {
+  var el = document.getElementById('inline-ScQxUWAJyiEvNbYEN5Di');
+  if (!el) return;
+  setTimeout(function () {
+    var s = window.getComputedStyle(el);
+    if (s.visibility === 'hidden' || s.opacity === '0' || el.style.left === '-9999px') {
+      el.style.opacity = '1';
+      el.style.visibility = 'visible';
+      el.style.pointerEvents = 'auto';
+      el.style.position = 'relative';
+      el.style.left = '';
+    }
+  }, 3000);
 })();
 </script>
 
