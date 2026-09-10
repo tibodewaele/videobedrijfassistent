@@ -17,3 +17,8 @@ node_modules/
 
 # 4K master-video's — te groot voor GitHub (>100MB), bewaard in Drive
 project-assets/videos-4k/
+
+# Camera-masters in videos-web (de web-versies *-vertical.mp4 blijven wel in git)
+project-assets/videos-web/*.mov
+project-assets/videos-web/*.MOV
+project-assets/videos-web/SIMPOOLS_ZOMERAD_2026.mp4
