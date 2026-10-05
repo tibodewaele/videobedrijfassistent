@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<!-- Google Tag Manager -->
+<script>
+(function (w, d, s, l, i) {
+  w[l] = w[l] || [];
+  w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+  var fired = false;
+  function loadGTM() {
+    if (fired) return;
+    fired = true;
+    var f = d.getElementsByTagName(s)[0], j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+  }
+  ['pointerdown','touchstart','keydown','scroll','mousemove','wheel'].forEach(function (e) {
+    w.addEventListener(e, loadGTM, { once: true, passive: true });
+  });
+  w.addEventListener('load', function () { setTimeout(loadGTM, 5000); });
+})(window, document, 'script', 'dataLayer', 'GTM-PF7FMJFN');
+</script>
+<!-- End Google Tag Manager -->
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algemene voorwaarden — Contour. Videomarketing Agency</title>
+<meta name="description" content="De algemene voorwaarden van Contour, handelsnaam van Tibo De Waele, voor videoproductie, contentcreatie en marketingdiensten. Versie 1.0.">
+<link rel="canonical" href="https://www.contouragency.be/algemenevoorwaarden">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap"></noscript>
+<style>
+  :root {
+    --black: #080402;
+    --dark: #100A06;
+    --card: #171009;
+    --border: rgba(255,214,184,0.10);
+    --orange: #D03E00;
+    --orange-light: #FF6321;
+    --white: #F0EDE8;
+    --muted: rgba(240,237,232,0.72);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+    --font-condensed: 'Barlow Condensed', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--orange-light); }
+  a:hover { color: var(--orange); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px;
+    padding: 20px 48px;
+    background: rgba(8,4,2,0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo-img { height: 54px; width: auto; display: block; }
+  .nav-back {
+    font-family: var(--font-condensed);
+    font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--orange-light); }
+
+  /* KOP */
+  .av-hero {
+    padding: 160px 48px 64px;
+    max-width: 1280px; margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .av-eyebrow {
+    font-family: var(--font-condensed);
+    font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--orange-light);
+  }
+  .av-titel {
+    font-family: var(--font-display);
+    font-size: clamp(46px, 7vw, 92px);
+    line-height: 0.92;
+    letter-spacing: 1px;
+    margin-top: 14px;
+  }
+  .av-ondertitel {
+    font-size: clamp(16px, 1.4vw, 19px);
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 58ch;
+    margin-top: 22px;
+  }
+  .av-meta {
+    display: flex; flex-wrap: wrap; gap: 10px 32px;
+    margin-top: 28px;
+    font-family: var(--font-condensed);
+    font-size: 14px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .av-meta b { color: var(--white); font-weight: 600; }
+
+  /* Identiteitskaart */
+  .av-kaart {
+    margin-top: 40px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 24px 36px;
+  }
+  .av-kaart dt {
+    font-family: var(--font-condensed);
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--orange-light);
+    margin-bottom: 6px;
+  }
+  .av-kaart dd { font-size: 16px; line-height: 1.6; color: var(--white); }
+
+  .av-aanvaarding {
+    margin-top: 28px;
+    border-left: 2px solid var(--orange);
+    padding: 4px 0 4px 20px;
+    font-size: 16px; line-height: 1.75; color: var(--muted);
+    max-width: 78ch;
+  }
+
+  /* LAYOUT */
+  .av-layout {
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 48px 40px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* INHOUDSOPGAVE */
+  .av-toc {
+    position: sticky; top: 108px;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    padding: 36px 0 24px;
+    scrollbar-width: thin;
+  }
+  .av-toc-kop {
+    font-family: var(--font-condensed);
+    font-size: 12px; letter-spacing: 2.4px; text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 14px;
+  }
+  .av-toc ol { list-style: none; }
+  .av-toc li { margin: 0; }
+  .av-toc .toc-deel {
+    font-family: var(--font-condensed);
+    font-size: 12px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--orange-light);
+    margin: 20px 0 8px;
+  }
+  .av-toc .toc-deel:first-child { margin-top: 0; }
+  .av-toc a {
+    display: flex; gap: 10px;
+    font-size: 14px; line-height: 1.45;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 5px 0;
+    transition: color 0.18s;
+  }
+  .av-toc a:hover { color: var(--white); }
+  .av-toc a.is-actief { color: var(--orange-light); }
+  .toc-nr {
+    flex: none; width: 20px;
+    font-family: var(--font-condensed);
+    font-size: 13px; color: rgba(240,237,232,0.4);
+  }
+  .av-toc a.is-actief .toc-nr { color: var(--orange-light); }
+
+  /* ARTIKELEN */
+  .av-tekst { padding: 36px 0 0; min-width: 0; }
+
+  .av-deel { margin: 64px 0 8px; }
+  .av-deel:first-child { margin-top: 0; }
+  .av-deel-nr {
+    font-family: var(--font-condensed);
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--orange-light);
+  }
+  .av-deel-titel {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.4vw, 42px);
+    line-height: 1.05;
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .av-artikel { margin-top: 44px; scroll-margin-top: 110px; }
+  .av-artikel-kop {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px;
+    margin-bottom: 20px;
+  }
+  .av-artikel-nr {
+    font-family: var(--font-condensed);
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 2.4px; text-transform: uppercase;
+    color: var(--orange-light);
+    flex: none;
+  }
+  .av-artikel-titel {
+    font-family: var(--font-condensed);
+    font-size: clamp(21px, 2vw, 26px);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: var(--white);
+  }
+  .av-kern {
+    font-family: var(--font-condensed);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--orange-light);
+    background: rgba(208,62,0,0.14);
+    border: 1px solid rgba(208,62,0,0.42);
+    border-radius: 999px;
+    padding: 4px 11px;
+  }
+  .av-artikel.is-kern {
+    background: rgba(208,62,0,0.045);
+    border: 1px solid rgba(208,62,0,0.22);
+    border-radius: 16px;
+    padding: 30px 32px 34px;
+  }
+
+  .av-lid {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 4px;
+    padding: 9px 0;
+    scroll-margin-top: 110px;
+  }
+  .av-lid-nr {
+    font-family: var(--font-condensed);
+    font-size: 15px; font-weight: 500;
+    color: var(--orange-light);
+    padding-top: 2px;
+  }
+  .av-lid-tekst p {
+    font-size: 16.5px;
+    line-height: 1.78;
+    color: var(--muted);
+  }
+  .av-sublijst {
+    margin: 12px 0 2px;
+    padding-left: 20px;
+    list-style: none;
+  }
+  .av-sublijst li {
+    position: relative;
+    font-size: 16.5px; line-height: 1.78; color: var(--muted);
+    padding: 5px 0;
+  }
+  .av-sublijst li::before {
+    content: '';
+    position: absolute; left: -20px; top: 17px;
+    width: 10px; height: 1px;
+    background: var(--orange);
+  }
+
+  /* AFSLUITING */
+  .av-slot {
+    margin: 72px 0 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 36px 36px 40px;
+  }
+  .av-slot h3 {
+    font-family: var(--font-condensed);
+    font-size: 22px; font-weight: 600; letter-spacing: 0.4px;
+    margin-bottom: 14px;
+  }
+  .av-slot p { font-size: 16.5px; line-height: 1.78; color: var(--muted); max-width: 74ch; }
+  .av-slot-handtekening {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .av-slot-handtekening div span {
+    display: block;
+    font-family: var(--font-condensed);
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--orange-light);
+    margin-bottom: 8px;
+  }
+  .av-slot-handtekening div p { font-size: 15.5px; }
+
+  .av-pdf {
+    display: inline-flex; align-items: center; gap: 12px;
+    margin-top: 36px;
+    font-family: var(--font-condensed);
+    font-size: 15px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 14px 26px;
+    transition: border-color 0.25s, background 0.25s, color 0.25s;
+  }
+  .av-pdf:hover {
+    color: var(--white);
+    border-color: rgba(208,62,0,0.5);
+    background: rgba(208,62,0,0.12);
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 80px;
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    flex-wrap: wrap;
+  }
+  .footer-logo-img { height: 38px; width: auto; display: block; }
+  .footer-copy {
+    font-family: var(--font-condensed);
+    font-size: 15px; letter-spacing: 1.5px; color: var(--muted);
+  }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a {
+    font-family: var(--font-condensed);
+    font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--orange); }
+
+  @media (max-width: 1040px) {
+    .av-layout { grid-template-columns: 1fr; gap: 0; }
+    .av-toc {
+      position: static; max-height: none; overflow: visible;
+      padding: 32px 0 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 28px;
+    }
+    .av-toc ol { columns: 2; column-gap: 32px; }
+    .av-toc .toc-deel { break-after: avoid; }
+  }
+
+  @media (max-width: 720px) {
+    nav { padding: 14px 20px; }
+    .nav-logo-img { height: 40px; }
+    .nav-back { font-size: 12px; letter-spacing: 1.5px; }
+    .av-hero { padding: 108px 20px 48px; }
+    .av-layout { padding: 0 20px 32px; }
+    .av-kaart { padding: 22px; gap: 20px; }
+    .av-artikel.is-kern { padding: 22px 20px 26px; }
+    .av-lid { grid-template-columns: 1fr; gap: 2px; }
+    .av-lid-nr { padding-top: 0; }
+    .av-toc ol { columns: 1; }
+    .av-slot { padding: 26px 22px 30px; }
+    footer { padding: 32px 20px; flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PF7FMJFN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<nav>
+  <a href="/" class="nav-logo"><img src="project-assets/images/Contour_Logo_Wit.webp" alt="Contour. Videomarketing Agency" class="nav-logo-img" width="700" height="219" decoding="async" fetchpriority="high"></a>
+  <a href="/" class="nav-back">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M6 1L1 6M1 6L6 11M1 6H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Terug naar de site
+  </a>
+</nav>
+
+<header class="av-hero">
+  <p class="av-eyebrow">Contour · Videomarketing Agency</p>
+  <h1 class="av-titel">Algemene<br>voorwaarden</h1>
+  <p class="av-ondertitel">Videoproductie, contentcreatie en marketingdiensten.</p>
+
+  <div class="av-meta">
+    <span><b>Versie 1.0</b></span>
+    <span>Van toepassing vanaf <b>10 september 2026</b></span>
+    <span><b>24 artikelen</b> in 5 delen</span>
+  </div>
+
+  <dl class="av-kaart">
+    <div>
+      <dt>Opdrachtnemer</dt>
+      <dd>Contour, handelsnaam van Tibo De Waele</dd>
+    </div>
+    <div>
+      <dt>Ondernemingsnummer</dt>
+      <dd>BE 0731.748.501</dd>
+    </div>
+    <div>
+      <dt>Maatschappelijke zetel</dt>
+      <dd>AVS-straat 22, 9900 Eeklo, België</dd>
+    </div>
+    <div>
+      <dt>Contact</dt>
+      <dd><a href="mailto:contact@contouragency.be">contact@contouragency.be</a><br>
+          <a href="https://www.contouragency.be">www.contouragency.be</a></dd>
+    </div>
+  </dl>
+
+  <p class="av-aanvaarding">
+    Deze algemene voorwaarden maken integraal deel uit van elke offerte, opdrachtbevestiging en
+    factuur van Contour. Door de offerte te ondertekenen of schriftelijk te aanvaarden, verklaart
+    de klant kennis te hebben genomen van deze voorwaarden en ze zonder voorbehoud te aanvaarden
+    — in het bijzonder <a href="#artikel-4">artikel 4</a>, dat bepaalt dat de volledige opdracht
+    verschuldigd is zodra de offerte is aanvaard.
+  </p>
+</header>
+
+<div class="av-layout">
+
+  <aside class="av-toc" aria-label="Inhoudsopgave">
+    <p class="av-toc-kop">Inhoud</p>
+    <ol>
+    <li class="toc-deel">Deel I · Partijen En Totstandkoming</li>
+    <li><a href="#artikel-1"><span class="toc-nr">1</span>Identiteit van de opdrachtnemer</a></li>
+    <li><a href="#artikel-2"><span class="toc-nr">2</span>Toepassingsgebied en rangorde</a></li>
+    <li><a href="#artikel-3"><span class="toc-nr">3</span>Offerte, totstandkoming en reservatie</a></li>
+    <li class="toc-deel">Deel II · Verbintenis, Duur En Beëindiging</li>
+    <li><a href="#artikel-4"><span class="toc-nr">4</span>Vaste verbintenis tot de volledige opdracht</a></li>
+    <li><a href="#artikel-5"><span class="toc-nr">5</span>Uitstel en verplaatsing</a></li>
+    <li><a href="#artikel-6"><span class="toc-nr">6</span>Duur en stilzwijgende verlenging</a></li>
+    <li class="toc-deel">Deel III · Uitvoering Van De Opdracht</li>
+    <li><a href="#artikel-7"><span class="toc-nr">7</span>Medewerking van de klant</a></li>
+    <li><a href="#artikel-8"><span class="toc-nr">8</span>Wijze van uitvoering</a></li>
+    <li><a href="#artikel-9"><span class="toc-nr">9</span>Revisies, oplevering en aanvaarding</a></li>
+    <li><a href="#artikel-10"><span class="toc-nr">10</span>Meerwerk en wijzigingen</a></li>
+    <li class="toc-deel">Deel IV · Prijzen, Betaling En Zekerheden</li>
+    <li><a href="#artikel-11"><span class="toc-nr">11</span>Prijzen en betaling</a></li>
+    <li><a href="#artikel-12"><span class="toc-nr">12</span>Klachten en controle</a></li>
+    <li><a href="#artikel-13"><span class="toc-nr">13</span>Opschorting en ontbinding</a></li>
+    <li><a href="#artikel-14"><span class="toc-nr">14</span>Waarborgen</a></li>
+    <li><a href="#artikel-15"><span class="toc-nr">15</span>Overmacht</a></li>
+    <li><a href="#artikel-16"><span class="toc-nr">16</span>Herzieningsbeding en imprevisie</a></li>
+    <li><a href="#artikel-17"><span class="toc-nr">17</span>Eigendomsvoorbehoud en retentierecht</a></li>
+    <li class="toc-deel">Deel V · Rechten, Aansprakelijkheid En Slotbepalingen</li>
+    <li><a href="#artikel-18"><span class="toc-nr">18</span>Intellectuele eigendomsrechten</a></li>
+    <li><a href="#artikel-19"><span class="toc-nr">19</span>Aansprakelijkheid</a></li>
+    <li><a href="#artikel-20"><span class="toc-nr">20</span>Vertrouwelijkheid en niet-afwerving</a></li>
+    <li><a href="#artikel-21"><span class="toc-nr">21</span>Verwerking van persoonsgegevens</a></li>
+    <li><a href="#artikel-22"><span class="toc-nr">22</span>Reconversie</a></li>
+    <li><a href="#artikel-23"><span class="toc-nr">23</span>Overdracht, kennisgevingen en afstand van recht</a></li>
+    <li><a href="#artikel-24"><span class="toc-nr">24</span>Toepasselijk recht en geschillenregeling</a></li>
+    </ol>
+  </aside>
+
+  <main class="av-tekst">
+
+      <div class="av-deel" id="deel-i">
+        <span class="av-deel-nr">Deel I</span>
+        <h2 class="av-deel-titel">Partijen en totstandkoming</h2>
+      </div>
+
+      <section class="av-artikel" id="artikel-1">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 1</span>
+          <span class="av-artikel-titel">Identiteit van de opdrachtnemer</span>
+        </h3>
+        <div class="av-lid" id="lid-1.1">
+          <span class="av-lid-nr">1.1</span>
+          <div class="av-lid-tekst"><p>Contour is de handelsnaam van Tibo De Waele, ondernemingsnummer BE 0731.748.501, met maatschappelijke zetel te AVS-straat 22, 9900 Eeklo, België. Contour was voorheen actief onder de handelsnaam Lens Event. Hierna “Contour”.</p></div>
+        </div>
+        <div class="av-lid" id="lid-1.2">
+          <span class="av-lid-nr">1.2</span>
+          <div class="av-lid-tekst"><p>De contactgegevens, het btw-nummer en het rekeningnummer van Contour worden vermeld op elke offerte, opdrachtbevestiging en factuur.</p></div>
+        </div>
+        <div class="av-lid" id="lid-1.3">
+          <span class="av-lid-nr">1.3</span>
+          <div class="av-lid-tekst"><p>De medecontractant van Contour wordt hierna “de klant” genoemd. Contour en de klant worden samen “partijen” genoemd.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-2">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 2</span>
+          <span class="av-artikel-titel">Toepassingsgebied en rangorde</span>
+        </h3>
+        <div class="av-lid" id="lid-2.1">
+          <span class="av-lid-nr">2.1</span>
+          <div class="av-lid-tekst"><p>Deze algemene voorwaarden zijn van toepassing op elke offerte, opdracht, prestatie, verhuur, levering, factuur en betaling van Contour, met uitsluiting van de eventuele eigen aankoop- of algemene voorwaarden van de klant, zelfs indien deze bepalen dat zij als enige gelden.</p></div>
+        </div>
+        <div class="av-lid" id="lid-2.2">
+          <span class="av-lid-nr">2.2</span>
+          <div class="av-lid-tekst"><p>Deze voorwaarden zijn opgesteld voor overeenkomsten tussen ondernemingen. Op een klant die als consument handelt, zijn de bepalingen die strijdig zouden zijn met dwingend consumentenrecht niet van toepassing; de overige bepalingen blijven onverkort gelden.</p></div>
+        </div>
+        <div class="av-lid" id="lid-2.3">
+          <span class="av-lid-nr">2.3</span>
+          <div class="av-lid-tekst"><p>Afwijkingen van deze voorwaarden zijn enkel geldig indien zij vooraf en schriftelijk door Contour werden bevestigd. Een afwijking geldt eenmalig en schept geen precedent voor volgende opdrachten.</p></div>
+        </div>
+        <div class="av-lid" id="lid-2.4">
+          <span class="av-lid-nr">2.4</span>
+          <div class="av-lid-tekst"><p>Bij tegenstrijdigheid geldt volgende rangorde: (1) de offerte of opdrachtbevestiging, (2) de relevante ondertekende bijlage, (3) deze algemene voorwaarden. Bij gelijkwaardige tegenstrijdigheid geldt de meest specifieke bepaling. Blijft er twijfel, dan geldt de versie die door de klant werd aanvaard bij het sluiten van de overeenkomst.</p></div>
+        </div>
+        <div class="av-lid" id="lid-2.5">
+          <span class="av-lid-nr">2.5</span>
+          <div class="av-lid-tekst"><p>De klant erkent deze voorwaarden te hebben ontvangen en aanvaard. Zij zijn tevens raadpleegbaar op <a href="https://www.contouragency.be">www.contouragency.be</a> en worden op eerste verzoek kosteloos bezorgd. De in deze voorwaarden vermelde bijlagen worden per opdracht of verhuur ter ondertekening voorgelegd.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-3">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 3</span>
+          <span class="av-artikel-titel">Offerte, totstandkoming en reservatie</span>
+        </h3>
+        <div class="av-lid" id="lid-3.1">
+          <span class="av-lid-nr">3.1</span>
+          <div class="av-lid-tekst"><p>Offertes zijn vrijblijvend en geldig gedurende dertig (30) kalenderdagen na datum, tenzij anders vermeld. Zij zijn gebaseerd op de informatie, briefing en planning die de klant op dat ogenblik heeft verstrekt.</p></div>
+        </div>
+        <div class="av-lid" id="lid-3.2">
+          <span class="av-lid-nr">3.2</span>
+          <div class="av-lid-tekst"><p>De overeenkomst komt tot stand zodra de klant de offerte schriftelijk of elektronisch bevestigt en Contour de opdracht aanvaardt. Een bevestiging per e-mail, per digitale handtekening of via een online aanvaardingsmodule heeft dezelfde bewijswaarde als een handgeschreven handtekening.</p></div>
+        </div>
+        <div class="av-lid" id="lid-3.3">
+          <span class="av-lid-nr">3.3</span>
+          <div class="av-lid-tekst"><p>Indien na aanvaarding blijkt dat de door de klant verstrekte informatie onvolledig of onjuist was, of dat de opdracht in werkelijkheid een ruimere omvang heeft, heeft Contour het recht de prijs en de planning in verhouding aan te passen.</p></div>
+        </div>
+        <div class="av-lid" id="lid-3.4">
+          <span class="av-lid-nr">3.4</span>
+          <div class="av-lid-tekst"><p>De reservatie van draaidagen, crew, materiaal of productieperiodes is pas definitief na ontvangst van het in de offerte bepaalde voorschot. Tot dat ogenblik blijven de data vrij beschikbaar en kan Contour ze aan derden toewijzen zonder enige vergoeding.</p></div>
+        </div>
+        <div class="av-lid" id="lid-3.5">
+          <span class="av-lid-nr">3.5</span>
+          <div class="av-lid-tekst"><p>Een offerte die uit meerdere onderdelen bestaat, verplicht Contour niet tot uitvoering van een gedeelte ervan tegen een evenredig gedeelte van de prijs.</p></div>
+        </div>
+      </section>
+
+      <div class="av-deel" id="deel-ii">
+        <span class="av-deel-nr">Deel II</span>
+        <h2 class="av-deel-titel">Verbintenis, duur en beëindiging</h2>
+      </div>
+
+      <section class="av-artikel is-kern" id="artikel-4">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 4</span>
+          <span class="av-artikel-titel">Vaste verbintenis tot de volledige opdracht</span><span class="av-kern">Kernbepaling</span>
+        </h3>
+        <div class="av-lid" id="lid-4.1">
+          <span class="av-lid-nr">4.1</span>
+          <div class="av-lid-tekst"><p>Door de offerte te ondertekenen of schriftelijk te aanvaarden, verbindt de klant zich vast en onherroepelijk tot de volledige opdracht zoals daarin omschreven, en tot betaling van de volledige overeengekomen prijs. Die prijs is verschuldigd vanaf de aanvaarding van de offerte, ongeacht of de klant de opdracht nadien nog wenst stop te zetten, in te korten of niet af te nemen.</p></div>
+        </div>
+        <div class="av-lid" id="lid-4.2">
+          <span class="av-lid-nr">4.2</span>
+          <div class="av-lid-tekst"><p>De opdracht vormt één ondeelbaar geheel. De opeenvolgende fasen — onder meer concept, script, preproductie, opnames, montage, revisie, oplevering en desgevallend distributie — kunnen niet los van elkaar worden geschrapt, uitgesteld of opgezegd. De klant kan de overeenkomst niet eenzijdig, tussentijds of gedeeltelijk beëindigen, behoudens in het geval bepaald in artikel 4.6.</p></div>
+        </div>
+        <div class="av-lid" id="lid-4.3">
+          <span class="av-lid-nr">4.3</span>
+          <div class="av-lid-tekst"><p>Deelt de klant toch mee dat hij de opdracht stopzet, annuleert of niet verder wenst af te nemen, dan geldt het volgende: de volledige overeengekomen prijs blijft verschuldigd en wordt gefactureerd volgens het overeengekomen betalingsschema, met dien verstande dat het openstaande saldo uiterlijk opeisbaar is op de oorspronkelijk voorziene opleverdatum. Bovenop de prijs is de klant integraal alle reeds gemaakte en niet-annuleerbare kosten aan derden verschuldigd, waaronder crew, cast en figuranten, locaties, materiaalverhuur, reis- en verblijfkosten, vergunningen, licenties, stockmateriaal en reeds geboekt mediabudget.</p></div>
+        </div>
+        <div class="av-lid" id="lid-4.4">
+          <span class="av-lid-nr">4.4</span>
+          <div class="av-lid-tekst"><p>Tegenover die betalingsverplichting blijft Contour onverminderd bereid en gehouden om alle overeengekomen prestaties uit te voeren. De klant behoudt gedurende twaalf (12) maanden na de oorspronkelijk voorziene opleverdatum het recht om de nog niet uitgevoerde prestaties alsnog te laten uitvoeren, in onderling overleg over de planning en zonder bijkomende kosten voor de prestaties die in de offerte begrepen zijn. Wordt van dat recht binnen die termijn geen gebruik gemaakt, dan vervalt het en blijft de betaalde prijs definitief verworven.</p></div>
+        </div>
+        <div class="av-lid" id="lid-4.5">
+          <span class="av-lid-nr">4.5</span>
+          <div class="av-lid-tekst"><p>Voor opdrachten van bepaalde duur — zoals een maandelijkse contentproductie, een begeleidingstraject, een campagne of een retainer — blijft de klant de volledige prijs van het traject tot de einddatum verschuldigd. Deze wordt verder gefactureerd volgens het overeengekomen schema; artikel 11.7 blijft van toepassing bij niet-betaling.</p></div>
+        </div>
+        <div class="av-lid" id="lid-4.6">
+          <span class="av-lid-nr">4.6</span>
+          <div class="av-lid-tekst"><p>De klant kan de overeenkomst enkel voortijdig beëindigen wegens een zware en aan Contour toerekenbare tekortkoming, en enkel nadat hij Contour hiervan schriftelijk in gebreke heeft gesteld met een hersteltermijn van minstens vijftien (15) kalenderdagen die zonder nuttig gevolg is verstreken. In dat geval is enkel het reeds uitgevoerde werk verschuldigd en is dit artikel 4 niet van toepassing.</p></div>
+        </div>
+        <div class="av-lid" id="lid-4.7">
+          <span class="av-lid-nr">4.7</span>
+          <div class="av-lid-tekst"><p>Zet Contour de overeenkomst zonder gegronde reden voortijdig stop, dan betaalt Contour de bedragen terug die betrekking hebben op niet-uitgevoerde prestaties en vergoedt zij de aantoonbare meerkost die de klant maakt om het resterende werk bij een derde te laten uitvoeren, met een maximum van 30 % van het resterende offertebedrag. Dit geldt niet in geval van overmacht (artikel 15) of van stopzetting wegens wanprestatie van de klant (artikel 13).</p></div>
+        </div>
+        <div class="av-lid" id="lid-4.8">
+          <span class="av-lid-nr">4.8</span>
+          <div class="av-lid-tekst"><p>Partijen erkennen uitdrukkelijk dat de prijs de tegenprestatie vormt voor het geheel van de opdracht en voor het reserveren van de productiecapaciteit van Contour, en dat de klant met kennis van zaken heeft aanvaard dat die prijs vanaf de ondertekening verschuldigd is. Contour behoudt daarnaast het recht een hogere werkelijk geleden schade te bewijzen en te vorderen.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-5">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 5</span>
+          <span class="av-artikel-titel">Uitstel en verplaatsing</span>
+        </h3>
+        <div class="av-lid" id="lid-5.1">
+          <span class="av-lid-nr">5.1</span>
+          <div class="av-lid-tekst"><p>Het verplaatsen of uitstellen van een bevestigde productiedag of van een fase van de opdracht geldt niet als annulering en wijzigt niets aan de verbintenis van artikel 4: de volledige prijs blijft verschuldigd.</p></div>
+        </div>
+        <div class="av-lid" id="lid-5.2">
+          <span class="av-lid-nr">5.2</span>
+          <div class="av-lid-tekst"><p>Het overeengekomen betalingsschema blijft gekoppeld aan de oorspronkelijke planning en schuift niet mee op met een uitstel dat door de klant wordt gevraagd of veroorzaakt.</p></div>
+        </div>
+        <div class="av-lid" id="lid-5.3">
+          <span class="av-lid-nr">5.3</span>
+          <div class="av-lid-tekst"><p>De kosten die door het uitstel verloren gaan of opnieuw moeten worden gemaakt — onder meer reeds geboekte crew, cast, locaties, materiaalverhuur, reis- en verblijfkosten en vergunningen — zijn integraal ten laste van de klant, evenals de wachturen bedoeld in artikel 7.8.</p></div>
+        </div>
+        <div class="av-lid" id="lid-5.4">
+          <span class="av-lid-nr">5.4</span>
+          <div class="av-lid-tekst"><p>Contour spant zich in om een nieuwe datum te voorzien binnen haar beschikbare planning, zonder dat zij gehouden is de oorspronkelijk gereserveerde capaciteit vrij te houden.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-6">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 6</span>
+          <span class="av-artikel-titel">Duur en stilzwijgende verlenging</span>
+        </h3>
+        <div class="av-lid" id="lid-6.1">
+          <span class="av-lid-nr">6.1</span>
+          <div class="av-lid-tekst"><p>Indien een overeenkomst van bepaalde duur niet uiterlijk één (1) maand vóór de overeengekomen einddatum schriftelijk werd opgezegd en na het verstrijken van die termijn wordt verdergezet, wordt zij, behoudens andersluidend schriftelijk akkoord, geacht te zijn verlengd met eenzelfde termijn en tegen dezelfde voorwaarden.</p></div>
+        </div>
+        <div class="av-lid" id="lid-6.2">
+          <span class="av-lid-nr">6.2</span>
+          <div class="av-lid-tekst"><p>Elke partij kan een aldus verlengde overeenkomst opzeggen tegen het einde van de lopende termijn, met inachtneming van dezelfde opzegtermijn van één (1) maand.</p></div>
+        </div>
+      </section>
+
+      <div class="av-deel" id="deel-iii">
+        <span class="av-deel-nr">Deel III</span>
+        <h2 class="av-deel-titel">Uitvoering van de opdracht</h2>
+      </div>
+
+      <section class="av-artikel" id="artikel-7">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 7</span>
+          <span class="av-artikel-titel">Medewerking van de klant</span>
+        </h3>
+        <div class="av-lid" id="lid-7.1">
+          <span class="av-lid-nr">7.1</span>
+          <div class="av-lid-tekst"><p>De klant bezorgt tijdig en kosteloos alle gegevens, briefings, merkrichtlijnen, logo’s, beeld- en tekstmateriaal, toegangen en goedkeuringen die Contour redelijkerwijs nodig heeft, en zorgt voor toegang tot de locaties, de aanwezigheid van de sleutelpersonen en de vereiste toelatingen en vergunningen, tenzij uitdrukkelijk anders overeengekomen.</p></div>
+        </div>
+        <div class="av-lid" id="lid-7.2">
+          <span class="av-lid-nr">7.2</span>
+          <div class="av-lid-tekst"><p>De klant duidt één beslissingsbevoegde contactpersoon aan. Alle feedback en goedkeuringen worden gebundeld via die persoon meegedeeld.</p></div>
+        </div>
+        <div class="av-lid" id="lid-7.3">
+          <span class="av-lid-nr">7.3</span>
+          <div class="av-lid-tekst"><p>De klant staat in voor de juistheid, de volledigheid en de betrouwbaarheid van de door hem verstrekte informatie en materialen, ook wanneer deze van derden afkomstig zijn.</p></div>
+        </div>
+        <div class="av-lid" id="lid-7.4">
+          <span class="av-lid-nr">7.4</span>
+          <div class="av-lid-tekst"><p>Opgegeven termijnen zijn indicatief. Zij schuiven van rechtswege op met de vertraging die voortvloeit uit een gebrek aan tijdige medewerking van de klant, zonder dat dit recht geeft op enige schadevergoeding of op ontbinding.</p></div>
+        </div>
+        <div class="av-lid" id="lid-7.5">
+          <span class="av-lid-nr">7.5</span>
+          <div class="av-lid-tekst">
+            <p>De klant beschikt over tien (10) kalenderdagen na de verzending van een oplevering om zijn feedback schriftelijk en gebundeld te bezorgen. Contour volgt dit als volgt op:</p>
+            <ul class="av-sublijst">
+            <li>blijft feedback uit na vijf (5) kalenderdagen, dan stuurt Contour een eerste schriftelijke herinnering per e-mail;</li>
+            <li>blijft feedback uit na tien (10) kalenderdagen, dan stuurt Contour een tweede schriftelijke herinnering per e-mail.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="av-lid" id="lid-7.6">
+          <span class="av-lid-nr">7.6</span>
+          <div class="av-lid-tekst"><p>Blijft ook na die tweede herinnering elke reactie uit, dan mag Contour vanaf de veertiende (14de) kalenderdag na de verzending van de oplevering de opdracht als volledig uitgevoerd en aanvaard beschouwen en het volledige saldo factureren. Elke aanpassing die de klant nadien nog wenst, wordt afzonderlijk gefactureerd op uurbasis aan het op dat ogenblik geldende uurtarief. Dit ontslaat de klant niet van zijn verbintenissen uit artikel 4.</p></div>
+        </div>
+        <div class="av-lid" id="lid-7.7">
+          <span class="av-lid-nr">7.7</span>
+          <div class="av-lid-tekst"><p>Dezelfde regeling geldt voor de input, keuzes en goedkeuringen die Contour tijdens de productie nodig heeft om verder te kunnen werken: blijven die uit na twee schriftelijke herinneringen, dan mag Contour de betrokken fase als goedgekeurd beschouwen en de opdracht verderzetten op basis van de laatst gekende gegevens.</p></div>
+        </div>
+        <div class="av-lid" id="lid-7.8">
+          <span class="av-lid-nr">7.8</span>
+          <div class="av-lid-tekst"><p>Wachturen die te wijten zijn aan het feit dat, buiten de verantwoordelijkheid van Contour, niet kan worden gepresteerd op het afgesproken tijdstip, worden aangerekend aan het geldende uur- of dagtarief, vermeerderd met de kost ingevolge de gedwongen onbeschikbaarheid van crew en materiaal.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-8">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 8</span>
+          <span class="av-artikel-titel">Wijze van uitvoering</span>
+        </h3>
+        <div class="av-lid" id="lid-8.1">
+          <span class="av-lid-nr">8.1</span>
+          <div class="av-lid-tekst"><p>Contour voert de opdracht uit naar best vermogen en volgens de regels van de kunst. Het betreft een inspanningsverbintenis, tenzij uitdrukkelijk en schriftelijk een resultaat werd gewaarborgd.</p></div>
+        </div>
+        <div class="av-lid" id="lid-8.2">
+          <span class="av-lid-nr">8.2</span>
+          <div class="av-lid-tekst"><p>Contour bepaalt vrij de technische en creatieve middelen — apparatuur, software, werkwijze, locaties, montagekeuzes — binnen het door de klant goedgekeurde concept.</p></div>
+        </div>
+        <div class="av-lid" id="lid-8.3">
+          <span class="av-lid-nr">8.3</span>
+          <div class="av-lid-tekst"><p>Contour mag voor de uitvoering een beroep doen op zelfstandige medewerkers en onderaannemers, en blijft daarbij het enige aanspreekpunt van de klant.</p></div>
+        </div>
+        <div class="av-lid" id="lid-8.4">
+          <span class="av-lid-nr">8.4</span>
+          <div class="av-lid-tekst"><p>Contour mag bij concept, beeldgeneratie, montage, ondertiteling en tekst gebruikmaken van AI-ondersteunde tools, tenzij de klant dit vooraf schriftelijk uitsluit.</p></div>
+        </div>
+        <div class="av-lid" id="lid-8.5">
+          <span class="av-lid-nr">8.5</span>
+          <div class="av-lid-tekst"><p>Lucht- en droneopnames gebeuren uitsluitend binnen het wettelijke kader. Kunnen zij niet doorgaan wegens weersomstandigheden, luchtruimbeperkingen of het uitblijven van een vergunning, dan levert dit geen tekortkoming van Contour op en wordt in onderling overleg een alternatief of een nieuwe datum bepaald.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-9">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 9</span>
+          <span class="av-artikel-titel">Revisies, oplevering en aanvaarding</span>
+        </h3>
+        <div class="av-lid" id="lid-9.1">
+          <span class="av-lid-nr">9.1</span>
+          <div class="av-lid-tekst"><p>De prijs omvat het in de offerte vermelde aantal revisierondes. Bij gebrek aan vermelding zijn twee (2) revisierondes op de eerste montage inbegrepen.</p></div>
+        </div>
+        <div class="av-lid" id="lid-9.2">
+          <span class="av-lid-nr">9.2</span>
+          <div class="av-lid-tekst"><p>Eén revisieronde bestaat uit één gebundelde en schriftelijke feedbacklijst, te bezorgen binnen de termijn van artikel 7.5.</p></div>
+        </div>
+        <div class="av-lid" id="lid-9.3">
+          <span class="av-lid-nr">9.3</span>
+          <div class="av-lid-tekst"><p>Bijkomende revisierondes, een gewijzigde briefing of richting, het herwerken van een reeds goedgekeurd script of concept, en bijkomende formaten, versies, lengtes of talen gelden als meerwerk in de zin van artikel 10.</p></div>
+        </div>
+        <div class="av-lid" id="lid-9.4">
+          <span class="av-lid-nr">9.4</span>
+          <div class="av-lid-tekst"><p>De oplevering gebeurt digitaal in de overeengekomen formaten en resolutie. Ruwe beelden, geluidsopnames, projectbestanden, montageprojecten, grades, LUT’s en andere tussenbestanden maken geen deel uit van de levering, tenzij uitdrukkelijk overeengekomen en afzonderlijk vergoed.</p></div>
+        </div>
+        <div class="av-lid" id="lid-9.5">
+          <span class="av-lid-nr">9.5</span>
+          <div class="av-lid-tekst"><p>Contour bewaart de brondata gedurende zes (6) maanden na oplevering zonder hiertoe gehouden te zijn. De klant staat zelf in voor de bewaring en back-up van de opgeleverde bestanden.</p></div>
+        </div>
+        <div class="av-lid" id="lid-9.6">
+          <span class="av-lid-nr">9.6</span>
+          <div class="av-lid-tekst"><p>Het werk wordt geacht te zijn aanvaard bij uitdrukkelijke goedkeuring, overeenkomstig artikel 7.6, bij gebrek aan gemotiveerde klacht binnen de termijn van artikel 12, of van zodra de klant het werk publiceert of gebruikt.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-10">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 10</span>
+          <span class="av-artikel-titel">Meerwerk en wijzigingen</span>
+        </h3>
+        <div class="av-lid" id="lid-10.1">
+          <span class="av-lid-nr">10.1</span>
+          <div class="av-lid-tekst"><p>Prestaties die buiten de omschrijving van de offerte vallen, worden afzonderlijk gefactureerd aan de op dat ogenblik geldende tarieven.</p></div>
+        </div>
+        <div class="av-lid" id="lid-10.2">
+          <span class="av-lid-nr">10.2</span>
+          <div class="av-lid-tekst"><p>Meerwerk wordt vooraf schriftelijk bevestigd; een bevestiging per e-mail volstaat en geldt als akkoord over de prijs en de gevolgen voor de planning.</p></div>
+        </div>
+        <div class="av-lid" id="lid-10.3">
+          <span class="av-lid-nr">10.3</span>
+          <div class="av-lid-tekst"><p>Meerwerk dat redelijkerwijs geen uitstel duldt zonder de opdracht te vertragen of te schaden, mag Contour uitvoeren zonder voorafgaand akkoord, mits de omvang redelijk is en de klant onverwijld wordt geïnformeerd.</p></div>
+        </div>
+      </section>
+
+      <div class="av-deel" id="deel-iv">
+        <span class="av-deel-nr">Deel IV</span>
+        <h2 class="av-deel-titel">Prijzen, betaling en zekerheden</h2>
+      </div>
+
+      <section class="av-artikel" id="artikel-11">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 11</span>
+          <span class="av-artikel-titel">Prijzen en betaling</span>
+        </h3>
+        <div class="av-lid" id="lid-11.1">
+          <span class="av-lid-nr">11.1</span>
+          <div class="av-lid-tekst"><p>Alle prijzen worden opgegeven in euro en zijn steeds exclusief btw. Elke verhoging van het btw-tarief in de periode tussen de bestelling en de levering valt ten laste van de klant. Bestellingen worden gefactureerd tegen de prijzen en voorwaarden die van kracht zijn op het ogenblik van de aanvaarding van de bestelling.</p></div>
+        </div>
+        <div class="av-lid" id="lid-11.2">
+          <span class="av-lid-nr">11.2</span>
+          <div class="av-lid-tekst"><p>Behoudens andersluidende vermelding in de offerte geldt volgende betalingsregeling: 40 % voorschot bij bestelling, 30 % bij de aanvang van de opnames en 30 % bij oplevering. Bij trajecten van bepaalde duur wordt maandelijks vooraf gefactureerd.</p></div>
+        </div>
+        <div class="av-lid" id="lid-11.3">
+          <span class="av-lid-nr">11.3</span>
+          <div class="av-lid-tekst"><p>Niet in de prijs begrepen, tenzij uitdrukkelijk vermeld: verplaatsingen buiten België, verblijfkosten, parkeer- en toegangsgelden, vergunningen, muziek- en beeldlicenties, stockmateriaal, acteurs en figuranten, mediabudget en bijzondere materiaalverhuur.</p></div>
+        </div>
+        <div class="av-lid" id="lid-11.4">
+          <span class="av-lid-nr">11.4</span>
+          <div class="av-lid-tekst"><p>Facturen zijn betaalbaar binnen veertien (14) kalenderdagen na factuurdatum op de op de factuur vermelde rekening, behoudens andersluidende vermelding. Een disconto voor onmiddellijke betaling wordt enkel verrekend indien dit uitdrukkelijk en vooraf werd overeengekomen.</p></div>
+        </div>
+        <div class="av-lid" id="lid-11.5">
+          <span class="av-lid-nr">11.5</span>
+          <div class="av-lid-tekst"><p>Laten de bijzondere voorwaarden de klant toe de uitstaande bedragen in termijnen af te lossen, dan verliest hij bij niet-naleving van één termijn het voordeel van de gespreide betaling en wordt het volledige uitstaande bedrag onmiddellijk opeisbaar, met inbegrip van de conventionele intresten en het strafbeding.</p></div>
+        </div>
+        <div class="av-lid" id="lid-11.6">
+          <span class="av-lid-nr">11.6</span>
+          <div class="av-lid-tekst"><p>Bij niet-betaling of laattijdige betaling wordt de prijs van rechtswege en zonder ingebrekestelling verhoogd met een forfaitaire vergoeding van 15 %, met een minimum van 250,00 EUR, wat overeenstemt met de hinder die Contour ondergaat en de daarmee gepaard gaande administratiekosten, met uitsluiting van de gerechtskosten en de kosten en erelonen van de door Contour aangestelde raadsman. Daarenboven is van rechtswege en zonder ingebrekestelling een nalatigheidsintrest verschuldigd, berekend overeenkomstig de Wet van 2 augustus 2002 betreffende de bestrijding van de betalingsachterstand bij handelstransacties.</p></div>
+        </div>
+        <div class="av-lid" id="lid-11.7">
+          <span class="av-lid-nr">11.7</span>
+          <div class="av-lid-tekst"><p>Elke niet-betaling van een factuur op de vervaldag of elke wanbetaling brengt de opeisbaarheid mee van alle, zelfs niet-vervallen facturen die op dat ogenblik reeds werden opgesteld en overgemaakt, en doet elke betalingsfaciliteit of korting voor de toekomst automatisch vervallen. Bij gehele of gedeeltelijke laattijdige betaling zijn eveneens de forfaitaire vergoeding en de intresten van artikel 11.6 verschuldigd.</p></div>
+        </div>
+        <div class="av-lid" id="lid-11.8">
+          <span class="av-lid-nr">11.8</span>
+          <div class="av-lid-tekst"><p>Schuldvergelijking door de klant wordt uitdrukkelijk uitgesloten.</p></div>
+        </div>
+        <div class="av-lid" id="lid-11.9">
+          <span class="av-lid-nr">11.9</span>
+          <div class="av-lid-tekst"><p>Op straffe van verval moet een factuur binnen vijftien (15) kalenderdagen na ontvangst op gemotiveerde wijze worden geprotesteerd, per aangetekende zending of per e-mail met ontvangstbevestiging. Een protest schort de betalingsverplichting voor het niet-betwiste gedeelte niet op.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-12">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 12</span>
+          <span class="av-artikel-titel">Klachten en controle</span>
+        </h3>
+        <div class="av-lid" id="lid-12.1">
+          <span class="av-lid-nr">12.1</span>
+          <div class="av-lid-tekst"><p>Klachten over verrichte diensten of geleverde prestaties dienen, op straffe van verval, uiterlijk binnen vijf (5) werkdagen na de uitvoering of de levering gemotiveerd en schriftelijk te worden gemeld, per aangetekende zending of per e-mail met ontvangstbevestiging.</p></div>
+        </div>
+        <div class="av-lid" id="lid-12.2">
+          <span class="av-lid-nr">12.2</span>
+          <div class="av-lid-tekst"><p>Een gegronde klacht geeft de klant recht op herstel of hermontage door Contour binnen een redelijke termijn, en niet automatisch op prijsvermindering, terugbetaling of ontbinding.</p></div>
+        </div>
+        <div class="av-lid" id="lid-12.3">
+          <span class="av-lid-nr">12.3</span>
+          <div class="av-lid-tekst"><p>Een klacht schort de betalingsverplichting niet op.</p></div>
+        </div>
+        <div class="av-lid" id="lid-12.4">
+          <span class="av-lid-nr">12.4</span>
+          <div class="av-lid-tekst"><p>Verschillen in smaak of appreciatie over creatieve keuzes die binnen het goedgekeurde concept en de goedgekeurde briefing vallen, gelden niet als gebrek.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-13">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 13</span>
+          <span class="av-artikel-titel">Opschorting en ontbinding</span>
+        </h3>
+        <div class="av-lid" id="lid-13.1">
+          <span class="av-lid-nr">13.1</span>
+          <div class="av-lid-tekst">
+            <p>Bij niet-betaling op de vervaldag, bij wanbetaling om welke reden ook, of bij niet-nakoming van zelfs één contractuele verplichting, behoudt Contour zich het recht voor om, na voorafgaande ingebrekestelling waaraan binnen acht (8) kalenderdagen geen of geen nuttig gevolg werd gegeven:</p>
+            <ul class="av-sublijst">
+            <li>hetzij eenzijdig de uitvoering van alle lopende opdrachten te schorsen, evenals het gebruiksrecht op reeds geleverd werk, zonder dat dit voor de klant aanleiding kan geven tot schadevergoeding, en onverminderd het recht van Contour om schadevergoeding te vorderen;</li>
+            <li>hetzij de overeenkomst eenzijdig te ontbinden zonder voorafgaande rechterlijke machtiging, waarbij de vergoedingen van artikel 4.3 en 4.4 van toepassing zijn alsof de klant zelf had geannuleerd, onverminderd het recht van Contour om een hogere bewezen schade te vorderen.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="av-lid" id="lid-13.2">
+          <span class="av-lid-nr">13.2</span>
+          <div class="av-lid-tekst"><p>Contour kan de overeenkomst met onmiddellijke ingang beëindigen, voor zover wettelijk toegelaten, bij faillissement, gerechtelijke reorganisatie, kennelijk onvermogen of stopzetting van de activiteiten van de klant.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-14">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 14</span>
+          <span class="av-artikel-titel">Waarborgen</span>
+        </h3>
+        <div class="av-lid" id="lid-14.1">
+          <span class="av-lid-nr">14.1</span>
+          <div class="av-lid-tekst"><p>Indien het vertrouwen van Contour in de kredietwaardigheid van de klant wordt geschokt door laattijdige betaling of wanbetaling, door daden van gerechtelijke uitvoering tegen de klant of door andere aanwijsbare gebeurtenissen die de goede uitvoering van de door de klant aangegane verbintenissen in vraag stellen of onmogelijk maken, behoudt Contour zich het recht voor van de klant passende waarborgen te eisen.</p></div>
+        </div>
+        <div class="av-lid" id="lid-14.2">
+          <span class="av-lid-nr">14.2</span>
+          <div class="av-lid-tekst"><p>Weigert de klant hierop in te gaan, dan behoudt Contour zich het recht voor de opdracht geheel of gedeeltelijk te annuleren, zelfs indien deze reeds geheel of gedeeltelijk werd uitgevoerd. In voorkomend geval is bij wijze van schadevergoeding het bedrag verschuldigd bepaald in artikel 4.3, onverminderd de betaling van de reeds uitgevoerde prestaties.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-15">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 15</span>
+          <span class="av-artikel-titel">Overmacht</span>
+        </h3>
+        <div class="av-lid" id="lid-15.1">
+          <span class="av-lid-nr">15.1</span>
+          <div class="av-lid-tekst"><p>Elk geval van overmacht of toeval bevrijdt Contour van rechtswege van haar verbintenissen, zonder dat de klant aanspraak kan maken op schadevergoeding.</p></div>
+        </div>
+        <div class="av-lid" id="lid-15.2">
+          <span class="av-lid-nr">15.2</span>
+          <div class="av-lid-tekst"><p>Als overmacht worden onder meer beschouwd: ongevallen, ziekte of arbeidsongeschiktheid van sleutelmedewerkers, materiaalbreuk, uitzonderlijke weersomstandigheden, brand, overstroming, stroom-, netwerk- of internetstoringen, werkstakingen, lock-out, diefstal, pandemie, overheidsmaatregelen en uitzonderlijke verkeershinder.</p></div>
+        </div>
+        <div class="av-lid" id="lid-15.3">
+          <span class="av-lid-nr">15.3</span>
+          <div class="av-lid-tekst"><p>Is Contour voor de nakoming van haar verplichtingen afhankelijk van leveringen of prestaties van derden, dan gelden deze bepalingen eveneens bij overmacht of toeval bij die derde, wanneer de nakoming daardoor vertraging oploopt of verhinderd wordt.</p></div>
+        </div>
+        <div class="av-lid" id="lid-15.4">
+          <span class="av-lid-nr">15.4</span>
+          <div class="av-lid-tekst"><p>Duurt de overmachtssituatie langer dan zestig (60) kalenderdagen, dan kan elke partij de overeenkomst schriftelijk beëindigen zonder schadevergoeding, waarbij het reeds uitgevoerde werk en de reeds gemaakte kosten verschuldigd blijven.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-16">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 16</span>
+          <span class="av-artikel-titel">Herzieningsbeding en imprevisie</span>
+        </h3>
+        <div class="av-lid" id="lid-16.1">
+          <span class="av-lid-nr">16.1</span>
+          <div class="av-lid-tekst"><p>De overeengekomen prijzen kunnen bij iedere factuur worden aangepast op basis van de evolutie van de loonkosten en, in voorkomend geval, van de materiaal- en licentiekosten in de periode tussen de datum van het sluiten van de overeenkomst en de factuurdatum. De prijsherziening kan hoogstens worden toegepast op dat gedeelte van de prijs dat werkelijke kosten vertegenwoordigt en is beperkt tot maximaal 80 % van de eindprijs. De bewijslast van deze kostenstijging ligt bij Contour.</p></div>
+        </div>
+        <div class="av-lid" id="lid-16.2">
+          <span class="av-lid-nr">16.2</span>
+          <div class="av-lid-tekst"><p>Het feit dat een prijsherziening niet wordt doorgevoerd op het ogenblik waarop dit mogelijk was, houdt geen afstand in van latere prijsherzieningen. Prijsherzieningen blijven verschuldigd vanaf de datum waarop zij gevorderd hadden kunnen worden en kunnen retroactief worden toegepast.</p></div>
+        </div>
+        <div class="av-lid" id="lid-16.3">
+          <span class="av-lid-nr">16.3</span>
+          <div class="av-lid-tekst"><p>Bij een fundamentele wijziging van de omstandigheden die niet toe te schrijven is aan de getroffen partij en waardoor haar contractuele verplichtingen op onbillijke wijze verzwaren, verbinden partijen zich ertoe de voorwaarden van de overeenkomst opnieuw te onderhandelen om samen tot een billijke oplossing te komen voor de verdere uitvoering ervan.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-17">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 17</span>
+          <span class="av-artikel-titel">Eigendomsvoorbehoud en retentierecht</span>
+        </h3>
+        <div class="av-lid" id="lid-17.1">
+          <span class="av-lid-nr">17.1</span>
+          <div class="av-lid-tekst"><p>De geleverde goederen en materialen blijven de uitsluitende eigendom van Contour tot de volledige betaling van de prijs, vermeerderd met eventuele kosten en intresten, zelfs indien deze goederen werden geïncorporeerd of gewijzigd. Het risico gaat over op de klant vanaf de levering.</p></div>
+        </div>
+        <div class="av-lid" id="lid-17.2">
+          <span class="av-lid-nr">17.2</span>
+          <div class="av-lid-tekst"><p>Contour mag alle bestanden, brondata, dragers en zaken van de klant die zij onder zich heeft, behouden tot alle openstaande bedragen volledig zijn betaald.</p></div>
+        </div>
+      </section>
+
+      <div class="av-deel" id="deel-v">
+        <span class="av-deel-nr">Deel V</span>
+        <h2 class="av-deel-titel">Rechten, aansprakelijkheid en slotbepalingen</h2>
+      </div>
+
+      <section class="av-artikel" id="artikel-18">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 18</span>
+          <span class="av-artikel-titel">Intellectuele eigendomsrechten</span>
+        </h3>
+        <div class="av-lid" id="lid-18.1">
+          <span class="av-lid-nr">18.1</span>
+          <div class="av-lid-tekst"><p>Alle intellectuele eigendomsrechten op de door Contour ontwikkelde concepten, scripts, storyboards, opnames, montages, grafische elementen en andere creaties blijven bij Contour tot de volledige betaling van alle verschuldigde bedragen.</p></div>
+        </div>
+        <div class="av-lid" id="lid-18.2">
+          <span class="av-lid-nr">18.2</span>
+          <div class="av-lid-tekst"><p>Mits volledige betaling worden de vermogensrechten op het opgeleverde eindresultaat overgedragen aan de klant, voor de exploitatiewijzen, dragers, het territorium en de duur zoals omschreven in de offerte. Bij gebrek aan omschrijving verkrijgt de klant een niet-exclusief, wereldwijd en in de tijd onbeperkt gebruiksrecht op het eindresultaat voor zijn eigen marketing- en communicatiedoeleinden.</p></div>
+        </div>
+        <div class="av-lid" id="lid-18.3">
+          <span class="av-lid-nr">18.3</span>
+          <div class="av-lid-tekst"><p>De overdracht heeft geen betrekking op componenten van derden — zoals stockbeeld, muziek, lettertypes, plug-ins en templates — waarop de klant enkel de rechten verkrijgt die de betrokken licentie verleent. Muziek- en auteursrechtelijke vergoedingen verbonden aan het gebruik of de openbare mededeling van het werk zijn ten laste van de klant, tenzij anders overeengekomen.</p></div>
+        </div>
+        <div class="av-lid" id="lid-18.4">
+          <span class="av-lid-nr">18.4</span>
+          <div class="av-lid-tekst"><p>Ruwe beelden, projectbestanden en tussenbestanden blijven eigendom van Contour, overeenkomstig artikel 9.4.</p></div>
+        </div>
+        <div class="av-lid" id="lid-18.5">
+          <span class="av-lid-nr">18.5</span>
+          <div class="av-lid-tekst"><p>De klant respecteert de morele rechten die aan de werken verbonden zijn. Hij verbindt er zich in het bijzonder toe de integriteit van de werken te respecteren en ze niet te manipuleren, te vervormen, te hermonteren of aan te vullen zonder voorafgaande toestemming van Contour.</p></div>
+        </div>
+        <div class="av-lid" id="lid-18.6">
+          <span class="av-lid-nr">18.6</span>
+          <div class="av-lid-tekst"><p>De klant stemt ermee in dat Contour de gecreëerde content mag gebruiken als referentie in haar eigen portfolio, website, socialemediakanalen, pitches en wedstrijden. De klant kan dit enkel uitsluiten of aan een embargotermijn onderwerpen mits voorafgaand schriftelijk akkoord.</p></div>
+        </div>
+        <div class="av-lid" id="lid-18.7">
+          <span class="av-lid-nr">18.7</span>
+          <div class="av-lid-tekst"><p>De klant is verantwoordelijk voor het verkrijgen van alle benodigde licenties en toestemmingen voor het gebruik van inhoud, materialen en andere elementen die hij aan Contour bezorgt. Contour is niet aansprakelijk voor aanspraken van derden met betrekking tot dergelijke door de klant verstrekte elementen, en de klant vrijwaart Contour integraal voor zulke aanspraken.</p></div>
+        </div>
+        <div class="av-lid" id="lid-18.8">
+          <span class="av-lid-nr">18.8</span>
+          <div class="av-lid-tekst"><p>De klant staat in voor de toestemming van personen die herkenbaar in beeld worden gebracht op zijn locaties of tijdens zijn activiteiten, met inbegrip van personeel, klanten en bezoekers, en vrijwaart Contour voor elke aanspraak in dat verband.</p></div>
+        </div>
+        <div class="av-lid" id="lid-18.9">
+          <span class="av-lid-nr">18.9</span>
+          <div class="av-lid-tekst"><p>Zolang de klant zijn betalingsverplichtingen niet volledig is nagekomen, mag Contour elk gebruik en elke publicatie van het werk verbieden en de verwijdering ervan vorderen.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-19">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 19</span>
+          <span class="av-artikel-titel">Aansprakelijkheid</span>
+        </h3>
+        <div class="av-lid" id="lid-19.1">
+          <span class="av-lid-nr">19.1</span>
+          <div class="av-lid-tekst"><p>Contour is slechts aansprakelijk in geval van bewezen bedrog, opzet of zware fout van haarzelf of van één van haar aangestelden bij één van de essentiële verplichtingen van de overeenkomst. Voor de door Contour verstrekte commerciële informatie of adviezen is zij enkel aansprakelijk bij opzettelijke of zware fout.</p></div>
+        </div>
+        <div class="av-lid" id="lid-19.2">
+          <span class="av-lid-nr">19.2</span>
+          <div class="av-lid-tekst"><p>Contour is in geen geval aansprakelijk voor indirecte schade, zoals winstderving, omzetverlies, gemiste besparingen, reputatie- of imagoschade, verlies van cliënteel, verlies of beschadiging van gegevens en elke vorm van gevolgschade.</p></div>
+        </div>
+        <div class="av-lid" id="lid-19.3">
+          <span class="av-lid-nr">19.3</span>
+          <div class="av-lid-tekst"><p>Contour is niet aansprakelijk voor de commerciële resultaten van het geleverde werk, waaronder bereik, engagement, leads, verkoopcijfers of de prestaties van advertenties en platformen van derden.</p></div>
+        </div>
+        <div class="av-lid" id="lid-19.4">
+          <span class="av-lid-nr">19.4</span>
+          <div class="av-lid-tekst"><p>Indien de aansprakelijkheid van Contour bewezen wordt, is haar gehoudenheid beperkt tot het bedrag dat haar verzekeraar bedrijfsaansprakelijkheid in het betrokken geval uitkeert. Bij gebrek aan tussenkomst van de verzekeraar is de aansprakelijkheid beperkt tot het voor de betrokken opdracht gefactureerde bedrag (excl. btw), met een absoluut maximum van 5.000,00 EUR.</p></div>
+        </div>
+        <div class="av-lid" id="lid-19.5">
+          <span class="av-lid-nr">19.5</span>
+          <div class="av-lid-tekst"><p>Contour hanteert tijdens de productie redelijke back-upprocedures, maar is niet aansprakelijk voor het verlies of de beschadiging van beeld- of geluidsmateriaal door defecten aan dragers, apparatuur of software, behoudens zware fout.</p></div>
+        </div>
+        <div class="av-lid" id="lid-19.6">
+          <span class="av-lid-nr">19.6</span>
+          <div class="av-lid-tekst"><p>De klant is aansprakelijk voor schade aan of verlies van apparatuur en materiaal van Contour die veroorzaakt wordt door hemzelf, zijn aangestelden of zijn genodigden.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-20">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 20</span>
+          <span class="av-artikel-titel">Vertrouwelijkheid en niet-afwerving</span>
+        </h3>
+        <div class="av-lid" id="lid-20.1">
+          <span class="av-lid-nr">20.1</span>
+          <div class="av-lid-tekst"><p>Partijen behandelen alle vertrouwelijke informatie die zij in het kader van de samenwerking ontvangen als strikt vertrouwelijk, zowel tijdens de overeenkomst als gedurende drie (3) jaar erna.</p></div>
+        </div>
+        <div class="av-lid" id="lid-20.2">
+          <span class="av-lid-nr">20.2</span>
+          <div class="av-lid-tekst"><p>De klant onthoudt zich ervan om, tijdens de duur van de overeenkomst en gedurende twaalf (12) maanden erna, medewerkers of freelancers van Contour rechtstreeks in dienst te nemen of rechtstreeks in te schakelen voor gelijkaardige prestaties, zonder voorafgaand schriftelijk akkoord van Contour.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-21">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 21</span>
+          <span class="av-artikel-titel">Verwerking van persoonsgegevens</span>
+        </h3>
+        <div class="av-lid" id="lid-21.1">
+          <span class="av-lid-nr">21.1</span>
+          <div class="av-lid-tekst"><p>In het kader van haar dienstverlening verwerkt Contour persoonsgegevens van de door de klant opgegeven contactpersonen. Deze gegevens worden verwerkt voor het doeleinde “klantenbeheer”, met name om met de klant in contact te treden over de diensten, de verwerking en opvolging van opdrachten, en de directe marketing van Contour.</p></div>
+        </div>
+        <div class="av-lid" id="lid-21.2">
+          <span class="av-lid-nr">21.2</span>
+          <div class="av-lid-tekst"><p>De persoonsgegevens met betrekking tot de identiteit van de klant worden door Contour enkel gebruikt voor het versturen van informatie, nieuwsbrieven of uitnodigingen voor evenementen mits voorafgaand akkoord van de betrokkene. De betrokkene kan zijn toestemming te allen tijde intrekken via een e-mail aan <a href="mailto:contact@contouragency.be">contact@contouragency.be</a> of een aangetekende brief aan Contour, AVS-straat 22, 9900 Eeklo.</p></div>
+        </div>
+        <div class="av-lid" id="lid-21.3">
+          <span class="av-lid-nr">21.3</span>
+          <div class="av-lid-tekst"><p>De gegevens worden bewaard voor de volledige duur van de toevertrouwde opdracht en voor de periode die noodzakelijk is om Contour toe te laten haar wettelijke verplichtingen na te komen, met inbegrip van de boekhoudkundige en fiscale bewaartermijnen. Deze termijn wordt verlengd met het oog op het voeren van een mogelijk geschil met de klant.</p></div>
+        </div>
+        <div class="av-lid" id="lid-21.4">
+          <span class="av-lid-nr">21.4</span>
+          <div class="av-lid-tekst"><p>De betrokkene heeft het recht om toegang te vragen tot zijn persoonsgegevens, de verbetering van onjuiste of onvolledige gegevens, het wissen van gegevens in de omstandigheden voorzien in artikel 17 AVG, of een beperking van de verwerking binnen de voorwaarden van artikel 18 AVG. Hij kan zich eveneens verzetten tegen de verwerking overeenkomstig artikel 21 AVG en heeft recht op overdraagbaarheid van zijn gegevens. Elk verzoek wordt gericht aan <a href="mailto:contact@contouragency.be">contact@contouragency.be</a> of per aangetekende brief aan bovenvermeld adres.</p></div>
+        </div>
+        <div class="av-lid" id="lid-21.5">
+          <span class="av-lid-nr">21.5</span>
+          <div class="av-lid-tekst"><p>De betrokkene heeft het recht een klacht in te dienen bij de Gegevensbeschermingsautoriteit, Drukpersstraat 35, 1000 Brussel (<a href="https://www.gegevensbeschermingsautoriteit.be" rel="noopener">www.gegevensbeschermingsautoriteit.be</a>).</p></div>
+        </div>
+        <div class="av-lid" id="lid-21.6">
+          <span class="av-lid-nr">21.6</span>
+          <div class="av-lid-tekst"><p>De klant waarborgt dat de persoonsgegevens die hij met het oog op het beheer en de uitvoering van zijn dossier aan Contour meedeelt, werden meegedeeld met toestemming van de betrokkene(n) of op basis van een andere wettelijke grondslag, en dat deze mededeling gebeurt overeenkomstig de bepalingen van de AVG.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-22">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 22</span>
+          <span class="av-artikel-titel">Reconversie</span>
+        </h3>
+        <div class="av-lid" id="lid-22.1">
+          <span class="av-lid-nr">22.1</span>
+          <div class="av-lid-tekst"><p>Indien een verbintenis of een beding uit deze algemene voorwaarden onafdwingbaar zou zijn of strijdig met een bepaling van dwingend recht, heeft dit geen invloed op de geldigheid of afdwingbaarheid van de overige bepalingen, noch van dat deel van de betrokken bepaling dat niet strijdig is met dwingend recht.</p></div>
+        </div>
+        <div class="av-lid" id="lid-22.2">
+          <span class="av-lid-nr">22.2</span>
+          <div class="av-lid-tekst"><p>Partijen verbinden zich ertoe de nietige of onafdwingbare bepaling te vervangen door een geldige bepaling die de oorspronkelijke bedoeling zo dicht mogelijk benadert.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-23">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 23</span>
+          <span class="av-artikel-titel">Overdracht, kennisgevingen en afstand van recht</span>
+        </h3>
+        <div class="av-lid" id="lid-23.1">
+          <span class="av-lid-nr">23.1</span>
+          <div class="av-lid-tekst"><p>De klant kan zijn rechten en verplichtingen uit de overeenkomst niet overdragen zonder voorafgaand schriftelijk akkoord van Contour. Contour kan haar rechten en verplichtingen overdragen in het kader van een overdracht of reorganisatie van haar onderneming.</p></div>
+        </div>
+        <div class="av-lid" id="lid-23.2">
+          <span class="av-lid-nr">23.2</span>
+          <div class="av-lid-tekst"><p>Kennisgevingen tussen partijen zijn geldig wanneer zij per e-mail worden verstuurd naar de laatst meegedeelde adressen, onverminderd de gevallen waarin deze voorwaarden of de wet een aangetekende zending voorschrijven.</p></div>
+        </div>
+        <div class="av-lid" id="lid-23.3">
+          <span class="av-lid-nr">23.3</span>
+          <div class="av-lid-tekst"><p>Het niet of niet onmiddellijk afdwingen van een recht uit deze voorwaarden houdt geen afstand van dat recht in.</p></div>
+        </div>
+      </section>
+
+      <section class="av-artikel" id="artikel-24">
+        <h3 class="av-artikel-kop">
+          <span class="av-artikel-nr">Artikel 24</span>
+          <span class="av-artikel-titel">Toepasselijk recht en geschillenregeling</span>
+        </h3>
+        <div class="av-lid" id="lid-24.1">
+          <span class="av-lid-nr">24.1</span>
+          <div class="av-lid-tekst"><p>Al onze overeenkomsten worden beheerst door het Belgisch recht, met uitsluiting van het Weens Koopverdrag en van elke andere internationale regeling waarvan de uitsluiting is toegestaan.</p></div>
+        </div>
+        <div class="av-lid" id="lid-24.2">
+          <span class="av-lid-nr">24.2</span>
+          <div class="av-lid-tekst"><p>Partijen verbinden zich ertoe om, alvorens een geschil aanhangig te maken, gedurende vijftien (15) kalenderdagen te goeder trouw te overleggen over een minnelijke oplossing.</p></div>
+        </div>
+        <div class="av-lid" id="lid-24.3">
+          <span class="av-lid-nr">24.3</span>
+          <div class="av-lid-tekst"><p>Bij blijvende betwisting zijn uitsluitend de rechtbanken bevoegd van het gerechtelijk arrondissement waar Contour haar maatschappelijke zetel heeft.</p></div>
+        </div>
+      </section>
+
+    <div class="av-slot">
+      <h3>Voor akkoord</h3>
+      <p>
+        De klant verklaart deze algemene voorwaarden te hebben gelezen, begrepen en aanvaard, en in
+        het bijzonder kennis te hebben genomen van <a href="#artikel-4">artikel 4</a> (vaste
+        verbintenis tot de volledige opdracht), <a href="#artikel-11">artikel 11</a> (prijzen en
+        betaling) en <a href="#artikel-19">artikel 19</a> (aansprakelijkheid).
+      </p>
+      <div class="av-slot-handtekening">
+        <div>
+          <span>De klant</span>
+          <p>Naam, functie, datum en handtekening, voorafgegaan door &ldquo;gelezen en goedgekeurd&rdquo;.</p>
+        </div>
+        <div>
+          <span>Contour</span>
+          <p>Tibo De Waele — datum en handtekening.</p>
+        </div>
+      </div>
+
+      <a class="av-pdf" href="project-assets/docs/Algemene-Voorwaarden-Contour_3.pdf" target="_blank" rel="noopener">
+        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" aria-hidden="true"><path d="M8 1v10m0 0L4 7m4 4l4-4M1 13v2h14v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download als pdf
+      </a>
+    </div>
+  </main>
+
+</div>
+
+<footer>
+  <img src="project-assets/images/Contour_Logo_Wit.webp" alt="Contour. Videomarketing Agency" class="footer-logo-img" width="700" height="219" decoding="async" loading="lazy">
+  <span class="footer-copy">© 2025 Contour · Videomarketing Agency</span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="mailto:contact@contouragency.be">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Markeert in de inhoudsopgave het artikel waar je op dat moment leest.
+(function () {
+  var links = {};
+  document.querySelectorAll('.av-toc a[href^="#artikel-"]').forEach(function (a) {
+    links[a.getAttribute('href').slice(1)] = a;
+  });
+  var artikelen = document.querySelectorAll('.av-artikel');
+  if (!artikelen.length || !('IntersectionObserver' in window)) return;
+
+  var zichtbaar = new Set(), huidig = null;
+  function markeer() {
+    var eerste = null;
+    artikelen.forEach(function (s) {
+      if (eerste === null && zichtbaar.has(s.id)) eerste = s.id;
+    });
+    if (eerste === huidig) return;
+    if (huidig && links[huidig]) links[huidig].classList.remove('is-actief');
+    huidig = eerste;
+    if (huidig && links[huidig]) links[huidig].classList.add('is-actief');
+  }
+
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) zichtbaar.add(e.target.id);
+      else zichtbaar.delete(e.target.id);
+    });
+    markeer();
+  }, { rootMargin: '-110px 0px -65% 0px' });
+  artikelen.forEach(function (s) { obs.observe(s); });
+})();
+</script>
+
+</body>
+</html>

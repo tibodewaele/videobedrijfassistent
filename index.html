@@ -1492,6 +1492,36 @@
   }
   .footer-links a:hover { color: var(--orange); }
 
+  /* Balk helemaal onderaan: link naar de algemene voorwaarden */
+  .legal-bar {
+    border-top: 1px solid var(--border);
+    padding: 34px 48px 42px;
+    display: flex;
+    justify-content: center;
+  }
+  .legal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-condensed);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 4px;
+    padding: 15px 36px;
+    background: transparent;
+    transition: background 0.25s, border-color 0.25s, gap 0.25s;
+  }
+  .legal-btn:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    gap: 18px;
+  }
+
   /* ANIMATIONS */
   .reveal {
     opacity: 0;
@@ -1663,6 +1693,8 @@
       padding: 32px 24px;
     }
     .footer-links { justify-content: center; flex-wrap: wrap; gap: 16px; }
+    .legal-bar { padding: 26px 20px 34px; }
+    .legal-btn { font-size: 13px; letter-spacing: 2px; padding: 14px 24px; text-align: center; }
 
     /* MARQUEE */
     .marquee-section { padding: 16px 0; }
@@ -3527,6 +3559,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="#">Vimeo</a>
   </div>
 </footer>
+
+<!-- ALGEMENE VOORWAARDEN -->
+<div class="legal-bar">
+  <a href="/algemenevoorwaarden" class="legal-btn">
+    Lees de algemene voorwaarden
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M11 1L16 6M16 6L11 11M16 6H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
 
 <script>
   // Eigen cursor. Op touchapparaten heeft die geen zin en kost de rAF-lus
