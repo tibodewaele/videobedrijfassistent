@@ -2631,15 +2631,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var touch  = window.matchMedia('(max-width: 900px), (hover: none)').matches;
 
   /* ---------- inladen: actieve video plus de buren ---------- */
-  function zorgVoorBron(i) {
+  function zorgVoorBron(i, hoeveel) {
     var v = videos[i];
-    if (!v || v.src) return;
-    if (v.dataset.src) { v.src = v.dataset.src; v.preload = 'auto'; v.load(); }
+    if (!v || !v.dataset.src) return;
+    if (!v.src) { v.preload = hoeveel; v.src = v.dataset.src; v.load(); }
+    else if (hoeveel === 'auto' && v.preload !== 'auto') { v.preload = 'auto'; }
   }
+  /* De video die speelt en de volgende halen we volledig op. Die daarna krijgt
+     alleen zijn kopgegevens, zodat hij meteen kan starten als er snel wordt
+     doorgescrold zonder dat we onnodig data verbruiken. */
   function laadRondom(i) {
     [i, i + 1, i - 1].forEach(function (k) {
-      if (k >= 0 && k < videos.length) zorgVoorBron(k);
+      if (k >= 0 && k < videos.length) zorgVoorBron(k, 'auto');
     });
+    if (i + 2 < videos.length) zorgVoorBron(i + 2, 'metadata');
   }
 
   /* ---------- afspelen ---------- */
