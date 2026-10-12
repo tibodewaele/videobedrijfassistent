@@ -1631,9 +1631,6 @@
     .svc-layout { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; }
     .svc-intro p { font-size: 16px; line-height: 1.75; }
     .svc-intro p.svc-intro-lead { font-size: 19px; }
-    .services-slider-viewport { padding: 32px 0; min-height: 640px; perspective: 1300px; }
-    .services-slider-track { width: 280px; height: 500px; }
-    .svc-slide { width: 280px; height: 500px; }
 
     /* LOGO STRIP */
     .logo-strip-section { padding: 40px 0; }
@@ -1698,9 +1695,6 @@
 
     /* MARQUEE */
     .marquee-section { padding: 16px 0; }
-
-    /* SLIDER NAV BUTTONS */
-    .slider-nav-btns { display: none; }
 
   }
 
@@ -2219,212 +2213,84 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#contact" class="btn-primary">Plan een introgesprek</a>
     </div>
 
-    <div class="services-slider-viewport">
-      <div class="services-slider-track" id="svcTrack">
+    <div class="phone-stage" id="phoneStage">
+      <div class="phone-shadow" aria-hidden="true"></div>
 
-      <div class="svc-slide">
-        <div class="svc-num">01</div>
-        <div class="svc-img-placeholder svc-has-media" id="svc-img-1">
-          <video class="svc-video" id="svc-video-1" muted loop playsinline preload="none" poster="project-assets/videos-web/posters/envision.webp">
-            <source src="project-assets/videos-web/envision-vertical.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="svc-tag">Strategie & Concept</div>
-        <h3 class="svc-title">Pré-Productie & Strategie</h3>
-        <p class="svc-desc">Hier begint alles. Zonder een sterk fundament wordt zelfs de mooiste beeldtaal leeg. Wij duiken diep in uw merk, bepalen de verhaallijnen en bouwen een visueel concept dat als leidraad dient voor de hele productie.</p>
-        <ul class="svc-items">
-          <li>Intakegesprek & merkanalyse</li>
-          <li>Conceptontwikkeling & verhaallijnen</li>
-          <li>Moodboard, stijl & shotlist</li>
-          <li>Logistieke planning & callsheet</li>
-        </ul>
-        <div class="svc-footer">
-          <span class="svc-tag-pill">Strategie</span>
-          <span class="svc-tag-pill">Concept</span>
-          <span class="svc-tag-pill">Planning</span>
-        </div>
-      </div>
+      <div class="phone" id="phone">
+        <div class="phone-screen">
 
-      <div class="svc-slide">
-        <div class="svc-num">02</div>
-        <div class="svc-img-placeholder svc-has-media" id="svc-img-2">
-          <video class="svc-video" id="svc-video-2" muted loop playsinline preload="none" poster="project-assets/videos-web/posters/bdsv.webp">
-            <source src="project-assets/videos-web/bdsv-vertical.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="svc-tag">Brand & Corporate</div>
-        <h3 class="svc-title">Corporate Film</h3>
-        <p class="svc-desc">Eén krachtige film die vertelt wie u bent en waarom mensen voor u moeten kiezen. Cinematisch, emotioneel en op maat van uw merk. het visitekaartje dat mensen onthouden.</p>
-        <ul class="svc-items">
-          <li>Full brand film van A tot Z</li>
-          <li>Cinematische beeldtaal</li>
-          <li>Volle opnamedag inclusief regie</li>
-          <li>Montage, kleurcorrectie & sound</li>
-        </ul>
-        <div class="svc-footer">
-          <span class="svc-tag-pill">Merkfilm</span>
-          <span class="svc-tag-pill">Imago</span>
-          <span class="svc-tag-pill">Corporate</span>
-        </div>
-      </div>
+          <!-- De tekst in .ph-views is het labeltje bovenaan elke video.
+               Waar een viewsaantal bekend was staat dat er; de rest toont de
+               klantnaam. Vervang gerust door "+X.000 views" zodra je de
+               echte cijfers hebt. -->
+          <div class="ph-feed" id="phFeed" tabindex="0" role="region"
+               aria-label="Video's van Contour, scroll of gebruik de pijltjestoetsen">
+          <article class="ph-slide" aria-label="Envision">
+            <video class="ph-video" muted loop playsinline preload="none"
+                   poster="project-assets/videos-web/posters/envision.webp"
+                   data-src="project-assets/videos-web/feed/envision.mp4"></video>
+            <span class="ph-views">Envision</span>
+          </article>
+          <article class="ph-slide" aria-label="Groep BDSV">
+            <video class="ph-video" muted loop playsinline preload="none"
+                   poster="project-assets/videos-web/posters/bdsv.webp"
+                   data-src="project-assets/videos-web/feed/bdsv.mp4"></video>
+            <span class="ph-views">+40.000 views</span>
+          </article>
+          <article class="ph-slide" aria-label="Seacoast">
+            <video class="ph-video" muted loop playsinline preload="none"
+                   poster="project-assets/videos-web/posters/seacoast.webp"
+                   data-src="project-assets/videos-web/feed/seacoast.mp4"></video>
+            <span class="ph-views">+105.000 views</span>
+          </article>
+          <article class="ph-slide" aria-label="Oryx">
+            <video class="ph-video" muted loop playsinline preload="none"
+                   poster="project-assets/videos-web/posters/oryx.webp"
+                   data-src="project-assets/videos-web/feed/oryx.mp4"></video>
+            <span class="ph-views">Oryx</span>
+          </article>
+          <article class="ph-slide" aria-label="Bacho Silent Disco">
+            <video class="ph-video" muted loop playsinline preload="none"
+                   poster="project-assets/videos-web/posters/abacho.webp"
+                   data-src="project-assets/videos-web/feed/abacho.mp4"></video>
+            <span class="ph-views">+28.000 views</span>
+          </article>
+          <article class="ph-slide" aria-label="Groep BDSV">
+            <video class="ph-video" muted loop playsinline preload="none"
+                   poster="project-assets/videos-web/posters/bdsv-inkomen.webp"
+                   data-src="project-assets/videos-web/feed/bdsv-inkomen.mp4"></video>
+            <span class="ph-views">Groep BDSV</span>
+          </article>
+          <article class="ph-slide" aria-label="Simpools">
+            <video class="ph-video" muted loop playsinline preload="none"
+                   poster="project-assets/videos-web/posters/simpools.webp"
+                   data-src="project-assets/videos-web/feed/simpools.mp4"></video>
+            <span class="ph-views">Simpools</span>
+          </article>
+          <article class="ph-slide" aria-label="Fred">
+            <video class="ph-video" muted loop playsinline preload="none"
+                   poster="project-assets/videos-web/posters/fred.webp"
+                   data-src="project-assets/videos-web/feed/fred.mp4"></video>
+            <span class="ph-views">Fred</span>
+          </article>
+          </div>
 
-      <div class="svc-slide">
-        <div class="svc-num">03</div>
-        <div class="svc-img-placeholder" id="svc-img-3"></div>
-        <div class="svc-tag">Fotografie</div>
-        <h3 class="svc-title">Foto Campagne</h3>
-        <p class="svc-desc">Een volledig uitgewerkte fotocampagne die uw merk visueel positioneert. Consistent, premium en klaar voor alle kanalen. Van website tot billboard. Dit omvat alles. Een shoot, professionele nabewerking tot volledig uitgewerkte foto ads om uw product of bedrijf optimaal in de markt te zetten.</p>
-        <ul class="svc-items">
-          <li>Volledige fotocampagne merk</li>
-          <li>Fotoreportage op locatie of studio</li>
-          <li>Professionele nabewerking</li>
-          <li>Klaar voor web, social & print</li>
-        </ul>
-        <div class="svc-footer">
-          <span class="svc-tag-pill">Fotografie</span>
-          <span class="svc-tag-pill">Campagne</span>
-          <span class="svc-tag-pill">Merkidentiteit</span>
-        </div>
-      </div>
+          <button class="ph-sound" id="phSound" type="button" aria-label="Geluid aanzetten" aria-pressed="false">
+            <svg class="ico-off" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+            <svg class="ico-on" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M16 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+          </button>
 
-      <div class="svc-slide">
-        <div class="svc-num">04</div>
-        <div class="svc-img-placeholder svc-has-media" id="svc-img-4">
-          <video class="svc-video" id="svc-video-4" muted loop playsinline preload="none" poster="project-assets/videos-web/posters/seacoast.webp">
-            <source src="project-assets/videos-web/seacoast-vertical.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="svc-tag">Luchtbeelden</div>
-        <h3 class="svc-title">High End Drone Footage</h3>
-        <p class="svc-desc">Spectaculaire luchtbeelden die uw locatie, event of productie van een andere dimensie tonen. Professionele droneopnames die instant impact creëren en uw beeldtaal naar een hoger niveau tillen.</p>
-        <ul class="svc-items">
-          <li>Certified drone operator</li>
-          <li>4K cinematic luchtbeelden</li>
-          <li>Event, locatie & landschapsshots</li>
-          <li>Vergunningen & planning inbegrepen</li>
-        </ul>
-        <div class="svc-footer">
-          <span class="svc-tag-pill">Drone</span>
-          <span class="svc-tag-pill">Luchtbeelden</span>
-          <span class="svc-tag-pill">4K</span>
-        </div>
-      </div>
+          <div class="ph-hint" id="phHint" aria-hidden="true">
+            <svg viewBox="0 0 20 32" width="18" height="29" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="1" y="1" width="18" height="30" rx="9"/>
+              <line class="ph-hint-dot" x1="10" y1="8" x2="10" y2="12" stroke-linecap="round" stroke-width="2.4"/>
+            </svg>
+            <span>Scroll</span>
+          </div>
 
-      <div class="svc-slide">
-        <div class="svc-num">05</div>
-        <div class="svc-img-placeholder svc-has-media" id="svc-img-5">
-          <video class="svc-video" id="svc-video-5" muted loop playsinline preload="none" poster="project-assets/videos-web/posters/oryx.webp">
-            <source src="project-assets/videos-web/oryx-vertical.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="svc-tag">Social Media</div>
-        <h3 class="svc-title">Short Form Content</h3>
-        <p class="svc-desc">Consistente, snelle content die uw merk zichtbaar houdt op sociale media. Reels, short-form video's en talking heads. wekelijks geleverd zonder dat u er zelf aan moet denken.</p>
-        <ul class="svc-items">
-          <li>Weekly reels & social video's</li>
-          <li>Talking heads & interviews</li>
-          <li>Geoptimaliseerd per platform</li>
-          <li>Beschikbaar via retainerformule</li>
-        </ul>
-        <div class="svc-footer">
-          <span class="svc-tag-pill">Reels</span>
-          <span class="svc-tag-pill">Instagram</span>
-          <span class="svc-tag-pill">LinkedIn</span>
-        </div>
-      </div>
+          <div class="ph-progress" aria-hidden="true"><i id="phProgress"></i></div>
 
-      <div class="svc-slide">
-        <div class="svc-num">06</div>
-        <div class="svc-img-placeholder svc-has-media" id="svc-img-6">
-          <video class="svc-video" id="svc-video-6" muted loop playsinline preload="none" poster="project-assets/videos-web/posters/abacho.webp">
-            <source src="project-assets/videos-web/abacho-vertical.mp4" type="video/mp4">
-          </video>
         </div>
-        <div class="svc-tag">Post-Productie</div>
-        <h3 class="svc-title">Editing & Animation</h3>
-        <p class="svc-desc">Van ruwe beelden naar een strak eindproduct. Professionele montage, motion graphics en animaties die uw boodschap versterken. Ook beschikbaar voor extern ruwe footage.</p>
-        <ul class="svc-items">
-          <li>Professionele videomontage</li>
-          <li>Motion graphics & animaties</li>
-          <li>Kleurcorrectie & geluidsmix</li>
-          <li>Ondertiteling & export per platform</li>
-        </ul>
-        <div class="svc-footer">
-          <span class="svc-tag-pill">Montage</span>
-          <span class="svc-tag-pill">Motion graphics</span>
-          <span class="svc-tag-pill">Animatie</span>
-        </div>
-      </div>
-
-      <div class="svc-slide">
-        <div class="svc-num">07</div>
-        <div class="svc-img-placeholder svc-has-media" id="svc-img-7">
-          <video class="svc-video" id="svc-video-7" muted loop playsinline preload="none" poster="project-assets/videos-web/posters/bdsv-inkomen.webp">
-            <source src="project-assets/videos-web/bdsv-inkomen-vertical.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="svc-tag">Audio & Video</div>
-        <h3 class="svc-title">Podcast Recording</h3>
-        <p class="svc-desc">Een visueel sterk podcast-format dat uw expertise toont en een echte following opbouwt. Wij verzorgen de opname, montage en distributie-klare uitwerking voor YouTube, Spotify en social media.</p>
-        <ul class="svc-items">
-          <li>Multi-camera opname in studio</li>
-          <li>Professionele audio & geluidsmix</li>
-          <li>Montage + highlight reels</li>
-          <li>Klaar voor alle platforms</li>
-        </ul>
-        <div class="svc-footer">
-          <span class="svc-tag-pill">Podcast</span>
-          <span class="svc-tag-pill">YouTube</span>
-          <span class="svc-tag-pill">Thought leadership</span>
-        </div>
-      </div>
-
-      <div class="svc-slide">
-        <div class="svc-num">08</div>
-        <div class="svc-img-placeholder svc-has-media" id="svc-img-8">
-          <video class="svc-video" id="svc-video-8" muted loop playsinline preload="none" poster="project-assets/videos-web/posters/simpools.webp">
-            <source src="project-assets/videos-web/simpools-vertical.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="svc-tag">People & Cultuur</div>
-        <h3 class="svc-title">Testimonial & Rekrutering</h3>
-        <p class="svc-desc">Authentieke klantgetuigenissen en recruteringsvideo's die vertrouwen bouwen. Echte mensen, echte verhalen. de krachtigste manier om nieuwe klanten of talent aan te trekken.</p>
-        <ul class="svc-items">
-          <li>Testimonial video per klant</li>
-          <li>Employer branding film</li>
-          <li>Interview & talking head opnames</li>
-          <li>Documentaire aanpak voor comfort</li>
-        </ul>
-        <div class="svc-footer">
-          <span class="svc-tag-pill">Testimonials</span>
-          <span class="svc-tag-pill">Rekrutering</span>
-          <span class="svc-tag-pill">Employer branding</span>
-        </div>
-      </div>
-
-      <div class="svc-slide">
-        <div class="svc-num">09</div>
-        <div class="svc-img-placeholder svc-has-media" id="svc-img-9">
-          <video class="svc-video" id="svc-video-9" muted loop playsinline preload="none" poster="project-assets/videos-web/posters/fred.webp">
-            <source src="project-assets/videos-web/fred-vertical.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="svc-tag">Muziek & Creatie</div>
-        <h3 class="svc-title">Creative Videoclips</h3>
-        <p class="svc-desc">Cinematische videoclips die een artiest of merk neerzetten zoals het hoort. met visie, emotie en een beeldtaal die bijblijft. Van concept tot eindmontage, volledig creatief uitgewerkt.</p>
-        <ul class="svc-items">
-          <li>Creatief concept & regie</li>
-          <li>Cinematische beeldtaal</li>
-          <li>Locatiescout & casting</li>
-          <li>Montage, kleur & sound design</li>
-        </ul>
-        <div class="svc-footer">
-          <span class="svc-tag-pill">Muziek</span>
-          <span class="svc-tag-pill">Creatief</span>
-          <span class="svc-tag-pill">Regie</span>
-        </div>
-      </div>
-
       </div>
     </div>
 
@@ -2446,28 +2312,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   border-bottom: 1px solid var(--border);
   margin-bottom: 0;
 }
-.slider-nav-btns {
-  display: flex;
-  gap: 12px;
-}
-.slider-nav-btn {
-  width: 64px; height: 64px;
-  border: 1px solid rgba(200,84,26,0.4);
-  background: rgba(200,84,26,0.08);
-  color: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: all 0.25s;
-  border-radius: 4px;
-}
-.slider-nav-btn:hover {
-  border-color: var(--orange);
-  background: rgba(200,84,26,0.2);
-  color: var(--orange);
-  transform: scale(1.05);
-}
-#svc-prev svg { transform: scaleX(-1); }
-
 .svc-layout {
   display: grid;
   grid-template-columns: minmax(300px, 0.8fr) 1.2fr;
@@ -2500,287 +2344,458 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 .svc-intro .btn-primary { margin-top: 36px; }
 
-.services-slider-viewport {
-  overflow: hidden;
-  padding: 64px 0;
-  perspective: 1750px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 775px;
-}
-
 @media (max-width: 1200px) {
   .svc-layout { grid-template-columns: 1fr; gap: 40px; }
   .svc-intro { max-width: 720px; }
 }
 
-.services-slider-track {
+/* ===================================================================
+   GSM-FEED — staat op de plek van de vroegere 3D-carrousel
+   =================================================================== */
+
+.phone-stage {
   position: relative;
-  width: 350px;
-  height: 625px;
-  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 0;
+  perspective: 1200px;
+  perspective-origin: 50% 45%;
+}
+
+/* warme gloed achter het toestel, zodat het van de donkere sectie loskomt */
+.phone-stage::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  width: clamp(420px, 42vw, 680px);
+  height: clamp(420px, 42vw, 680px);
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(circle, rgba(255,99,33,0.26) 0%, rgba(208,62,0,0.10) 34%, rgba(208,62,0,0) 66%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* losse schaduwlaag: schuift mee met de kanteling, waardoor de gsm zweeft */
+.phone-shadow {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: clamp(280px, 26vw, 400px);
+  aspect-ratio: 9 / 16;
+  transform: translate(-50%, -44%) scale(0.92);
+  border-radius: 48px;
+  background: radial-gradient(ellipse 62% 52% at 50% 60%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 46%, rgba(0,0,0,0) 74%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
   will-change: transform;
 }
 
-/* geluidsknop op de kaart: de site heeft cursor:none, dus dit is de aanwijzing dat je kan klikken */
-.svc-sound {
-  position: absolute;
-  bottom: 12px; right: 12px;
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  background: rgba(10,10,10,0.62);
-  border: 1px solid rgba(255,255,255,0.22);
-  color: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0;
-  transition: opacity 0.25s, background 0.25s, border-color 0.25s;
-  pointer-events: none;      /* de hele kaart is klikbaar */
-  z-index: 3;
-}
-.svc-slide:hover .svc-sound { opacity: 1; }
-.svc-sound .ico-on { display: none; }
-.svc-slide.svc-sound-on .svc-sound {
-  opacity: 1;
-  background: var(--orange);
-  border-color: var(--orange);
-}
-.svc-slide.svc-sound-on .svc-sound .ico-off { display: none; }
-.svc-slide.svc-sound-on .svc-sound .ico-on  { display: block; }
-
-.svc-slide {
-  position: absolute;
-  top: 0; left: 0;
-  width: 350px;
-  height: 625px;
-  background: var(--card);
-  border-radius: 16px;
-  overflow: hidden;
-  backface-visibility: visible;
-}
-
-.svc-num, .svc-tag, .svc-title, .svc-desc, .svc-items, .svc-footer { display: none; }
-
-.svc-tag {
-  font-family: var(--font-condensed);
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 3.5px;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 20px;
-}
-.svc-title {
-  font-family: var(--font-display);
-  font-size: 38px;
-  line-height: 1;
-  margin-bottom: 20px;
-  color: var(--white);
-}
-.svc-desc {
-  font-size: 15px;
-  line-height: 1.75;
-  color: var(--muted);
-  margin-bottom: 28px;
-  flex-grow: 1;
-}
-.svc-items {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 32px;
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--border);
-}
-.svc-items li {
-  font-family: var(--font-condensed);
-  font-size: 15px;
-  letter-spacing: 0.3px;
-  color: var(--muted-strong, rgba(200,196,188,0.7));
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.svc-items li::before {
-  content: '';
-  width: 18px; height: 1px;
-  background: var(--orange);
-  flex-shrink: 0;
-  opacity: 0.6;
-}
-.svc-footer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.svc-tag-pill {
-  font-family: var(--font-condensed);
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  padding: 4px 10px;
-  transition: all 0.2s;
-}
-.svc-slide:hover .svc-tag-pill {
-  border-color: rgba(200,84,26,0.2);
-  color: rgba(200,84,26,0.7);
-}
-
-.svc-progress-bar {
-  height: 1px;
-  background: var(--border);
-  margin: 0 48px;
+.phone {
   position: relative;
+  z-index: 1;
+  width: clamp(260px, 24vw, 372px);
+  aspect-ratio: 9 / 16;
+  border-radius: 46px;
+  padding: 10px;
+  background: linear-gradient(165deg, #1b1b1b 0%, #141414 38%, #0d0d0d 100%);
+  transform: translateZ(60px) rotateY(-12deg) rotateX(5deg) rotateZ(2deg);
+  will-change: transform;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 1px 0 0 rgba(255,255,255,0.10),
+    inset -1px 0 0 rgba(255,255,255,0.05),
+    0 0 0 1px rgba(255,255,255,0.09),
+    0 18px 34px -12px rgba(0,0,0,0.92),
+    0 46px 80px -22px rgba(0,0,0,0.8),
+    0 90px 150px -40px rgba(0,0,0,0.9),
+    -30px 0 80px -42px rgba(255,99,33,0.85),
+    22px 0 70px -50px rgba(255,214,184,0.35);
 }
-.svc-progress-fill {
-  height: 100%;
-  background: var(--orange);
-  transition: width 0.5s ease;
-  width: 11.11%;
+/* de zweefbeweging zit op een aparte laag, zodat de kanteling in JS
+   de transform van .phone kan overschrijven zonder te botsen */
+.phone-float { animation: phone-float 6s ease-in-out infinite; }
+@keyframes phone-float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -5px; }
 }
 
-.svc-img-placeholder {
-  width: 100%;
-  height: 100%;
-  background: rgba(255,255,255,0.03);
+.phone-screen {
+  position: relative;
+  width: 100%; height: 100%;
+  border-radius: 36px;
   overflow: hidden;
-  display: none;
+  background: #000;
+  isolation: isolate;
 }
-.svc-img-placeholder.svc-has-media {
-  display: block;
+/* schuine glans over het glas: laat het scherm als glas lezen in plaats van
+   als een plat vlak. Vangt geen klikken op. */
+.phone-screen::after {
+  content: '';
+  position: absolute; inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background: linear-gradient(118deg,
+    rgba(255,255,255,0.10) 0%,
+    rgba(255,255,255,0.04) 18%,
+    rgba(255,255,255,0) 36%,
+    rgba(255,255,255,0) 76%,
+    rgba(255,255,255,0.03) 100%);
 }
-.svc-img-placeholder img,
-.svc-video {
+/* donkere aanloop onderaan zodat de hint en de voortgangsbalk op elk beeld leesbaar zijn */
+.phone-screen::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 34%;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 42%, rgba(0,0,0,0) 100%);
+}
+
+/* ---- de feed ---- */
+.ph-feed {
+  position: absolute; inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  outline: none;
+}
+.ph-feed::-webkit-scrollbar { display: none; }
+.ph-feed:focus-visible { box-shadow: inset 0 0 0 2px var(--orange-light); }
+
+.ph-slide {
+  position: relative;
+  width: 100%; height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  background: #000;
+}
+.ph-video {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
 }
+
+/* viewspil bovenaan: hoort bij de slide en scrollt dus mee */
+.ph-views {
+  position: absolute;
+  top: 14px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-family: var(--font-condensed);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  white-space: nowrap;
+  color: #fff;
+  background: rgba(0,0,0,0.62);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 5px 13px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ---- vaste lagen over de feed ---- */
+.ph-sound {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 5;
+  width: 34px; height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  background: rgba(12,12,12,0.55);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: background 0.22s, border-color 0.22s, transform 0.22s;
+}
+.ph-sound:hover { transform: scale(1.08); }
+.ph-sound:focus-visible { outline: 2px solid var(--orange-light); outline-offset: 2px; }
+.ph-sound .ico-on { display: none; }
+.ph-sound.is-on { background: var(--orange); border-color: var(--orange); }
+.ph-sound.is-on .ico-off { display: none; }
+.ph-sound.is-on .ico-on  { display: block; }
+
+.ph-hint {
+  position: absolute;
+  bottom: 18px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  color: rgba(255,255,255,0.8);
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.ph-hint span {
+  font-family: var(--font-condensed);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.ph-hint-dot { animation: ph-hint-move 1.9s ease-in-out infinite; }
+@keyframes ph-hint-move {
+  0%, 100% { transform: translateY(0);   opacity: 1; }
+  55%      { transform: translateY(9px); opacity: 0.15; }
+}
+.ph-hint.is-gone { opacity: 0; }
+
+.ph-progress {
+  position: absolute;
+  left: 14px; right: 14px; bottom: 8px;
+  z-index: 4;
+  height: 2.5px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+  overflow: hidden;
+}
+.ph-progress i {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: #fff;
+}
+
+/* ---- tablet ---- */
+@media (max-width: 1200px) {
+  .phone-stage { padding: 24px 0 8px; }
+}
+
+/* ---- telefoon ---- */
+@media (max-width: 900px) {
+  .phone-stage { perspective: none; padding: 12px 0 4px; }
+  .phone {
+    width: min(74vw, 340px);
+    transform: rotateZ(1.2deg);          /* vaste lichte tilt, geen muisvolging */
+    border-radius: 40px;
+    padding: 8px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.2),
+      0 0 0 1px rgba(255,255,255,0.08),
+      0 14px 26px -10px rgba(0,0,0,0.9),
+      0 40px 80px -28px rgba(0,0,0,0.8);
+  }
+  .phone-float { animation: none; }
+  .phone-screen { border-radius: 32px; }
+  .phone-shadow { width: min(74vw, 340px); filter: blur(28px); transform: translate(-50%, -43%) scale(0.9); }
+  .phone-stage::before { width: 118vw; height: 118vw; }
+  .ph-sound { width: 38px; height: 38px; top: 10px; right: 10px; }
+  .ph-views { font-size: 11.5px; top: 12px; }
+  /* Aan het begin en einde van de feed mag de veeg weer de pagina scrollen,
+     zodat je met je duim niet in de gsm blijft hangen. */
+  .ph-feed { overscroll-behavior-y: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-float { animation: none; }
+  .phone { transform: rotateY(-8deg) rotateX(3deg); }
+  .ph-feed { scroll-behavior: auto; }
+  .ph-hint-dot { animation: none; }
+}
+
 </style>
 
 <script>
-(function() {
-  const track = document.getElementById('svcTrack');
-  const all = Array.from(track.querySelectorAll('.svc-slide'));
-  const slides = all.filter(s => s.querySelector('.svc-has-media'));
-  all.forEach(s => { if (!slides.includes(s)) s.remove(); });
+/* GSM-feed: verticaal scrollen door de video's, zoals in een reels-app.
+   Alleen de actieve video en zijn buren worden ingeladen. */
+(function () {
+  var stage   = document.getElementById('phoneStage');
+  var phone   = document.getElementById('phone');
+  var shadow  = stage && stage.querySelector('.phone-shadow');
+  var feed    = document.getElementById('phFeed');
+  var soundBt = document.getElementById('phSound');
+  var hint    = document.getElementById('phHint');
+  var bar     = document.getElementById('phProgress');
+  if (!stage || !feed) return;
 
-  const n = slides.length;
-  const angle = 360 / n;
-  let radius = 0;
+  var slides = Array.prototype.slice.call(feed.querySelectorAll('.ph-slide'));
+  var videos = slides.map(function (s) { return s.querySelector('.ph-video'); });
+  var actief = 0;
+  var geluidAan = false;
+  var inBeeld = false;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var touch  = window.matchMedia('(max-width: 900px), (hover: none)').matches;
 
-  function layout() {
-    const cardW = slides[0].offsetWidth || 280;
-    radius = Math.round((cardW / 2) / Math.tan(Math.PI / n)) + Math.round(cardW * 0.43);
-    slides.forEach((s, i) => {
-      s.style.transform = 'rotateY(' + (i * angle) + 'deg) translateZ(' + radius + 'px)';
+  /* ---------- inladen: actieve video plus de buren ---------- */
+  function zorgVoorBron(i) {
+    var v = videos[i];
+    if (!v || v.src) return;
+    if (v.dataset.src) { v.src = v.dataset.src; v.preload = 'auto'; v.load(); }
+  }
+  function laadRondom(i) {
+    [i, i + 1, i - 1].forEach(function (k) {
+      if (k >= 0 && k < videos.length) zorgVoorBron(k);
     });
   }
-  layout();
-  window.addEventListener('resize', layout);
 
-  let rot = 0;
-  const speed = 0.08;
-  let hovered = false;
-  let inView = false;
-  let rafId = null;
-  let soundOn = null;          // index van de kaart die geluid geeft, of null
-
-  track.addEventListener('mouseenter', () => { hovered = true; });
-  track.addEventListener('mouseleave', () => { hovered = false; });
-
-  function tick() {
-    // stil blijven staan zolang een kaart geluid geeft, zodat die niet wegdraait
-    if (!hovered && soundOn === null) rot -= speed;
-    track.style.transform = 'translateZ(-' + radius + 'px) rotateY(' + rot + 'deg)';
-    rafId = requestAnimationFrame(tick);
+  /* ---------- afspelen ---------- */
+  /* Sommige browsers weigeren een video mét geluid te starten. Lukt dat niet,
+     dan zetten we hem alsnog stil door: beter geluidloos dan een stilstaand beeld. */
+  function start(v) {
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {
+      if (!v.muted) {
+        v.muted = true;
+        geluidAan = false;
+        if (soundBt) {
+          soundBt.classList.remove('is-on');
+          soundBt.setAttribute('aria-pressed', 'false');
+          soundBt.setAttribute('aria-label', 'Geluid aanzetten');
+        }
+        var q = v.play(); if (q && q.catch) q.catch(function () {});
+      }
+    });
   }
 
-  // --- playback: niets laden tot de sectie in beeld komt ---
-  // Op smalle schermen spelen alleen de kaarten die naar de kijker gericht zijn,
-  // zodat een telefoon niet 8 videostreams tegelijk moet decoderen.
-  const videos = slides.map(s => s.querySelector('.svc-video')).filter(Boolean);
-  const frontOnly = () => window.matchMedia('(max-width: 900px)').matches;
-
-  function norm(deg) { const d = ((deg + 180) % 360 + 360) % 360 - 180; return Math.abs(d); }
-
-  function syncPlayback() {
-    videos.forEach((v, i) => {
-      let want = inView;
-      if (want && frontOnly() && i !== soundOn) {
-        const facing = norm(i * angle + rot);
-        // hysterese: starten binnen 70 graden, pas stoppen voorbij 110
-        want = v.paused ? facing < 70 : facing < 110;
-      }
-      if (want) {
-        if (v.preload === 'none') v.preload = 'auto';
-        if (v.paused) v.play().catch(() => {});
+  function speelAf() {
+    videos.forEach(function (v, i) {
+      if (!v) return;
+      if (i === actief && inBeeld) {
+        v.muted = !geluidAan;
+        if (v.paused) start(v);
       } else if (!v.paused) {
         v.pause();
+        if (i !== actief) { try { v.currentTime = 0; } catch (e) {} }
       }
-      v.muted = (i !== soundOn);   // enkel de aangeklikte kaart geeft geluid
     });
   }
 
-  // --- klik op een kaart = geluid aan (nog eens klikken = weer stil) ---
-  function setSound(i) {
-    soundOn = (soundOn === i) ? null : i;
-    if (soundOn !== null) {
-      const v = videos[soundOn];
-      if (v.preload === 'none') v.preload = 'auto';
-      v.muted = false;
-      v.play().catch(() => {});
-    }
-    slides.forEach((s, k) => s.classList.toggle('svc-sound-on', k === soundOn));
-    syncPlayback();
+  function zetActief(i) {
+    if (i === actief) return;
+    actief = i;
+    laadRondom(i);
+    speelAf();
   }
 
-  slides.forEach((s, i) => {
-    const btn = document.createElement('div');
-    btn.className = 'svc-sound';
-    btn.innerHTML =
-      '<svg class="ico-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
-        '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>' +
-      '<svg class="ico-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
-        '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M16 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
-    s.appendChild(btn);
-    s.addEventListener('click', () => setSound(i));
+  /* welke slide staat voor minstens 60% in het scherm */
+  var slideObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && e.intersectionRatio >= 0.6) {
+        zetActief(slides.indexOf(e.target));
+      }
+    });
+  }, { root: feed, threshold: [0.6] });
+  slides.forEach(function (s) { slideObs.observe(s); });
+
+  /* de hele gsm pas aanzetten als de sectie in beeld komt */
+  new IntersectionObserver(function (e) {
+    inBeeld = e[0].isIntersecting;
+    if (inBeeld) laadRondom(actief);
+    speelAf();
+  }, { rootMargin: '700px 0px', threshold: 0 }).observe(stage);
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) videos.forEach(function (v) { if (v && !v.paused) v.pause(); });
+    else speelAf();
   });
 
-  const sectionObs = new IntersectionObserver(entries => {
-    inView = entries[0].isIntersecting;
-    if (!inView && soundOn !== null) {
-      soundOn = null;
-      slides.forEach(s => s.classList.remove('svc-sound-on'));
+  /* ---------- geluid ---------- */
+  if (soundBt) {
+    soundBt.addEventListener('click', function () {
+      geluidAan = !geluidAan;
+      soundBt.classList.toggle('is-on', geluidAan);
+      soundBt.setAttribute('aria-pressed', geluidAan ? 'true' : 'false');
+      soundBt.setAttribute('aria-label', geluidAan ? 'Geluid uitzetten' : 'Geluid aanzetten');
+      var v = videos[actief];
+      if (v) { v.muted = !geluidAan; start(v); }
+    });
+  }
+
+  /* ---------- voortgangsbalk ---------- */
+  function tekenBalk() {
+    var v = videos[actief];
+    if (bar && v && v.duration) bar.style.width = (v.currentTime / v.duration * 100) + '%';
+    requestAnimationFrame(tekenBalk);
+  }
+  requestAnimationFrame(tekenBalk);
+
+  /* ---------- scroll-hint ---------- */
+  var hintWeg = false;
+  function verbergHint() {
+    if (hintWeg || !hint) return;
+    hintWeg = true;
+    hint.classList.add('is-gone');
+  }
+  if (hint && touch) hint.querySelector('span').textContent = 'Swipe';
+  feed.addEventListener('scroll', verbergHint, { once: true, passive: true });
+  feed.addEventListener('touchstart', verbergHint, { once: true, passive: true });
+
+  /* ---------- muiswiel: in de feed scrollen, aan de uiteinden weer de pagina ---------- */
+  /* De feed heeft overscroll-behavior: contain, dus de pagina schuift niet mee.
+     Aan het begin en het einde geven we de beweging bewust terug aan de pagina,
+     zodat de bezoeker niet in de gsm vast komt te zitten. */
+  feed.addEventListener('wheel', function (e) {
+    var boven = feed.scrollTop <= 1;
+    var onder = feed.scrollTop + feed.clientHeight >= feed.scrollHeight - 1;
+    if ((boven && e.deltaY < 0) || (onder && e.deltaY > 0)) {
+      window.scrollBy(0, e.deltaY);
     }
-    if (inView) {
-      if (rafId === null) rafId = requestAnimationFrame(tick);
-    } else if (rafId !== null) {
-      cancelAnimationFrame(rafId); rafId = null;   // geen rAF als de sectie weg is
+  }, { passive: true });
+
+  /* ---------- toetsenbord ---------- */
+  feed.addEventListener('keydown', function (e) {
+    var richting = e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0;
+    if (!richting) return;
+    var doel = actief + richting;
+    if (doel < 0 || doel >= slides.length) return;   // aan het einde: pagina mag scrollen
+    e.preventDefault();
+    feed.scrollTo({ top: doel * feed.clientHeight, behavior: reduce ? 'auto' : 'smooth' });
+    verbergHint();
+  });
+
+  /* ---------- kanteling die de muis volgt ---------- */
+  var BASIS = ' rotateY(-12deg) rotateX(5deg) rotateZ(2deg)';
+  if (!touch && !reduce) {
+    phone.classList.add('phone-float');
+    var sectie = document.getElementById('diensten') || stage;
+    var doelX = 0, doelY = 0, nuX = 0, nuY = 0, raf = null;
+
+    sectie.addEventListener('mousemove', function (e) {
+      var r = sectie.getBoundingClientRect();
+      doelY = ((e.clientX - r.left) / r.width  - 0.5) * 2;   // -1 .. 1
+      doelX = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+      if (raf === null) raf = requestAnimationFrame(volg);
+    }, { passive: true });
+
+    sectie.addEventListener('mouseleave', function () {
+      doelX = 0; doelY = 0;
+      if (raf === null) raf = requestAnimationFrame(volg);
+    });
+
+    function volg() {
+      nuX += (doelX - nuX) * 0.08;      // nalopen, geen schokken
+      nuY += (doelY - nuY) * 0.08;
+      var rx = (-nuX * 8).toFixed(2);   // max 8 graden extra
+      var ry = ( nuY * 8).toFixed(2);
+      phone.style.transform =
+        'translateZ(60px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)' + BASIS;
+      if (shadow) {
+        // de schaduw schuift minder ver: parallax tussen toestel en ondergrond
+        shadow.style.transform =
+          'translate(calc(-50% + ' + (nuY * 16).toFixed(1) + 'px), calc(-44% + ' +
+          (nuX * 10).toFixed(1) + 'px)) scale(0.92)';
+      }
+      if (Math.abs(doelX - nuX) > 0.001 || Math.abs(doelY - nuY) > 0.001) {
+        raf = requestAnimationFrame(volg);
+      } else {
+        raf = null;
+      }
     }
-    syncPlayback();
-  }, { rootMargin: '200px 0px', threshold: 0 });
-  sectionObs.observe(document.getElementById('diensten'));
-
-  setInterval(syncPlayback, 400);
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      soundOn = null;
-      slides.forEach(s => s.classList.remove('svc-sound-on'));
-      videos.forEach(v => v.pause());
-    } else syncPlayback();
-  });
-
-  // eerste gebruikersinteractie deblokkeert autoplay waar de browser dat vereist
-  ['touchstart','click','scroll'].forEach(evt => {
-    document.addEventListener(evt, function u() {
-      syncPlayback();
-      document.removeEventListener(evt, u);
-    }, { once: true, passive: true });
-  });
+  }
 })();
 </script>
 
