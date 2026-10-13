@@ -2225,50 +2225,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                echte cijfers hebt. -->
           <div class="ph-feed" id="phFeed" tabindex="0" role="region"
                aria-label="Video's van Contour, scroll of gebruik de pijltjestoetsen">
+          <article class="ph-slide" aria-label="Contour, eigen ad">
+            <video class="ph-video" muted playsinline preload="none"
+                   poster="project-assets/videos-web/posters/contour.webp"
+                   data-src="project-assets/videos-web/feed/contour.mp4"></video>
+            <span class="ph-views">Contour</span>
+          </article>
           <article class="ph-slide" aria-label="Envision">
-            <video class="ph-video" muted loop playsinline preload="none"
+            <video class="ph-video" muted playsinline preload="none"
                    poster="project-assets/videos-web/posters/envision.webp"
                    data-src="project-assets/videos-web/feed/envision.mp4"></video>
             <span class="ph-views">Envision</span>
           </article>
           <article class="ph-slide" aria-label="Groep BDSV">
-            <video class="ph-video" muted loop playsinline preload="none"
+            <video class="ph-video" muted playsinline preload="none"
                    poster="project-assets/videos-web/posters/bdsv.webp"
                    data-src="project-assets/videos-web/feed/bdsv.mp4"></video>
             <span class="ph-views">+40.000 views</span>
           </article>
           <article class="ph-slide" aria-label="Seacoast">
-            <video class="ph-video" muted loop playsinline preload="none"
+            <video class="ph-video" muted playsinline preload="none"
                    poster="project-assets/videos-web/posters/seacoast.webp"
                    data-src="project-assets/videos-web/feed/seacoast.mp4"></video>
             <span class="ph-views">+105.000 views</span>
           </article>
           <article class="ph-slide" aria-label="Oryx">
-            <video class="ph-video" muted loop playsinline preload="none"
+            <video class="ph-video" muted playsinline preload="none"
                    poster="project-assets/videos-web/posters/oryx.webp"
                    data-src="project-assets/videos-web/feed/oryx.mp4"></video>
             <span class="ph-views">Oryx</span>
           </article>
           <article class="ph-slide" aria-label="Bacho Silent Disco">
-            <video class="ph-video" muted loop playsinline preload="none"
+            <video class="ph-video" muted playsinline preload="none"
                    poster="project-assets/videos-web/posters/abacho.webp"
                    data-src="project-assets/videos-web/feed/abacho.mp4"></video>
             <span class="ph-views">+28.000 views</span>
           </article>
           <article class="ph-slide" aria-label="Groep BDSV">
-            <video class="ph-video" muted loop playsinline preload="none"
+            <video class="ph-video" muted playsinline preload="none"
                    poster="project-assets/videos-web/posters/bdsv-inkomen.webp"
                    data-src="project-assets/videos-web/feed/bdsv-inkomen.mp4"></video>
             <span class="ph-views">Groep BDSV</span>
           </article>
           <article class="ph-slide" aria-label="Simpools">
-            <video class="ph-video" muted loop playsinline preload="none"
+            <video class="ph-video" muted playsinline preload="none"
                    poster="project-assets/videos-web/posters/simpools.webp"
                    data-src="project-assets/videos-web/feed/simpools.mp4"></video>
             <span class="ph-views">Simpools</span>
           </article>
           <article class="ph-slide" aria-label="Fred">
-            <video class="ph-video" muted loop playsinline preload="none"
+            <video class="ph-video" muted playsinline preload="none"
                    poster="project-assets/videos-web/posters/fred.webp"
                    data-src="project-assets/videos-web/feed/fred.mp4"></video>
             <span class="ph-views">Fred</span>
@@ -2682,9 +2688,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function zetActief(i) {
     if (i === actief) return;
     actief = i;
+    afgelopen = false;
     laadRondom(i);
     speelAf();
   }
+
+  function gaNaar(i) {
+    if (i < 0 || i >= slides.length) return;
+    /* Elke slide is een snap-stop, dus een vloeiende scroll over meerdere
+       video's blijft onderweg haken. Zo'n sprong doen we daarom in één keer. */
+    var top = i * feed.clientHeight;
+    if (reduce || Math.abs(i - actief) > 1) {
+      /* De feed staat in CSS op smooth, en 'auto' volgt juist die instelling.
+         Voor een sprong ineens zetten we smooth daarom even opzij. */
+      var vorige = feed.style.scrollBehavior;
+      feed.style.scrollBehavior = 'auto';
+      feed.scrollTop = top;
+      feed.style.scrollBehavior = vorige;
+    } else {
+      feed.scrollTo({ top: top, behavior: 'smooth' });
+    }
+  }
+
+  /* Is de video uit, dan schuift de feed door naar de volgende. Na de laatste
+     begint hij opnieuw bovenaan. */
+  var afgelopen = false;
+  function volgende() {
+    if (afgelopen) return;
+    afgelopen = true;
+    gaNaar(actief + 1 < slides.length ? actief + 1 : 0);
+  }
+  videos.forEach(function (v, i) {
+    if (!v) return;
+    v.addEventListener('ended', function () { if (i === actief && inBeeld) volgende(); });
+  });
 
   /* welke slide staat voor minstens 60% in het scherm */
   var slideObs = new IntersectionObserver(function (entries) {
@@ -2723,7 +2760,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* ---------- voortgangsbalk ---------- */
   function tekenBalk() {
     var v = videos[actief];
-    if (bar && v && v.duration) bar.style.width = (v.currentTime / v.duration * 100) + '%';
+    if (v && v.duration) {
+      if (bar) bar.style.width = (v.currentTime / v.duration * 100) + '%';
+      // vangnet voor browsers waar 'ended' uitblijft
+      if (inBeeld && !v.paused && v.currentTime >= v.duration - 0.15) volgende();
+    }
     requestAnimationFrame(tekenBalk);
   }
   requestAnimationFrame(tekenBalk);
@@ -2758,7 +2799,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var doel = actief + richting;
     if (doel < 0 || doel >= slides.length) return;   // aan het einde: pagina mag scrollen
     e.preventDefault();
-    feed.scrollTo({ top: doel * feed.clientHeight, behavior: reduce ? 'auto' : 'smooth' });
+    gaNaar(doel);
     verbergHint();
   });
 
