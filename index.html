@@ -1435,10 +1435,10 @@
 
   /* warme sfeer uit de hero doorgetrokken over de secties eronder */
   .services-slider-section,
-  .pricing-section,
+  .uitwerking-section,
   .portfolio-section { position: relative; }
   .services-slider-section::before,
-  .pricing-section::before,
+  .uitwerking-section::before,
   .portfolio-section::before {
     content: '';
     position: absolute;
@@ -1449,7 +1449,7 @@
   .services-slider-section::before {
     background: radial-gradient(ellipse 52% 46% at 11% 16%, rgba(226,116,46,0.070) 0%, transparent 62%);
   }
-  .pricing-section::before {
+  .uitwerking-section::before {
     background: radial-gradient(ellipse 48% 44% at 89% 24%, rgba(226,116,46,0.060) 0%, transparent 62%);
   }
   .portfolio-section::before {
@@ -1458,7 +1458,7 @@
   /* inhoud boven de gloed houden */
   .services-slider-header,
   .svc-layout,
-  .pricing-inner,
+  .uitwerking-inner,
   .portfolio-inner { position: relative; z-index: 1; }
 
   /* FOOTER */
@@ -2848,205 +2848,222 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- FORMULES -->
 <style>
-.pricing-section {
+/* ===================================================================
+   UITWERKING — acht bouwstenen, komen van onder in beeld
+   =================================================================== */
+
+.uitwerking-section {
   padding: 120px 0;
   border-bottom: 1px solid var(--border);
 }
-.pricing-inner { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+.uitwerking-inner { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
 
-.pricing-head { margin-bottom: 64px; }
-.pricing-head .section-title { margin-top: 4px; }
-.pricing-sub {
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 300;
-  color: var(--muted);
-  max-width: 560px;
-  line-height: 1.7;
-  margin-top: 20px;
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 900px;
-  margin: 0 auto;
-  gap: 20px;
-  align-items: stretch;   /* alle kaarten even hoog */
-}
-
-.price-card {
-  position: relative;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 38px 32px;
-  display: flex;
-  flex-direction: column;
-  transition: border-color 0.3s, background 0.3s;
-}
-.price-card:hover { border-color: rgba(208,62,0,0.35); }
-
-.price-card-featured {
-  background: var(--dark);
-  border-color: rgba(208,62,0,0.45);
-  box-shadow: 0 0 0 1px rgba(208,62,0,0.12), 0 24px 60px -24px rgba(208,62,0,0.35);
-}
-
-.price-name {
-  font-family: var(--font-display);
-  font-size: clamp(26px, 2.4vw, 34px);
-  line-height: 1.05;
-  letter-spacing: 1px;
-  color: var(--white);
-  min-height: 2.1em;      /* houdt de knoppen op dezelfde lijn bij een titel van twee regels */
-}
-
-.price-cta {
-  display: block;
-  margin: 32px 0 32px;
+.uitwerking-head {
   text-align: center;
-  padding: 15px 24px;
-  font-family: var(--font-condensed);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 50px;
-  transition: all 0.25s;
-  border: 1px solid var(--border);
-  color: var(--white);
+  margin-bottom: 64px;
 }
-.price-cta:hover { border-color: var(--white); }
-.price-cta-solid {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: var(--white);
+.uw-title { margin-top: 4px; }
+.uw-title em {
+  font-style: normal;
+  color: var(--orange);
 }
-.price-cta-solid:hover { background: var(--orange-light); border-color: var(--orange-light); }
 
-.price-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.uw-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
-.price-list li {
+
+.uw-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  border-radius: 16px;
+  background:
+    linear-gradient(145deg, rgba(208,62,0,0.10) 0%, rgba(208,62,0,0.03) 42%, rgba(255,255,255,0.012) 100%),
+    var(--card);
+  border: 1px solid rgba(255,214,184,0.09);
+  /* opacity en transform horen bij het inkomen (.reveal), de rest bij hover.
+     Stond opacity hier niet bij, dan sloeg het vakje ineens om i.p.v. te vervagen. */
+  transition: opacity 0.7s ease, transform 0.7s ease,
+              border-color 0.3s ease, background 0.3s ease, translate 0.3s ease;
+}
+/* de hoverlift gebruikt translate, zodat hij de reveal-transform niet in de weg zit */
+.uw-card:hover {
+  border-color: rgba(208,62,0,0.4);
+  translate: 0 -3px;
+}
+
+.uw-icon {
+  flex: none;
+  width: 52px; height: 52px;
+  border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--orange-light);
+  background: linear-gradient(150deg, rgba(208,62,0,0.3) 0%, rgba(208,62,0,0.10) 100%);
+  border: 1px solid rgba(208,62,0,0.35);
+}
+
+.uw-text { min-width: 0; }
+.uw-text h3 {
+  font-family: var(--font-condensed);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.1;
+}
+.uw-text p {
   font-family: var(--font-body);
   font-size: 14.5px;
   font-weight: 300;
   line-height: 1.5;
   color: var(--muted);
+  margin-top: 6px;
+}
+
+/* de vakjes komen een voor een van onder naar boven in beeld */
+.uw-grid .uw-card.reveal { transform: translateY(26px); }
+.uw-grid .uw-card.reveal.visible { transform: translateY(0); }
+.uw-grid .uw-card:nth-child(1)  { transition-delay: 0s,    0s,    0s }
+.uw-grid .uw-card:nth-child(2)  { transition-delay: 0.07s, 0.07s, 0s, 0s, 0s }
+.uw-grid .uw-card:nth-child(3)  { transition-delay: 0.14s, 0.14s, 0s, 0s, 0s }
+.uw-grid .uw-card:nth-child(4)  { transition-delay: 0.21s, 0.21s, 0s, 0s, 0s }
+.uw-grid .uw-card:nth-child(5)  { transition-delay: 0.28s, 0.28s, 0s, 0s, 0s }
+.uw-grid .uw-card:nth-child(6)  { transition-delay: 0.35s, 0.35s, 0s, 0s, 0s }
+.uw-grid .uw-card:nth-child(7)  { transition-delay: 0.42s, 0.42s, 0s, 0s, 0s }
+.uw-grid .uw-card:nth-child(8)  { transition-delay: 0.49s, 0.49s, 0s, 0s, 0s }
+
+.uw-cta {
   display: flex;
-  align-items: flex-start;
-  gap: 11px;
+  justify-content: center;
+  margin-top: 56px;
 }
-.price-list li::before {
-  content: '✓';
-  color: var(--orange);
-  font-size: 13px;
-  line-height: 1.55;
-  flex-shrink: 0;
+.uw-cta .btn-primary { text-align: center; }
+
+@media (max-width: 1240px) {
+  .uw-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-.price-note {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 1.6;
-  color: var(--muted);
-  opacity: 0.62;
-  margin-top: 18px;
-}
-
-.price-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 30px 0 24px;
-}
-.price-ideal-label {
-  font-family: var(--font-condensed);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 16px;
-}
-
-@media (max-width: 1180px) {
-  .pricing-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-}
-@media (max-width: 760px) {
-  .pricing-grid { grid-template-columns: 1fr; gap: 32px; }
-}
 @media (max-width: 768px) {
-  .pricing-section { padding: 80px 0; }
-  .pricing-inner { padding: 0 24px; }
-  .pricing-head { margin-bottom: 40px; }
-  .price-card { padding: 40px 26px 32px; }
+  .uitwerking-section { padding: 80px 0; }
+  .uitwerking-inner { padding: 0 24px; }
+  .uitwerking-head { margin-bottom: 40px; text-align: left; }
+  .uw-grid { grid-template-columns: 1fr; gap: 14px; }
+  .uw-card { padding: 18px 18px; gap: 15px; }
+  .uw-icon { width: 46px; height: 46px; border-radius: 12px; }
+  .uw-text h3 { font-size: 18px; letter-spacing: 1px; }
+  .uw-text p { font-size: 14px; }
+  .uw-cta { margin-top: 36px; }
+  .uw-cta .btn-primary { font-size: 13px; letter-spacing: 1.6px; padding: 15px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uw-grid .uw-card { transition-delay: 0s !important; }
+  .uw-card:hover { translate: none; }
 }
 </style>
 
-<section id="formules" class="pricing-section">
-  <div class="pricing-inner">
+<section id="formules" class="uitwerking-section">
+  <div class="uitwerking-inner">
 
-    <div class="pricing-head reveal">
-      <p class="section-tag">02. Formules</p>
-      <h2 class="section-title">Kies het systeem<br>dat bij jou past</h2>
-      <p class="pricing-sub">Twee manieren om met video te groeien: van losse advertenties tot het volledige systeem eromheen.</p>
+    <div class="uitwerking-head reveal">
+      <p class="section-tag">02. Uitwerking</p>
+      <h2 class="section-title uw-title">Van strategische video-ads<br><em>naar meer klanten.</em></h2>
     </div>
 
-    <div class="pricing-grid">
-
-      <!-- Optie 1 -->
-      <div class="price-card reveal">
-        <h3 class="price-name">Video-advertenties</h3>
-        <a href="#contact" class="price-cta">Kies dit pakket</a>
-        <ul class="price-list">
-          <li>3 doelgroepgerichte video-advertenties per maand</li>
-          <li>AI-integratie in jouw advertenties</li>
-          <li>Maandelijkse analyse van de aangeleverde data</li>
-          <li>Tracking + bronregistratie</li>
-          <li>Maandelijkse follow-up meeting</li>
-        </ul>
-        <p class="price-note">Meta- en Google Ads-beheer zit niet in dit pakket: de performance houd je zelf in handen.</p>
-        <div class="price-divider"></div>
-        <p class="price-ideal-label">Ideaal om</p>
-        <ul class="price-list">
-          <li>Zichtbaar te zijn bij het juiste doelpubliek</li>
-          <li>Extra instroom aan klanten en afspraken te voorzien</li>
-        </ul>
+    <div class="uw-grid">
+      <div class="uw-card reveal">
+        <span class="uw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4L21 21"/><path d="M8 11.5l2 2 3.5-4"/></svg>
+        </span>
+        <div class="uw-text">
+          <h3>Onderzoek &amp; strategie</h3>
+          <p>De basis onder elke ad</p>
+        </div>
       </div>
-
-      <!-- Optie 2 -->
-      <div class="price-card price-card-featured reveal reveal-delay-1">
-        <h3 class="price-name">Videomarketing als meetbaar systeem</h3>
-        <a href="#contact" class="price-cta price-cta-solid">Start mijn traject</a>
-        <ul class="price-list">
-          <li>3 doelgroepgerichte video-advertenties per maand</li>
-          <li>Meta- en/of Google Ads-beheer</li>
-          <li>Eigen conversatiegerichte landingspagina</li>
-          <li>Eigen CRM en 1 lead-pipeline</li>
-          <li>Tracking en bronregistratie</li>
-          <li>Automatische opslag van alle leads, afspraken en conversaties</li>
-          <li>Directe notificatie bij een nieuwe lead</li>
-          <li>Bevestigingsmail naar de lead</li>
-          <li>Lead routing en overdracht naar een medewerker</li>
-          <li>Basis-dashboard met leads</li>
-          <li>Totale onboarding 1-op-1: hoe gebruik je dit systeem</li>
-        </ul>
-        <div class="price-divider"></div>
-        <p class="price-ideal-label">Ideaal om</p>
-        <ul class="price-list">
-          <li>Nieuwe commerci&euml;le opportuniteiten te cre&euml;ren</li>
-          <li>Te ontdekken welke groeipaden het meest rendabel en schaalbaar zijn</li>
-          <li>Marktinformatie te verzamelen over welke doelgroepen, problemen en boodschappen het sterkst converteren</li>
-        </ul>
+      <div class="uw-card reveal">
+        <span class="uw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg>
+        </span>
+        <div class="uw-text">
+          <h3>Video-ads</h3>
+          <p>Script, opname &amp; montage</p>
+        </div>
       </div>
-
+      <div class="uw-card reveal">
+        <span class="uw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 17l4.5-4.5 3.5 3.5 3-3L20 17"/></svg>
+        </span>
+        <div class="uw-text">
+          <h3>Foto-ads</h3>
+          <p>Visuals die de scroll stoppen</p>
+        </div>
+      </div>
+      <div class="uw-card reveal">
+        <span class="uw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/><path d="M6.5 6.6h.01M9 6.6h.01"/><path d="M7 13h6M7 16.3h9"/></svg>
+        </span>
+        <div class="uw-text">
+          <h3>Landingspagina</h3>
+          <p>Bezoekers worden leads</p>
+        </div>
+      </div>
+      <div class="uw-card reveal">
+        <span class="uw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12.6C10.4 9.5 9 7.8 7 7.8c-2.1 0-3.6 1.9-3.6 4.3S4.9 16.4 7 16.4c2 0 3.4-1.9 5-5 1.6-3.1 3-4.6 5-4.6 2.1 0 3.6 1.9 3.6 4.3s-1.5 4.3-3.6 4.3c-2 0-3.4-1.7-5-4.8z"/></svg>
+        </span>
+        <div class="uw-text">
+          <h3>Meta Ads</h3>
+          <p>Facebook &amp; Instagram</p>
+        </div>
+      </div>
+      <div class="uw-card reveal">
+        <span class="uw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="6" rx="3"/><circle cx="7.2" cy="8" r="1.5"/><path d="M4 15h13M4 18.5h9"/></svg>
+        </span>
+        <div class="uw-text">
+          <h3>Google Ads</h3>
+          <p>Gevonden worden op het juiste moment</p>
+        </div>
+      </div>
+      <div class="uw-card reveal">
+        <span class="uw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="7.6" cy="9" r="1.1"/><circle cx="7.6" cy="15" r="1.1"/><path d="M11 9h6M11 15h6"/></svg>
+        </span>
+        <div class="uw-text">
+          <h3>Eigen CRM-systeem</h3>
+          <p>Elke lead op &eacute;&eacute;n plek</p>
+        </div>
+      </div>
+      <div class="uw-card reveal">
+        <span class="uw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 13.5A8.5 8.5 0 0 1 5.9 18.4"/><path d="M3.6 10.5A8.5 8.5 0 0 1 18.1 5.6"/><path d="M18.3 2.6v3.2h-3.2M5.7 21.4v-3.2h3.2"/></svg>
+        </span>
+        <div class="uw-text">
+          <h3>Beheer &amp; follow-up</h3>
+          <p>We blijven bijsturen en opvolgen</p>
+        </div>
+      </div>
     </div>
+
+    <div class="uw-cta reveal">
+      <a href="#contact" class="btn-primary">
+        Laat jou ook ontzorgen met video voorop
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M10.5 1L15.5 6M15.5 6L10.5 11M15.5 6H1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -3376,7 +3393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if (window.matchMedia('(max-width: 900px)').matches ||
       window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const targets = ['.services-slider-section', '.pricing-section', '.portfolio-section'];
+  const targets = ['.services-slider-section', '.uitwerking-section', '.portfolio-section'];
   let seed = 20260831;
   const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
 
