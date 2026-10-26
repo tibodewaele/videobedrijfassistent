@@ -2214,6 +2214,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="phone-stage" id="phoneStage">
+      <div class="phone-cue">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        Scroll om ads te bekijken
+      </div>
+
+      <div class="phone-wrap">
       <div class="phone-shadow" aria-hidden="true"></div>
 
       <div class="phone" id="phone">
@@ -2304,6 +2310,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         </div>
       </div>
+      </div>
     </div>
 
   </div>
@@ -2368,6 +2375,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .phone-stage {
   position: relative;
   display: flex;
+  flex-direction: column;
+  gap: 26px;
   align-items: center;
   justify-content: center;
   padding: 56px 0;
@@ -2388,6 +2397,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   pointer-events: none;
   z-index: 0;
 }
+
+/* hokje boven de gsm: maakt duidelijk dat de feed scrollbaar is */
+.phone-cue {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-condensed);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255,99,33,0.12);
+  border: 1px solid rgba(255,99,33,0.55);
+  border-radius: 12px;
+  padding: 10px 18px;
+}
+.phone-cue svg { color: var(--orange-light); animation: phone-cue-nudge 1.9s ease-in-out infinite; }
+@keyframes phone-cue-nudge {
+  0%, 100% { transform: translateY(-1px); }
+  50%      { transform: translateY(3px); }
+}
+/* gsm + schaduw samen, zodat de schaduw onder het toestel gecentreerd blijft */
+.phone-wrap { position: relative; }
 
 /* losse schaduwlaag: schuift mee met de kanteling, waardoor de gsm zweeft */
 .phone-shadow {
@@ -2589,7 +2624,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 /* ---- telefoon ---- */
 @media (max-width: 900px) {
-  .phone-stage { perspective: none; padding: 12px 0 4px; }
+  .phone-stage { perspective: none; padding: 12px 0 4px; gap: 18px; }
+  .phone-cue { font-size: 12px; letter-spacing: 1.6px; padding: 9px 15px; }
   .phone {
     width: min(74vw, 340px);
     transform: rotateZ(1.2deg);          /* vaste lichte tilt, geen muisvolging */
@@ -2617,6 +2653,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .phone { transform: rotateY(-8deg) rotateX(3deg); }
   .ph-feed { scroll-behavior: auto; }
   .ph-hint-dot { animation: none; }
+  .phone-cue svg { animation: none; }
 }
 
 </style>
